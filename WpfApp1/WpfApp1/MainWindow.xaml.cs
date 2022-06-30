@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace WpfApp1
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -25,17 +23,29 @@ namespace WpfApp1
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AdminSignIn(object sender, RoutedEventArgs e)
+        {
+            Window1 AdminPanel = new Window1();
+            this.Visibility = Visibility.Hidden;
+            AdminPanel.Show();
+        }
+
+        private void UserSignUp(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void UserSingIn(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void ExitAdminForm(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExitUserForm(object sender, RoutedEventArgs e)
         {
 
         }
