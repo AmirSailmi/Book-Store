@@ -25,6 +25,10 @@ namespace WpfApp1
 
         private void AdminSignIn(object sender, RoutedEventArgs e)
         {
+            string Username = username.Text.ToString();
+            string Password = password.Password.ToString();
+
+            
             Window1 AdminPanel = new Window1();
             this.Visibility = Visibility.Hidden;
             AdminPanel.Show();

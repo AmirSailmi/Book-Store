@@ -59,9 +59,9 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="1" Margin="25,0">
                         <TextBlock Height="32" TextWrapping="Wrap" Text="Username" Foreground="#FF95AD29" FontSize="20" Margin="123,0,97,0"/>
-                        <TextBox Height="23"/>
+                        <TextBox x:Name="username" Height="23"/>
                         <TextBlock Height="35" TextWrapping="Wrap" Text="Password" Foreground="#FF95AD29" FontSize="20" Margin="123,0,97,0"/>
-                        <PasswordBox Height="23"/>
+                        <PasswordBox x:Name="password" Height="23"/>
                     </StackPanel>
                     <Button Grid.Row="1" Content="Exit" HorizontalAlignment="Center" VerticalAlignment="Center" Width="57" Height="24" Margin="327,399,10,3" Background="#FF1B1717" Foreground="#FF91AC29" BorderBrush="{x:Null}" Click="ExitAdminForm"/>
                     <TextBlock Grid.Row="0" Foreground="#FF95AD29" FontSize="36" TextAlignment="Center" LineHeight="22" VerticalAlignment="Center"><Run Text="Admin "/><Run Text="Login"/></TextBlock>
