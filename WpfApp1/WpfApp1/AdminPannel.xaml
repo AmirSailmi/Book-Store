@@ -64,7 +64,18 @@
                 </Grid>
             </TabItem>
             <TabItem Width="140" Height="30" Header="Financial" FontSize="16">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Margin="10,60,10,75" Content="Fund" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="1,1,200,1"/>
+                    <Image Source="/images/Fund.png" Margin="165,44,-20,90" Grid.Row="1"/>
+                    <Image Source="/images/safebox.png" Margin="207,88,10,103" />
 
+                    <Button Grid.Row="1" Margin="10,45,10,90" Content="Get money" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="1,1,200,1"/>
+
+                </Grid>
             </TabItem>
 
         </TabControl>
