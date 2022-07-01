@@ -19,6 +19,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Window1 : Window
     {
+        
         public Window1()
         {
             InitializeComponent();
@@ -49,7 +50,32 @@ namespace WpfApp1
 
         }
 
-        private void BacktoPreviousPage(object sender, RoutedEventArgs e)
+        private void ShowListOfVIPmembers(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShowListOfNormalMembers(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EmailSearchedButton(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EmailSearchedText(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void BackToLoginPage(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShowBooksList(object sender, RoutedEventArgs e)//name-author name-point-sale stats
         {
 
         }

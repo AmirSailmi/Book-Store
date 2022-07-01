@@ -31,13 +31,44 @@
                 </Grid>
             </TabItem>
             <TabItem Width="162" Height="30" Header="Serach" FontSize="16">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="421*"/>
+                        <RowDefinition Height="238*"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Normal members" HorizontalAlignment="Left" VerticalAlignment="Top" Width="273" Margin="155,130,0,0" Height="91" RenderTransformOrigin="0.5,0.5" Background="#FF1B1717" Foreground="#FF95AD29" BorderBrush="{x:Null}" FontSize="28" Click="ShowListOfNormalMembers">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleY="0.78"/>
+                                <RotateTransform/>
+                                <TranslateTransform Y="1.389"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Content="VIP members" HorizontalAlignment="Left" VerticalAlignment="Top" Width="236" Margin="25,28,0,0" Height="85" Background="#FF1B1717" Foreground="#FF95AD29" BorderBrush="{x:Null}" FontSize="28" Click="ShowListOfVIPmembers" Padding="1,1,60,1"/>
+                    <Button Content="Search user" HorizontalAlignment="Left" VerticalAlignment="Top" Width="183" Margin="25,340,0,0" Height="99" Background="#FF1B1717" Foreground="#FF95AD29" BorderBrush="{x:Null}" FontSize="25" Click="EmailSearchedButton" Padding="1,1,50,1" Grid.RowSpan="2"/>
+                    <Image Source="/images/normal.png" HorizontalAlignment="Left" Height="146" VerticalAlignment="Top" Width="152" Margin="10,99,0,0"/>
+                    <Image Source="/images/VIPuser.png" HorizontalAlignment="Left" Height="135" VerticalAlignment="Top" Width="163" Margin="257,10,0,0"/>
+                    <TextBox HorizontalAlignment="Left" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="220,378,0,0" Foreground="#FF92991F" TextChanged="EmailSearchedText" FontSize="14" BorderBrush="#FF92991F" Text="Email..." Background="{x:Null}"/>
+                    <Image Source="/images/books.png" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="138" Margin="269,217,0,0"/>
+                    <Button Content="Books List" HorizontalAlignment="Left" VerticalAlignment="Top" Width="243" Margin="21,245,0,0" Height="102" FontSize="28" Background="{x:Null}" Foreground="#FF95AD29" BorderBrush="{x:Null}" Padding="1,1,110,1" Click="ShowBooksList"/>
+                    <!--Second Row-->
+                    <Button Grid.Row="1" Content="Author" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="25,23,0,0" Height="74" Background="{x:Null}" Foreground="#FF92991F" BorderBrush="{x:Null}" FontSize="28" Padding="1,1,75,1" Click="SearchBookByAuthorName"/>
+                    <Button Grid.Row="1" Content="Book" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="25,115,0,0" Height="76" Background="{x:Null}" Foreground="#FF92991F" BorderBrush="{x:Null}" FontSize="28" Padding="1,1,95,1" Click="SearchBookByBookName"/>
+                    <TextBox Grid.Row="1" HorizontalAlignment="Left" Height="39" TextWrapping="Wrap" Text="name..." VerticalAlignment="Top" Width="200" Margin="220,44,0,0" Background="{x:Null}" BorderBrush="#FF92991F" Foreground="#FF92991F"/>
+                    <TextBox Grid.Row="1" HorizontalAlignment="Left" Height="36" TextWrapping="Wrap" Text="name..." VerticalAlignment="Top" Width="200" Margin="220,134,0,0" Background="{x:Null}" Foreground="#FF92991F" BorderBrush="#FF92991F"/>
 
+
+
+                </Grid>
             </TabItem>
             <TabItem Width="140" Height="30" Header="Financial" FontSize="16">
 
             </TabItem>
+
         </TabControl>
-        <Button Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Margin="10,670,0,0" Height="19" Background="#FF1B1717" Foreground="#FF95AD29"/>
-        <Button Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="70,670,0,0" Height="19" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29"/>
+        <Button Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Margin="10,670,0,0" Height="19" Background="#FF1B1717" Foreground="#FF95AD29" Click="Exit"/>
+        <Button Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="70,670,0,0" Height="19" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" Click="BackToLoginPage"/>
     </Grid>
 </Window>
