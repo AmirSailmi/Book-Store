@@ -66,5 +66,6 @@ namespace WpfApp1
                 default: return 0;
             }
         }
+
     }
 }

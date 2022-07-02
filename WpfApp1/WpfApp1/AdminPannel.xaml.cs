@@ -38,7 +38,9 @@ namespace WpfApp1
 
         private void DeleteBook(object sender, RoutedEventArgs e)
         {
-
+            DeleteForm form = new DeleteForm(this);
+            this.Visibility = Visibility.Hidden;
+            form.Show();
         }
 
         private void Edit(object sender, RoutedEventArgs e)

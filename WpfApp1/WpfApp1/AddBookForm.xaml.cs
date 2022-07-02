@@ -13,7 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Data.SqlClient;
 namespace WpfApp1
 {
     /// <summary>
@@ -23,7 +23,7 @@ namespace WpfApp1
     {
         public string filepath;
         public Window ReformtoAdmin { get; set; }
-        public AddBookForm( Window window)
+        public AddBookForm(Window window)
         {
             ReformtoAdmin = window;
             InitializeComponent();
@@ -58,11 +58,37 @@ namespace WpfApp1
                 return;
             }
 
-            if(Regex.IsMatch( Price.Text.ToString() , "[^0-9]+"))
+            if (Regex.IsMatch(Price.Text.ToString(), "[^0-9]+"))
             {
                 MessageBoxResult message = MessageBox.Show("Enter a Price");
                 return;
             }
+
+            if (Regex.IsMatch(Year.Text.ToString(), "[^0-9]+"))
+            {
+                MessageBoxResult message = MessageBox.Show("Enter a Price");
+                return;
+            }
+
+            if (!Check.NameCheck(AuthorName.Text.ToString()))
+            {
+                MessageBoxResult message = MessageBox.Show("Enter a name");
+                return;
+            }
+
+            if(!Regex.IsMatch(AuthorProfile.Text.ToString(), @"^\w$"))
+            {
+                MessageBoxResult message = MessageBox.Show("Enter a description");
+                return;
+            }
+
+            if (!Regex.IsMatch(AboutBook.Text.ToString(), @"^\w$"))
+            {
+                MessageBoxResult message = MessageBox.Show("Enter a description");
+                return;
+            }
+
+            
         }
     }
 }
