@@ -19,15 +19,21 @@ namespace WpfApp1
     /// </summary>
     public partial class Window1 : Window
     {
-        
-        public Window1()
+        string name { get; set; }
+        string pass { get; set; }
+
+        public Window1(string name , string pass)
         {
+            this.name = name;
+            this.pass = pass;
             InitializeComponent();
         }
 
         private void AddBook(object sender, RoutedEventArgs e)
         {
-
+            AddBookForm form = new AddBookForm( this);
+            this.Visibility = Visibility.Hidden;
+            form.Show();
         }
 
         private void DeleteBook(object sender, RoutedEventArgs e)
@@ -47,7 +53,7 @@ namespace WpfApp1
 
         private void Exit(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void ShowListOfVIPmembers(object sender, RoutedEventArgs e)
@@ -67,7 +73,11 @@ namespace WpfApp1
 
         private void BackToLoginPage(object sender, RoutedEventArgs e)
         {
+            MainWindow main = new MainWindow();
 
+            this.Close();
+
+            main.Show();
         }
 
         private void ShowBooksList(object sender, RoutedEventArgs e) //show name - author name - point - sale stats- cost - normal or VIP - Time Discount - year - breif description

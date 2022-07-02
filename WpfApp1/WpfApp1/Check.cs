@@ -10,7 +10,7 @@ namespace WpfApp1
     {
         static public bool NameCheck(string name)
         {
-            bool Truthlength = Regex.IsMatch( name, "^[a-zA-Z]{3,32}$");
+            bool Truthlength = Regex.IsMatch( name, @"^\w{3,32}$");
             return Truthlength;
         }
 
@@ -20,9 +20,9 @@ namespace WpfApp1
             return Truthemail;
         }
 
-        static public bool PasswordCheck(string password)
+        static public bool PasswordCheck(string password)//How to specify lentgh??
         {
-            bool TruthPassword = Regex.IsMatch(password , "^([a-z]{1,}[A-Z]{1,}){8,40}$");
+            bool TruthPassword = Regex.IsMatch(password , "^(.*[a-z][A-Z].*)$");
             return TruthPassword;
         }
 
@@ -33,10 +33,10 @@ namespace WpfApp1
 
         static public bool NumberCheck(string number)
         {
-            if(Regex.IsMatch(number,"^09[0-9]{9}")) return true; else return false;
+            if(Regex.IsMatch(number,"^[09][0-9]{9}")) return true; else return false;
         }
 
-        bool PassesLuhnCheck(string value)
+        static public bool PassesLuhnCheck(string value)
         {
             long sum = 0;
 
@@ -49,7 +49,7 @@ namespace WpfApp1
             return sum % 10 == 0;
         }
 
-        private int GetDouble(long i)
+        static private int GetDouble(long i)
         {
             switch (i)
             {

@@ -8,13 +8,7 @@
         Title="MainWindow" Height="723.622" Width="396.378" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Background="#FF1B1717">
     <Grid Margin="0,26,-6,0">
         <TabControl Width="400" Margin="1,-23,1,0" Background="#FF1B1717">
-            <TabItem Height="20" Width="70" Header="Customer">
-                <TabItem.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="White" Offset="0"/>
-                        <GradientStop Color="#FF1B1717" Offset="1"/>
-                    </LinearGradientBrush>
-                </TabItem.Background>
+            <TabItem Height="20" Width="70" Header="Customer" Background="White">
                 <Grid Margin="0,0,0,-20" Width="400">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="72*"/>
@@ -23,35 +17,29 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="1" Margin="25,0,30,46">
                         <TextBlock Text="Name" Foreground="#FFC4D334" FontSize="20" Height="45" HorizontalAlignment="Center"/>
-                        <TextBox />
+                        <TextBox x:Name="Customername_SignUP" />
                         <TextBlock Text="Family" Foreground="#FFC4D334" FontSize="20" Height="45" HorizontalAlignment="Center"/>
-                        <TextBox />
+                        <TextBox x:Name="CustomerFamily_SignUP" />
                         <TextBlock Text="Email" Foreground="#FFC4D334" FontSize="20" Height="45" HorizontalAlignment="Center"/>
-                        <TextBox />
+                        <TextBox x:Name="CustomerEmail_SignUP" />
                         <TextBlock Text="Password" Foreground="#FFC4D334" Height="45" FontSize="20" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
-                        <PasswordBox />
+                        <PasswordBox x:Name="CustomerPassword_SignUP" />
                         <Button Content="Sign up" HorizontalAlignment="Center" Margin="132,10,132,0" Padding="5,2" Click="UserSignUp" Foreground="#FF9DAD2C" Background="#FF1B1717" Width="80" Height="29" FontSize="16"/>
                     </StackPanel>
                     <TextBlock Text="Sign up" Foreground="#FF95AD29" FontSize="36" Margin="136,11,136,13" VerticalAlignment="Center" HorizontalAlignment="Center" Height="48" Width="122"/>
                     <TextBlock Text="Sign in" Grid.Row="2" Foreground="#FF95AD29" FontSize="36" Margin="139,0,152,245" VerticalAlignment="Center" HorizontalAlignment="Center" Height="48" Width="109"/>
                     <StackPanel Grid.Row="2" Margin="25,63,30,56">
                         <TextBlock Text="Email" Foreground="#FFC4D334" FontSize="20" Height="42" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="149,0,145,0" Width="51"/>
-                        <TextBox />
+                        <TextBox x:Name="CustomerEmail_SignIn" />
                         <TextBlock Text="Password" Foreground="#FFC4D334" Height="45" FontSize="20" HorizontalAlignment="Center"/>
-                        <PasswordBox />
+                        <PasswordBox x:Name="Password_SignIn" />
 
                         <Button Content="Sign in" HorizontalAlignment="Center" Margin="131,10,133,0" Padding="5,2" Click="UserSingIn" Foreground="#FF9DAD2C" Background="#FF1B1717" Width="81" Height="27" FontSize="16"/>
                     </StackPanel>
                     <Button Content="Exit" Grid.Row="2" Background="#FF1B1717" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="333,242,15,30" Width="57" Height="24" Foreground="#FF95AD29" BorderBrush="{x:Null}" Click="ExitUserForm"/>
                 </Grid>
             </TabItem>
-            <TabItem Width="70" Height="20" Header="Admin">
-                <TabItem.Background>
-                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                        <GradientStop Color="#FF93871D" Offset="1"/>
-                    </LinearGradientBrush>
-                </TabItem.Background>
+            <TabItem Width="70" Height="20" Header="Admin" Background="White">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="246*"/>
