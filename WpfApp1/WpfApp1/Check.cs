@@ -10,7 +10,7 @@ namespace WpfApp1
     {
         static public bool NameCheck(string name)
         {
-            bool Truthlength = Regex.IsMatch( name, @"^\w{3,32}$");
+            bool Truthlength = Regex.IsMatch( name, @"^[A-Za-z0-9\s]+$");
             return Truthlength;
         }
 
@@ -22,7 +22,7 @@ namespace WpfApp1
 
         static public bool PasswordCheck(string password)//How to specify lentgh??
         {
-            bool TruthPassword = Regex.IsMatch(password , "^(.*[a-z][A-Z].*)$");
+            bool TruthPassword = Regex.IsMatch(password , "^(?=.*[a-z])(?=.*[A-Z]).*$");
             return TruthPassword;
         }
 

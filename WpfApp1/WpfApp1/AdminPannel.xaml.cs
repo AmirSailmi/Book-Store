@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 namespace WpfApp1
 {
+    
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
@@ -21,11 +22,13 @@ namespace WpfApp1
     {
         string name { get; set; }
         string pass { get; set; }
+        MainWindow Mainwindow { get; set; }
 
-        public Window1(string name , string pass)
+        public Window1(string name , string pass , MainWindow window)
         {
             this.name = name;
             this.pass = pass;
+            Mainwindow = window;
             InitializeComponent();
         }
 
@@ -56,6 +59,7 @@ namespace WpfApp1
         private void Exit(object sender, RoutedEventArgs e)
         {
             this.Close();
+            Mainwindow.Close();
         }
 
         private void ShowListOfVIPmembers(object sender, RoutedEventArgs e)
@@ -75,11 +79,11 @@ namespace WpfApp1
 
         private void BackToLoginPage(object sender, RoutedEventArgs e)
         {
-            MainWindow main = new MainWindow();
+           
 
             this.Close();
 
-            main.Show();
+            Mainwindow.Show();
         }
 
         private void ShowBooksList(object sender, RoutedEventArgs e) //show name - author name - point - sale stats- cost - normal or VIP - Time Discount - year - breif description

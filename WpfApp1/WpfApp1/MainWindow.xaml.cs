@@ -30,7 +30,7 @@ namespace WpfApp1
 
             if (Check.NameCheck(Username) && Check.PasswordCheck(Password))
             {
-                Window1 AdminPanel = new Window1(Username , Password);
+                Window1 AdminPanel = new Window1(Username , Password , this);
                 this.Visibility = Visibility.Hidden;
                 AdminPanel.Show();
             }
@@ -65,9 +65,10 @@ namespace WpfApp1
             //search sql for user
         }
 
-        private void ExitAdminForm(object sender, RoutedEventArgs e)
+        public void ExitAdminForm(object sender, RoutedEventArgs e)
         {
             this.Close();
+           
         }
 
         private void ExitUserForm(object sender, RoutedEventArgs e)
