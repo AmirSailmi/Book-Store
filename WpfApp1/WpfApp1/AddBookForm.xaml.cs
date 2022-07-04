@@ -53,8 +53,9 @@ namespace WpfApp1
 
         private void Add(object sender, RoutedEventArgs e)
         {
-            string bookname, authorName, year, price, BookDescription, authorProfile;
+            string bookname, authorName, year, price, BookDescription, authorProfile, TimeForDiscount;
             bool isVIP;
+            float VIPSubscriptionMonthlyFee , Discount ;
             int point, saleNumber;
 
             if (filepath == null)
@@ -108,7 +109,9 @@ namespace WpfApp1
             isVIP = false;
             point = 0;
             saleNumber = 0;
-
+            TimeForDiscount = "";
+            VIPSubscriptionMonthlyFee = 0;
+            Discount = 0;
             //Save to database
             try
             {
@@ -116,7 +119,7 @@ namespace WpfApp1
                 connection.Open();
                 string command;
                 command = "insert into BookTable values" +
-                    "('" + bookname.Trim() + "','" + authorName.Trim() + "' , '" + year.Trim() + "','" + price.Trim() + "','" + BookDescription.Trim() + "','" + authorProfile.Trim() + "','" + isVIP + "','" + saleNumber + "','" + point + "' , '"+filepath+"')";
+                    "('" + bookname.Trim() + "','" + authorName.Trim() + "' , '" + year.Trim() + "','" + price.Trim() + "','" + BookDescription.Trim() + "','" + authorProfile.Trim() + "','" + isVIP + "','" + saleNumber + "','" + point + "' , '"+filepath+"','"+VIPSubscriptionMonthlyFee+"','"+TimeForDiscount+"','"+Discount+"')";
                 SqlCommand Command = new SqlCommand(command, connection);
                 Command.ExecuteNonQuery();
                 connection.Close();

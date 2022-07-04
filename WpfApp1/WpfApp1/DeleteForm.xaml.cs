@@ -17,9 +17,6 @@ using System.IO;
 
 namespace WpfApp1
 {
-    /// <summary>
-    /// Interaction logic for DeleteForm.xaml
-    /// </summary>
     public partial class DeleteForm : Window
     {
         public Window ReformtoAdmin { get; set; }
@@ -47,7 +44,7 @@ namespace WpfApp1
             DeleteRow.ExecuteNonQuery();
 
             connection.Close();
-            //Delete does not work
+            MessageBoxResult message = MessageBox.Show("Book Deleted Successfuly!");
         }
     }
 }

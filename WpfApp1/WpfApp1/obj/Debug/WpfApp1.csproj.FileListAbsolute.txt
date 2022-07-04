@@ -21,3 +21,5 @@ D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\DeleteForm.g.cs
 D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\DeleteForm.baml
 D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\EditForm.g.cs
 D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\EditForm.baml
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\StatusForm.g.cs
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\StatusForm.baml

@@ -76,6 +76,9 @@
     <Compile Include="AdminPannel.xaml.cs">
       <DependentUpon>AdminPannel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatusForm.xaml.cs">
+      <DependentUpon>StatusForm.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddBookForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,6 +111,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="AdminPannel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatusForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

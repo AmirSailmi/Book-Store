@@ -87,7 +87,9 @@ namespace WpfApp1
             int salenumber;
             int point;
             string bookimagepath;
-
+            float vipfee;
+            bool timefordiscount;
+            float discount;
 
             name = data.Rows[row][0].ToString();
             authorname = data.Rows[row][1].ToString();
@@ -99,6 +101,9 @@ namespace WpfApp1
             salenumber = int.Parse( data.Rows[row][7].ToString() );
             point = int.Parse( data.Rows[row][8].ToString() );
             bookimagepath = data.Rows[row][9].ToString();
+            vipfee = float.Parse(data.Rows[row][10].ToString());
+            timefordiscount = Convert.ToBoolean(data.Rows[row][11].ToString());
+            discount = float.Parse(data.Rows[row][12].ToString());
 
             string DeleteCommand="";
             string AddCommand="";
@@ -173,7 +178,7 @@ namespace WpfApp1
             DeleteRow.ExecuteNonQuery();
 
             AddCommand = "insert into BookTable values" +
-                    "('" + name + "','" + authorname.Trim() + "' , '" + year.Trim() + "','" + price.Trim() + "','" + bookdescription.Trim() + "','" + authorprofile.Trim() + "','" + isvip + "','" + salenumber + "','" + point + "' , '" + bookimagepath + "')";
+                    "('" + name + "','" + authorname.Trim() + "' , '" + year.Trim() + "','" + price.Trim() + "','" + bookdescription.Trim() + "','" + authorprofile.Trim() + "','" + isvip + "','" + salenumber + "','" + point + "' , '" + bookimagepath + "','"+vipfee+"','"+timefordiscount+"','"+discount+"')";
             SqlCommand AddRow = new SqlCommand(AddCommand , connection);
             AddRow.ExecuteNonQuery();
             connection.Close();

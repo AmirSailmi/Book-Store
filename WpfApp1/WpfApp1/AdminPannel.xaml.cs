@@ -55,7 +55,9 @@ namespace WpfApp1
 
         private void Status(object sender, RoutedEventArgs e)
         {
-
+            StatusForm statusForm = new StatusForm(this);
+            statusForm.Show();
+            this.Visibility = Visibility.Hidden;
         }
 
         private void Exit(object sender, RoutedEventArgs e)
