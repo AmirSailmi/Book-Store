@@ -19,6 +19,7 @@ D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\AddBookForm.g.cs
 D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\AddBookForm.baml
 D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\DeleteForm.g.cs
 D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\DeleteForm.baml
+<<<<<<< HEAD
 C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe.config
 C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe
 C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\bin\Debug\WpfApp1.pdb
@@ -41,3 +42,7 @@ C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\WpfApp1.exe
 C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\WpfApp1.pdb
 C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\CustomerPanel.g.cs
 C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\CustomerPanel.baml
+=======
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\EditForm.g.cs
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\EditForm.baml
+>>>>>>> a747683bdffa3480ba8956692db17ef5d6aa0e0d

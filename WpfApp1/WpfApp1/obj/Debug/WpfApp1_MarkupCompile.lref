@@ -1,8 +1,16 @@
 ﻿
 
+<<<<<<< HEAD
 FC:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\AddBookForm.xaml;;
 FC:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\CustomerPanel.xaml;;
 FC:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\DeleteForm.xaml;;
 FC:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\MainWindow.xaml;;
 FC:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\AdminPannel.xaml;;
+=======
+FD:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\MainWindow.xaml;;
+FD:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\AdminPannel.xaml;;
+FD:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\AddBookForm.xaml;;
+FD:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\DeleteForm.xaml;;
+FD:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\EditForm.xaml;;
+>>>>>>> a747683bdffa3480ba8956692db17ef5d6aa0e0d
 

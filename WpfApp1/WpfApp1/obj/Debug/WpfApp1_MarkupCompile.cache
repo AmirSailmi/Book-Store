@@ -9,12 +9,21 @@ WpfApp1
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\App.xaml
 5-79788150
 
 10298480980
 151984215308
 AddBookForm.xaml;CustomerPanel.xaml;DeleteForm.xaml;MainWindow.xaml;AdminPannel.xaml;
+=======
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\App.xaml
+5599615604
+
+10620985862
+131569487696
+AddBookForm.xaml;DeleteForm.xaml;EditForm.xaml;MainWindow.xaml;AdminPannel.xaml;
+>>>>>>> a747683bdffa3480ba8956692db17ef5d6aa0e0d
 
 False
 

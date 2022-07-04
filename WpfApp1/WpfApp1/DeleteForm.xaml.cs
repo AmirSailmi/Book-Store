@@ -38,27 +38,15 @@ namespace WpfApp1
         private void Delete(object sender, RoutedEventArgs e)
         {
             string bookname = Bookname.Text.ToString().Trim();
-            //Check database and delete
-            try
-            {
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Books.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Books.mdf;Integrated Security=True;Connect Timeout=30");
+            connection.Open();
 
-                con.Open();
+            string DeleteCommand;
+            DeleteCommand = "delete from BookTable where BookName = '" + bookname + "'";
+            SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
+            DeleteRow.ExecuteNonQuery();
 
-                string command = "DELETE FROM BookTable WHERE BookName = '"+bookname+"' ";//????????
-                SqlCommand com = new SqlCommand(command, con);
-                com.BeginExecuteNonQuery();
-
-                con.Close();
-
-                MessageBoxResult message = MessageBox.Show($"Book : {bookname} Deleted successfuly! ");
-
-            }
-            catch (Exception E)
-            {
-                MessageBoxResult message = MessageBox.Show($"Book : {bookname} isn\'t Deleted ! \nError description : \n{E.Message}");
-            }
-
+            connection.Close();
             //Delete does not work
         }
     }
