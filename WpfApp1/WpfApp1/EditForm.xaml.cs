@@ -77,9 +77,6 @@ namespace WpfApp1
             SqlCommand sqlCommand = new SqlCommand(command, connection);
             sqlCommand.ExecuteNonQuery();
             
-            
-
-            
             string name;
             string price;
             string year;
