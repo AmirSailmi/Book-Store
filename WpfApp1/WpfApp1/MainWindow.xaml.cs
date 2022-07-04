@@ -57,6 +57,7 @@ namespace WpfApp1
             if(error != true)
             {
                 //Store data in database and open user panel
+                //sahih
             }
         }
 
@@ -67,6 +68,7 @@ namespace WpfApp1
 
         public void ExitAdminForm(object sender, RoutedEventArgs e)
         {
+
             this.Close();
            
         }
@@ -74,6 +76,11 @@ namespace WpfApp1
         private void ExitUserForm(object sender, RoutedEventArgs e)
         {
             this.Close();
+
+        }
+
+        private void Customername_SignUP_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
         }
     }
