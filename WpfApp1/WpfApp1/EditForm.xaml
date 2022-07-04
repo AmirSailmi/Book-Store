@@ -11,22 +11,21 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="217" Margin="92,172,0,0" SelectionChanged="ComboBox_SelectionChanged" Background="#FF171414" Foreground="Black">
-            <ComboBoxItem Content="Name"/>
-            <ComboBoxItem Content="Price" Background="{x:Null}"/>
-            <ComboBoxItem Content="Year"/>
-            <ComboBoxItem Content="Author"/>
-            <ComboBoxItem Content="Author profile"/>
-            <ComboBoxItem Content="Book description"/>
-            <TextBlock TextWrapping="Wrap" Text="TextBlock"/>
+        <ComboBox x:Name="ChoosedField" HorizontalAlignment="Left" VerticalAlignment="Top" Width="217" Margin="92,172,0,0"  Background="#FF171414" Foreground="Black">
+            <ComboBoxItem x:Name="Name" Content="Name"/>
+            <ComboBoxItem x:Name="Price" Content="Price" Background="{x:Null}"/>
+            <ComboBoxItem x:Name="Year" Content="Year"/>
+            <ComboBoxItem x:Name="Author" Content="Author"/>
+            <ComboBoxItem x:Name="Author_profile" Content="Author profile"/>
+            <ComboBoxItem x:Name="Book_description" Content="Book description"/>
         </ComboBox>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="name of book you want to change" VerticalAlignment="Top" Margin="44,28,0,0" Height="30" Width="326" Foreground="#FFC4D334" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" Margin="44,63,0,0" Background="{x:Null}" Foreground="#FFC4D334" BorderBrush="#FF242527"/>
+        <TextBox x:Name="NameOfSearchedBook" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" Margin="44,63,0,0" Background="{x:Null}" Foreground="#FFC4D334" BorderBrush="#FF242527"/>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Field you want to change" VerticalAlignment="Top" Margin="44,132,0,0" Height="35" Width="302" Foreground="#FFC4D334" FontSize="20" Padding="45,0,0,0"/>
-        <TextBox HorizontalAlignment="Left" Height="148" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" Margin="44,282,0,0" Background="{x:Null}" BorderBrush="#FF242527"/>
+        <TextBox x:Name="EditText" HorizontalAlignment="Left" Height="148" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" Margin="44,282,0,0" Background="{x:Null}" BorderBrush="#FF242527" Foreground="#FFC4D334"/>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Edit" VerticalAlignment="Top" Margin="92,234,0,0" Width="217" Height="32" Foreground="#FFC4D334" FontSize="20" Padding="90,0,0,0"/>
-        <Button Content="Submit Changes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="92,482,0,0" Background="{x:Null}" Foreground="#FFC4D334" BorderBrush="#FF252222"/>
-        <Button Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,482,0,0" Click="Button_Click" Background="{x:Null}" Foreground="#FFC4D334" BorderBrush="#FF292525"/>
+        <Button Click="SubmitChange" Content="Submit Changes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="92,482,0,0" Background="{x:Null}" Foreground="#FFC4D334" BorderBrush="#FF252222"/>
+        <Button Click="Back" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,482,0,0" Background="{x:Null}" Foreground="#FFC4D334" BorderBrush="#FF292525"/>
 
     </Grid>
 </Window>

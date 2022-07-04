@@ -87,7 +87,7 @@ namespace WpfApp1
                 return;
             }
 
-            if (!Regex.IsMatch(AuthorProfile.Text.ToString(), @"^[A-Za-z0-9()_.-?!\s]+$"))//space
+            if (!Regex.IsMatch(AuthorProfile.Text.ToString(), @"^[A-Za-z0-9()_.-?!\s]+$"))
             {
                 MessageBoxResult message = MessageBox.Show("Enter a description for author");
                 return;

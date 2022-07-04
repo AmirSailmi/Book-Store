@@ -48,7 +48,9 @@ namespace WpfApp1
 
         private void Edit(object sender, RoutedEventArgs e)
         {
-
+            EditForm editForm = new EditForm(this);
+            this.Visibility = Visibility.Hidden;
+            editForm.Show();
         }
 
         private void Status(object sender, RoutedEventArgs e)
