@@ -37,6 +37,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -65,6 +67,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomerPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DeleteForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -78,6 +84,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Check.cs" />
+    <Compile Include="CustomerPanel.xaml.cs">
+      <DependentUpon>CustomerPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DeleteForm.xaml.cs">
       <DependentUpon>DeleteForm.xaml</DependentUpon>
     </Compile>

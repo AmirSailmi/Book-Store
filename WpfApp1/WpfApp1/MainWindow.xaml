@@ -17,7 +17,7 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="1" Margin="25,0,30,46">
                         <TextBlock Text="Name" Foreground="#FFC4D334" FontSize="20" Height="45" HorizontalAlignment="Center"/>
-                        <TextBox x:Name="Customername_SignUP" />
+                        <TextBox x:Name="Customername_SignUP" TextChanged="Customername_SignUP_TextChanged" />
                         <TextBlock Text="Family" Foreground="#FFC4D334" FontSize="20" Height="45" HorizontalAlignment="Center"/>
                         <TextBox x:Name="CustomerFamily_SignUP" />
                         <TextBlock Text="Email" Foreground="#FFC4D334" FontSize="20" Height="45" HorizontalAlignment="Center"/>
