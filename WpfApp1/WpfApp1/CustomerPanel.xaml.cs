@@ -19,8 +19,10 @@ namespace WpfApp1
     /// </summary>
     public partial class CustomerPanel : Window
     {
-        public CustomerPanel()
+        MainWindow main_window { get; set; }
+        public CustomerPanel(MainWindow window)
         {
+            main_window = window;
             InitializeComponent();
         }
 
@@ -33,12 +35,13 @@ namespace WpfApp1
         private void BackToLoginPage(object sender, RoutedEventArgs e)
         {
             this.Close();
-
+            main_window.Show();
         }
 
         private void Exit(object sender, RoutedEventArgs e)
         {
             this.Close();
+            main_window.Close();
         }
 
         private void searchBack_Click(object sender, RoutedEventArgs e)

@@ -10,7 +10,7 @@ namespace WpfApp1
     {
         static public bool NameCheck(string name)
         {
-            bool Truthlength = Regex.IsMatch(name , @"^[a-zA-Z]{3,32}$");
+            bool Truthlength = Regex.IsMatch(name , @"^[a-zA-Z/ ]{3,32}$");
             return Truthlength;
         }
 
