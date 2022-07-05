@@ -92,7 +92,9 @@ namespace WpfApp1
 
         private void ShowBooksList(object sender, RoutedEventArgs e) //show name - author name - point - sale stats- cost - normal or VIP - Time Discount - year - breif description
         {
-
+            BookList bookList = new BookList(this);
+            bookList.Show();
+            this.Visibility = Visibility.Hidden;
         }
 
 

@@ -23,3 +23,12 @@ D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\EditForm.g.cs
 D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\EditForm.baml
 D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\StatusForm.g.cs
 D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\StatusForm.baml
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\BookList.g.cs
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\CustomerPanel.g.cs
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\CustomerPanel.baml
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\BookList.baml
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\bin\Debug\System.Configuration.ConfigurationManager.dll
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\bin\Debug\System.Security.AccessControl.dll
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\bin\Debug\System.Security.Permissions.dll
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\bin\Debug\System.Security.Principal.Windows.dll
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csproj.CopyComplete
