@@ -64,6 +64,7 @@ namespace WpfApp1
                 {
                     exist = true;
                     row = i;
+                    break;
                 }
             }
 

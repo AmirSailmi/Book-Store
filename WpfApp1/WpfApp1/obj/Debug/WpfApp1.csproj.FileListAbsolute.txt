@@ -32,3 +32,5 @@ D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\bin\Debug\System.Security.Access
 D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\bin\Debug\System.Security.Permissions.dll
 D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\bin\Debug\System.Security.Principal.Windows.dll
 D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csproj.CopyComplete
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\SearchBook.g.cs
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\SearchBook.baml
