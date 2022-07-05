@@ -204,7 +204,6 @@ namespace WpfApp1
         internal System.Windows.Controls.TextBox newFamillyName;
         internal System.Windows.Controls.Button editNameSubmitBtn;
         internal System.Windows.Controls.Button editNameBack;
-        internal System.Windows.Controls.Grid editePassGrid;
         internal System.Windows.Controls.PasswordBox newPass;
         internal System.Windows.Controls.PasswordBox repeatPass;
         internal System.Windows.Controls.Button editPassSubmitBtn;
@@ -216,6 +215,16 @@ namespace WpfApp1
         internal System.Windows.Controls.Grid haveVIPGrid;
         internal System.Windows.Controls.TextBlock VIPtimeLeft;
         internal System.Windows.Controls.Button VIPBack;
+        internal System.Windows.Controls.Button searchBack;
+        internal System.Windows.Controls.Button bookmarksBack;
+        internal System.Windows.Controls.Button cartBuyBtn;
+        internal System.Windows.Controls.TextBox removeBookID;
+        internal System.Windows.Controls.Button removeBookIDBtn;
+        internal System.Windows.Controls.Button cartBack;
+        internal System.Windows.Controls.TextBlock walletBallance;
+        internal System.Windows.Controls.TextBox AddBallanceAmount;
+        internal System.Windows.Controls.Button walletBack;
+        internal System.Windows.Controls.Grid editPassGrid;
     }
 }
 
