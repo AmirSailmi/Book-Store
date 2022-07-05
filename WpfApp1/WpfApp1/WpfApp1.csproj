@@ -98,6 +98,9 @@
     <Compile Include="BookList.xaml.cs">
       <DependentUpon>BookList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchBook.xaml.cs">
+      <DependentUpon>SearchBook.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StatusForm.xaml.cs">
       <DependentUpon>StatusForm.xaml</DependentUpon>
     </Compile>
@@ -144,6 +147,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="AdminPannel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
