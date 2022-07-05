@@ -7,28 +7,102 @@
         mc:Ignorable="d"
         Title="Customer Panel" Height="700" Width="435" ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,4,-2" Background="#FF1B1717">
-        <TabControl HorizontalAlignment="Left" Width="448" Margin="-8,0" Background="#FF1B1717">
-            <TabItem Width="224" Height="30" Header="Books" FontSize="16">
-                <Grid>
+        <Grid x:Name="MainGrid" Visibility="Visible">
+            <TabControl HorizontalAlignment="Left" Width="448" Margin="-8,0" Background="#FF1B1717">
+                <TabItem Width="224" Height="30" Header="Buy Books" FontSize="16">
+                    <Grid>
 
-                    <Button x:Name="saerchBookBtn" Content="Search Book"  Height="134" Margin="35,0,30,506" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="1,1,150,1" Click="saerchBookBtn_Click"/>
-                    <Button x:Name="BookmarkBtn" Content="Bookmarks" Height="134" Margin="35,0,30,283" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="150,1,1,1"/>
-                    <Button x:Name="CartBtn" Content="Cart" Height="134" Margin="35,0,30,79" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="1,1,250,1"/>
-                
-                </Grid>
-            </TabItem>
-            <TabItem Width="220" Height="30" Header="Profile" FontSize="16" Margin="4,0,-4,0">
-                <Grid>
+                        <Button x:Name="saerchBookBtn" Content="Search Book"  Height="134" Margin="35,0,30,506" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="1,1,150,1" Click="saerchBookBtn_Click"/>
+                        <Button x:Name="BookmarkBtn" Content="Bookmarks" Height="134" Margin="35,0,30,283" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="150,1,1,1"/>
+                        <Button x:Name="CartBtn" Content="Cart" Height="134" Margin="35,0,30,79" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="1,1,250,1"/>
 
-                    <Button x:Name="WalletBtn" Content="Wallet"  Height="134" Margin="35,0,30,506" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="1,1,230,1"/>
-                    <Button x:Name="EditProfileBtn" Content="Edit Profile" Height="134" Margin="35,0,30,283" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="170,1,1,1"/>
-                    <Button x:Name="VIPBtn" Content="VIP" Height="134" Margin="35,0,30,79" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="1,1,280,1"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Width="220" Height="30" Header="Profile" FontSize="16" Margin="4,0,-4,0">
+                    <Grid>
 
-                </Grid>
-            </TabItem>
-        </TabControl>
-        <Button x:Name="CustomerPanelExit" Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Margin="10,670,0,0" Height="19" Background="#FF1B1717" Foreground="#FF95AD29" Click="Exit"/>
-        <Button x:Name="CustomerPanelBack" Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="70,670,0,0" Height="19" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" Click="BackToLoginPage"/>
+                        <Button x:Name="WalletBtn" Content="Wallet"  Height="134" Margin="35,0,30,506" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="1,1,230,1"/>
+                        <Button x:Name="EditProfileBtn" Content="Edit Profile" Height="134" Margin="35,0,30,283" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="170,1,1,1"/>
+                        <Button x:Name="VIPBtn" Content="VIP" Height="134" Margin="35,0,30,79" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="1,1,280,1"/>
 
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <Button x:Name="CustomerPanelExit" Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Margin="10,670,0,0" Height="19" Background="#FF1B1717" Foreground="#FF95AD29" Click="Exit"/>
+            <Button x:Name="CustomerPanelBack" Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="70,670,0,0" Height="19" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" Click="BackToLoginPage"/>
+        </Grid>
+        <Grid x:Name="searchGrid" Visibility="Hidden">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="50" Text="Search:" VerticalAlignment="Top" Margin="123,10,0,0" Height="82" Width="183" FontFamily="MV Boli"/>
+            <TextBox x:Name="searchBook" HorizontalAlignment="Left" Height="44" TextWrapping="Wrap" FontSize="30"  Text="" VerticalAlignment="Top" Width="336" Margin="48,133,0,0"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap" Foreground="White" VerticalAlignment="Top" Margin="48,105,0,0" Width="270" Height="28" Text="book name:"/>
+            <TextBox x:Name="searchAuthor" HorizontalAlignment="Left" Height="44" TextWrapping="Wrap" FontSize="30"  Text="" VerticalAlignment="Top" Width="336" Margin="48,228,0,0"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap" Foreground="White" VerticalAlignment="Top" Margin="48,200,0,0" Width="270" Height="28" Text="Author name:"/>
+            <Button x:Name="SearchSearchBtn" Content="Search" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="128,310,0,0" Height="55" FontFamily="SimSun"/>
+            <Button Content="Back" Foreground="White" FontSize="20"  Background="darkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="10,663,0,0" Height="29" FontFamily="SimSun"/>
+
+        </Grid>
+        <Grid x:Name="bookmarksGrid" Visibility="Hidden">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="50" Text="Bookmarks:" VerticalAlignment="Top" Margin="86,10,0,0" Height="82" Width="272" FontFamily="MV Boli"/>
+            <Button Content="Back" Foreground="White" FontSize="20"  Background="darkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="10,663,0,0" Height="29" FontFamily="SimSun"/>
+        </Grid>
+        <Grid x:Name="cartGrid" Visibility="Hidden">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="50" Text="Cart:" VerticalAlignment="Top" Margin="153,10,0,0" Height="82" Width="142" FontFamily="MV Boli"/>
+            <Button Content="Buy" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="120,402,0,0" Height="55" FontFamily="SimSun"/>
+            <TextBox HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Text="" FontSize="25" VerticalAlignment="Top" Width="190" Margin="120,579,0,0"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Book ID:" FontSize="15" Foreground="White" VerticalAlignment="Top" Margin="120,554,0,0" Width="131" Height="25"/>
+            <Button Content="Remove" Foreground="White" FontSize="25"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="153,628,0,0" Height="34" FontFamily="SimSun"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Remove a book from cart:" FontSize="25" Foreground="White" VerticalAlignment="Top" Margin="62,514,0,0" Width="333" Height="35" FontFamily="MV Boli"/>
+            <Button Content="Back" Foreground="White" FontSize="20"  Background="darkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="10,663,0,0" Height="29" FontFamily="SimSun"/>
+
+        </Grid>
+        <Grid x:Name="walletGrid" Visibility="Hidden">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="50" Text="Wallet:" VerticalAlignment="Top" Margin="131,10,0,0" Height="82" Width="179" FontFamily="MV Boli"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="40"  Text="ballance:" VerticalAlignment="Top" Height="54" Width="167" Margin="131,168,0,0" FontFamily="MV Boli"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" TextAlignment="Center" FontSize="40"  Text="0" VerticalAlignment="Top" Height="54" Width="368" Margin="32,246,0,0" FontFamily="MV Boli"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="40"  Text=" Add ballance:" VerticalAlignment="Top" Height="54" Width="269" Margin="74,406,0,0" FontFamily="MV Boli"/>
+            <TextBox HorizontalAlignment="Left" Height="40" TextWrapping="Wrap" FontSize="25" VerticalAlignment="Top" Width="269" Margin="84,504,0,0"/>
+            <TextBlock HorizontalAlignment="Left" Foreground="White" FontSize="20" TextWrapping="Wrap" Text="amount :" VerticalAlignment="Top" Margin="84,477,0,0" Height="27" Width="269"/>
+            <Button x:Name="AddBallanceBtn" Content="Add" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="148" Margin="131,564,0,0" Height="43" FontFamily="SimSun"/>
+            <Button Content="Back" Foreground="White" FontSize="20"  Background="darkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="10,663,0,0" Height="29" FontFamily="SimSun"/>
+
+        </Grid>
+        <Grid x:Name="editProfileGrid" Visibility="Hidden">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="50" Text="Edit Profile" VerticalAlignment="Top" Margin="76,10,0,0" Height="82" Width="293" FontFamily="MV Boli"/>
+            <Grid x:Name="editPanelGrid" Visibility="Visible">
+                <Button x:Name="editNameBtn" Content="Edit Name" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="252" Margin="93,234,0,0" Height="84" FontFamily="SimSun"/>
+                <Button x:Name="editPassBtn" Content="Edit Password" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="252" Margin="93,419,0,0" Height="84" FontFamily="SimSun"/>
+                <Button x:Name="editProfileBack" Content="Back" Foreground="White" FontSize="20"  Background="darkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="10,663,0,0" Height="29" FontFamily="SimSun"/>
+            </Grid>
+            <Grid x:Name="editNameGrid" Visibility="Hidden">
+                <TextBlock HorizontalAlignment="Left" TextAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="25" Text="New first name:" VerticalAlignment="Top" Margin="96,149,0,0" Height="36" Width="236" FontFamily="MV Boli"/>
+                <TextBox x:Name="newFirstName" HorizontalAlignment="Left" Height="48" TextWrapping="Wrap" FontSize="25" VerticalAlignment="Top" Width="345" Margin="43,190,0,0"/>
+                <TextBlock HorizontalAlignment="Left" TextAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="25" Text="New familly name:" VerticalAlignment="Top" Margin="96,292,0,0" Height="36" Width="236" FontFamily="MV Boli"/>
+                <TextBox x:Name="newFamillyName" HorizontalAlignment="Left" Height="48" TextWrapping="Wrap" FontSize="25" VerticalAlignment="Top" Width="345" Margin="43,333,0,0"/>
+                <Button x:Name="editNameSubmitBtn" Content="Edit" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="236" Margin="96,474,0,0" Height="60" FontFamily="SimSun"/>
+                <Button x:Name="editNameBack" Content="Back" Foreground="White" FontSize="20"  Background="darkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="10,663,0,0" Height="29" FontFamily="SimSun"/>
+            </Grid>
+            <Grid x:Name="editePassGrid" Visibility="Hidden">
+                <TextBlock HorizontalAlignment="Left" TextAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="25" Text="New Password:" VerticalAlignment="Top" Margin="96,149,0,0" Height="36" Width="236" FontFamily="MV Boli"/>
+                <PasswordBox x:Name="newPass" HorizontalAlignment="Left" VerticalAlignment="Top" Height="47" Width="345" Margin="39,190,0,0"/>
+                <TextBlock HorizontalAlignment="Left" TextAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="25" Text="repeat Password:" VerticalAlignment="Top" Margin="96,297,0,0" Height="36" Width="236" FontFamily="MV Boli"/>
+                <PasswordBox x:Name="repeatPass" HorizontalAlignment="Left" VerticalAlignment="Top" Height="47" Width="345" Margin="39,338,0,0"/>
+                <Button x:Name="editPassSubmitBtn" Content="Edit" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="236" Margin="96,474,0,0" Height="60" FontFamily="SimSun"/>
+                <Button x:Name="editPassBack" Content="Back" Foreground="White" FontSize="20"  Background="darkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="10,663,0,0" Height="29" FontFamily="SimSun"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="VIPGrid" Visibility="Hidden">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="50" Text="VIP" VerticalAlignment="Top" Margin="77,25,0,0" Height="82" Width="293" FontFamily="MV Boli"/>
+            <Grid x:Name="nonVIPGrid" Visibility="Visible">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" Text="one month VIP:" VerticalAlignment="Top" Margin="77,182,0,0" Height="59" Width="293" FontFamily="MV Boli"/>
+                <TextBlock x:Name="VIPprice" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" Text="(price)" VerticalAlignment="Top" Margin="77,246,0,0" Height="59" Width="293" FontFamily="MV Boli"/>
+                <Button x:Name="buyVIPBtn" Content="Buy VIP" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="123,347,0,0" Height="55" FontFamily="SimSun"/>
+            </Grid>
+            <Grid x:Name="haveVIPGrid" Visibility="Hidden">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" VerticalAlignment="Top" Margin="55,182,0,0" Height="59" Width="328" FontFamily="MV Boli"><Run Text="You are VIP "/><Run Text="already"/></TextBlock>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" VerticalAlignment="Top" Margin="55,307,0,0" Height="59" Width="328" FontFamily="MV Boli" Text="VIP time left:"/>
+                <TextBlock x:Name="VIPtimeLeft" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" VerticalAlignment="Top" Margin="55,371,0,0" Height="59" Width="328" FontFamily="MV Boli" Text="(time left)"/>
+            </Grid>
+            <Button x:Name="VIPBack" Content="Back" Foreground="White" FontSize="20"  Background="darkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="10,663,0,0" Height="29" FontFamily="SimSun"/>
+        </Grid>
     </Grid>
 </Window>
