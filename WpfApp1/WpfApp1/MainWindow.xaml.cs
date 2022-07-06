@@ -57,13 +57,15 @@ namespace WpfApp1
             string Email = CustomerEmail_SignUP.Text.ToString();
             string Password = CustomerPassword_SignUP.Password.ToString();
             string ShoppingList = "", BuyedList = "", BookMarked = "";
+            float wallet = 0;
 
             try
             {
                 connection.Open();
 
                 string command = "insert into UserTable values" +
-                        "('" + Email.Trim() + "','" + Name.Trim() + "' , '" + Family.Trim() + "','" + Password.Trim() + "','" + ShoppingList.Trim() + "','" + BuyedList + "','" + BookMarked + "')";
+                        "('" + Email.Trim() + "','" + Name.Trim() + "' , '" + Family.Trim() + "','" + Password.Trim() + "','" + ShoppingList.Trim() + "','" + BuyedList + "','" + BookMarked + "','"+wallet+"')";
+
                 SqlCommand Command = new SqlCommand(command, connection);
                 Command.ExecuteNonQuery();
 
@@ -109,7 +111,7 @@ namespace WpfApp1
             }
 
 
-            CustomerPanel customerPanel = new CustomerPanel(this);
+            CustomerPanel customerPanel = new CustomerPanel(this , email ,password);
             customerPanel.Show();
             this.Visibility = Visibility.Hidden;
         }

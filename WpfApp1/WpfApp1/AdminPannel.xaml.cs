@@ -106,6 +106,7 @@ namespace WpfApp1
             {
                 MessageBoxResult message = MessageBox.Show("Enter name");
             }
+
             string Name = nameofbook.Text.ToString();
             bool exist = false;
             string command;
