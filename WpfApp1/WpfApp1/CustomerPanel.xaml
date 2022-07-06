@@ -31,17 +31,44 @@
             <Button x:Name="CustomerPanelExit" Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Margin="10,670,0,0" Height="19" Background="#FF1B1717" Foreground="#FF95AD29" Click="Exit"/>
             <Button x:Name="CustomerPanelBack" Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="70,670,0,0" Height="19" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" Click="BackToLoginPage"/>
         </Grid>
-        <Grid x:Name="searchGrid" Visibility="Hidden">
+        <Grid x:Name="searchGrid" Background="#FF1B1717" Visibility="Hidden">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="50" Text="Search:" VerticalAlignment="Top" Margin="123,10,0,0" Height="82" Width="183" FontFamily="MV Boli"/>
             <TextBox x:Name="searchBook" HorizontalAlignment="Left" Height="44" TextWrapping="Wrap" FontSize="30"  Text="" VerticalAlignment="Top" Width="336" Margin="48,133,0,0"/>
             <TextBlock HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap" Foreground="White" VerticalAlignment="Top" Margin="48,105,0,0" Width="270" Height="28" Text="book name:"/>
-            <TextBox x:Name="searchAuthor" HorizontalAlignment="Left" Height="44" TextWrapping="Wrap" FontSize="30"  Text="" VerticalAlignment="Top" Width="336" Margin="48,228,0,0"/>
-            <TextBlock HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap" Foreground="White" VerticalAlignment="Top" Margin="48,200,0,0" Width="270" Height="28" Text="Author name:"/>
-            <Button x:Name="SearchSearchBtn" Content="Search" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="128,310,0,0" Height="55" FontFamily="SimSun" Click="SearchSearchBtn_Click"/>
+            <TextBox x:Name="searchAuthor" HorizontalAlignment="Left" Height="44" TextWrapping="Wrap" FontSize="30"  Text="" VerticalAlignment="Top" Width="336" Margin="48,356,0,0"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="20" TextWrapping="Wrap" Foreground="White" VerticalAlignment="Top" Margin="48,323,0,0" Width="270" Height="28" Text="Author name:"/>
+            <Button x:Name="SearchDependingbook" Content="Search" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="116,197,0,0" Height="55" FontFamily="SimSun" Click="SearchDependingBook"/>
             <Button x:Name="searchBack" Content="Back" Foreground="White" FontSize="20"  Background="darkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="10,663,0,0" Height="29" FontFamily="SimSun" Click="searchBack_Click"/>
+            <Button x:Name="SearchDependingauthor" Content="Search" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="116,421,0,0" Height="55" FontFamily="SimSun" Click="SearchDependingAuthor"/>
 
         </Grid>
-        <Grid x:Name="bookmarksGrid" Visibility="Hidden">
+        <Grid x:Name="ShowBook" Background="#FF1B1717" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Image x:Name="imageofbook" HorizontalAlignment="Left" Height="158" Margin="138,23,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.5,0.5" OpacityMask="#FFAE9494">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0.321"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <TextBlock x:Name="YEAR" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="174,195,0,0" Width="69" Height="20" Foreground="#FF95AD29" TextAlignment="Center"/>
+            <TextBlock x:Name="authorName" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="22,220,15,0" Width="394" VerticalAlignment="Top" TextAlignment="Center" Foreground="#FF95AD29" Height="24"/>
+            <TextBlock x:Name="pointe" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="22,249,0,0" Width="394" TextAlignment="Center" Foreground="#FF95AD29" Height="29"/>
+            <TextBlock x:Name="BookName" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="74,283,0,0" Width="294" Height="37" FontSize="20" TextAlignment="Center" Foreground="#FF95AD29"/>
+            <TextBlock x:Name="description" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="68,325,0,0" Height="126" Width="300" Foreground="#FF95AD29" TextAlignment="Center"/>
+            <TextBlock x:Name="Pricee" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="130,461,0,0" Height="31" Width="165" Foreground="#FF95AD29" TextAlignment="Center"/>
+            <TextBlock x:Name="VIPe" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="35" Width="32" Foreground="#FF95AD29" FontSize="20" Margin="22,10,0,0"/>
+            <TextBlock x:Name="VIPFEE" TextWrapping="Wrap" Margin="10,55,297,520" Foreground="#FF95AD29" FontSize="15" TextAlignment="Center"/>
+            <TextBlock x:Name="discounte" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="68,508,0,0" Width="281" Height="32" Foreground="#FF95AD29" TextAlignment="Center"/>
+            <Button Click="BackToSearchBookPaage" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Margin="334,638,0,0" Foreground="#FF95AD29" Background="{x:Null}" BorderBrush="#FF272424" Height="54" FontSize="17" />
+            <Button Click="AddToShoppingList" Content="Add to Shopping list" HorizontalAlignment="Left" VerticalAlignment="Top" Width="169" Margin="160,638,0,0" Height="54" Background="{x:Null}" Foreground="#FF95AD29" BorderBrush="#FF2C2C2C" FontSize="17" />
+        </Grid>
+        <Grid x:Name="bookmarksGrid" Background="#FF1B1717" Visibility="Hidden" >
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="50" Text="Bookmarks:" VerticalAlignment="Top" Margin="86,10,0,0" Height="82" Width="272" FontFamily="MV Boli"/>
             <Button x:Name="bookmarksBack" Content="Back" Foreground="White" FontSize="20"  Background="darkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="10,663,0,0" Height="29" FontFamily="SimSun" Click="bookmarksBack_Click"/>
         </Grid>
