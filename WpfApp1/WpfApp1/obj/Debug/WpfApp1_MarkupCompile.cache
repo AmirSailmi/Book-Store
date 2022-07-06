@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\
+C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\
 WpfApp1
 none
 false
 DEBUG;TRACE
-D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\App.xaml
+C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\App.xaml
 9556807816
 
 14156323302
-241259854360
+24350182256
 AddBookForm.xaml;BookList.xaml;CustomerPanel.xaml;DeleteForm.xaml;EditForm.xaml;MainWindow.xaml;AdminPannel.xaml;SearchBook.xaml;StatusForm.xaml;
 
 False
