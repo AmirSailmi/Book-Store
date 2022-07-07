@@ -98,11 +98,20 @@
     <Compile Include="BookList.xaml.cs">
       <DependentUpon>BookList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Fund.xaml.cs">
+      <DependentUpon>Fund.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NormalMembers.xaml.cs">
+      <DependentUpon>NormalMembers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SearchBook.xaml.cs">
       <DependentUpon>SearchBook.xaml</DependentUpon>
     </Compile>
     <Compile Include="StatusForm.xaml.cs">
       <DependentUpon>StatusForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIPmembers.xaml.cs">
+      <DependentUpon>VIPmembers.xaml</DependentUpon>
     </Compile>
     <Page Include="AddBookForm.xaml">
       <SubType>Designer</SubType>
@@ -121,6 +130,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Fund.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -150,11 +163,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NormalMembers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SearchBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StatusForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIPmembers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
