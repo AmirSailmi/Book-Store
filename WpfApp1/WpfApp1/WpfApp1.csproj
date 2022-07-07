@@ -107,6 +107,7 @@
     <Compile Include="SearchBook.xaml.cs">
       <DependentUpon>SearchBook.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SQLmethodes.cs" />
     <Compile Include="StatusForm.xaml.cs">
       <DependentUpon>StatusForm.xaml</DependentUpon>
     </Compile>
