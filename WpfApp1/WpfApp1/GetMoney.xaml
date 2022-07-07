@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="GetMoney" Height="300" Width="300">
+        Title="GetMoney" Height="605" Width="400" Background="#FF1B1717" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Text="Get Money" VerticalAlignment="Top" Margin="55,10,0,0" Height="57" Width="286" Foreground="#FFC4D334" FontSize="36"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Text="How much do you want to get?" VerticalAlignment="Top" Margin="10,178,0,0" Height="59" Width="372" Foreground="#FFC4D334" FontSize="25"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Margin="55,242,51,0" Height="55" Width="286" Foreground="#FFC4D334" FontSize="25" Text="(money)"/>
+        <Button Content="Get" FontSize="30" Foreground="#FFC4D334" Background="#FF1B1717" HorizontalAlignment="Left" VerticalAlignment="Top" Width="183" Margin="107,342,0,0" Height="73"/>
+        <Button x:Name="GetMoneyBack" Content="Back" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="30,545,0,0" Height="29"/>
+
     </Grid>
 </Window>

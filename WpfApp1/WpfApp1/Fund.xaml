@@ -8,6 +8,9 @@
         Title="Fund" Height="605" Width="400" Background="#FF1B1717" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Text="Fund" VerticalAlignment="Top" Margin="55,10,0,0" Height="57" Width="286" Foreground="#FFC4D334" FontSize="36"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Text="Total Money:" VerticalAlignment="Top" Margin="55,178,0,0" Height="41" Width="286" Foreground="#FFC4D334" FontSize="25"/>
+        <TextBlock x:Name="fundMoney" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Text="(money)" VerticalAlignment="Top" Margin="55,224,0,0" Height="41" Width="286" Foreground="#FFC4D334" FontSize="25"/>
+        <Button x:Name="FundBack" Content="Back" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="30,545,0,0" Height="29"/>
 
     </Grid>
 </Window>
