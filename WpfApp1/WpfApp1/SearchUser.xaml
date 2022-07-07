@@ -1,0 +1,17 @@
+﻿<Window x:Class="WpfApp1.SearchUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="SearchUser" Height="605" Width="400" Background="#FF1B1717" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Text="Search User" VerticalAlignment="Top" Margin="55,10,0,0" Height="57" Width="286" Foreground="#FFC4D334" FontSize="36"/>
+        <TextBox HorizontalAlignment="Left"   FontSize="20" Height="41" TextWrapping="Wrap" VerticalAlignment="Top" Width="243" Margin="71,156,0,0"/>
+        <TextBlock HorizontalAlignment="Left" FontSize="20" Foreground="#FFC4D334" TextWrapping="Wrap" Text="Email :" VerticalAlignment="Top" Margin="71,128,0,0" Height="23" Width="243"/>
+        <Button Content="Search" FontSize="30" Foreground="#FFC4D334" Background="#FF1B1717" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Margin="110,245,0,0" Height="70"/>
+        <TextBlock HorizontalAlignment="Left" FontSize="20" Foreground="#FFC4D334" TextWrapping="Wrap" Text="(user information)" VerticalAlignment="Top" Margin="55,342,0,0" Height="212" Width="286"/>
+
+    </Grid>
+</Window>

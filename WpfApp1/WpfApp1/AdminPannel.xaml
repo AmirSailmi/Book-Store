@@ -33,10 +33,10 @@
             <TabItem Width="162" Height="30" Header="Serach" FontSize="16">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="421*"/>
-                        <RowDefinition Height="238*"/>
+                        <RowDefinition Height="469*"/>
+                        <RowDefinition Height="190*"/>
                     </Grid.RowDefinitions>
-                    <Button Content="Normal members" HorizontalAlignment="Left" VerticalAlignment="Top" Width="273" Margin="155,130,0,0" Height="91" RenderTransformOrigin="0.5,0.5" Background="#FF1B1717" Foreground="#FF95AD29" BorderBrush="{x:Null}" FontSize="28" Click="ShowListOfNormalMembers">
+                    <Button Content="Normal members" HorizontalAlignment="Left" Padding="130,1,1,1" VerticalAlignment="Top" Width="408" Margin="20,129,0,0" Height="91" RenderTransformOrigin="0.5,0.5" Background="#FF1B1717" Foreground="#FF95AD29" BorderBrush="{x:Null}" FontSize="28" Click="ShowListOfNormalMembers">
                         <Button.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -46,18 +46,19 @@
                             </TransformGroup>
                         </Button.RenderTransform>
                     </Button>
-                    <Button Content="VIP members" HorizontalAlignment="Left" VerticalAlignment="Top" Width="236" Margin="25,28,0,0" Height="85" Background="#FF1B1717" Foreground="#FF95AD29" BorderBrush="{x:Null}" FontSize="28" Click="ShowListOfVIPmembers" Padding="1,1,60,1"/>
-                    <Button Content="Email" HorizontalAlignment="Left" VerticalAlignment="Top" Width="187" Margin="21,378,0,0" Height="36" Background="#FF1B1717" Foreground="#FF95AD29" BorderBrush="{x:Null}" FontSize="25" Click="EmailSearchedButton" Padding="1,1,120,1"/>
+                    <Button Content="VIP members" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="25,28,0,0" Height="85" Background="#FF1B1717" Foreground="#FF95AD29" BorderBrush="{x:Null}" FontSize="28" Click="ShowListOfVIPmembers" Padding="1,1,180,1"/>
+                    <Button x:Name="SearchUserBtn" Content="Search User" HorizontalAlignment="Left" VerticalAlignment="Top" Width="399" Margin="21,356,0,0" Height="103" Background="#FF1B1717" Foreground="#FF95AD29" BorderBrush="{x:Null}" FontSize="28" Click="EmailSearchedButton" Padding="200,1,2,1"/>
+
                     <Image Source="/images/normal.png" HorizontalAlignment="Left" Height="146" VerticalAlignment="Top" Width="152" Margin="10,99,0,0"/>
                     <Image Source="/images/VIPuser.png" HorizontalAlignment="Left" Height="135" VerticalAlignment="Top" Width="163" Margin="257,10,0,0"/>
-                    <TextBox HorizontalAlignment="Left" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="220,378,0,0" Foreground="#FF92991F" TextChanged="EmailSearchedText" FontSize="14" BorderBrush="#FF92991F" Background="{x:Null}"/>
                     <Image Source="/images/books.png" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="138" Margin="269,217,0,0"/>
-                    <Button Content="Books List" HorizontalAlignment="Left" VerticalAlignment="Top" Width="243" Margin="21,245,0,0" Height="102" FontSize="28" Background="{x:Null}" Foreground="#FF95AD29" BorderBrush="{x:Null}" Padding="1,1,110,1" Click="ShowBooksList"/>
+                    <Image Source="/images/SearchUser.png" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="154" Margin="21,333,0,0"/>
+                    <Button Content="Books List" Padding="1,1,200,1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="386" Margin="21,245,0,0" Height="102" FontSize="28" Background="{x:Null}" Foreground="#FF95AD29" BorderBrush="{x:Null}" Click="ShowBooksList"/>
                     <!--Second Row-->
-                    <Button Grid.Row="1" Content="Author name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Margin="21,44,0,0" Height="39" Background="{x:Null}" Foreground="#FF92991F" BorderBrush="{x:Null}" FontSize="28" Padding="1,1,0,1" Click="SearchBookByAuthorName"/>
-                    <Button x:Name="BookNameSearch" Grid.Row="1" Content="Book name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Margin="21,134,0,0" Height="36" Background="{x:Null}" Foreground="#FF92991F" BorderBrush="{x:Null}" FontSize="28" Padding="1,1,30,1" Click="SearchBookByBookName"/>
-                    <TextBox x:Name="authornamee" Grid.Row="1" HorizontalAlignment="Left" Height="39" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="220,44,0,0" Background="{x:Null}" BorderBrush="#FF92991F" Foreground="#FF92991F"/>
-                    <TextBox x:Name="nameofbook" Grid.Row="1" HorizontalAlignment="Left" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="220,134,0,0" Background="{x:Null}" Foreground="#FF92991F" BorderBrush="#FF92991F"/>
+                    <Button Grid.Row="1" Content="Author name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Margin="21,32,0,0" Height="39" Background="{x:Null}" Foreground="#FF92991F" BorderBrush="{x:Null}" FontSize="28" Padding="1,1,0,1" Click="SearchBookByAuthorName"/>
+                    <Button x:Name="BookNameSearch" Grid.Row="1" Content="Book name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Margin="21,95,0,0" Height="36" Background="{x:Null}" Foreground="#FF92991F" BorderBrush="{x:Null}" FontSize="28" Padding="1,1,30,1" Click="SearchBookByBookName"/>
+                    <TextBox x:Name="authornamee" Grid.Row="1" HorizontalAlignment="Left" Height="39" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="220,32,0,0" Background="{x:Null}" BorderBrush="#FF92991F" Foreground="#FF92991F"/>
+                    <TextBox x:Name="nameofbook" Grid.Row="1" HorizontalAlignment="Left" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="220,95,0,0" Background="{x:Null}" Foreground="#FF92991F" BorderBrush="#FF92991F"/>
 
 
 
@@ -69,11 +70,13 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button Margin="10,60,10,75" Content="Fund" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="1,1,200,1"/>
-                    <Image Source="/images/Fund.png" Margin="165,44,-20,90" Grid.Row="1"/>
-                    <Image Source="/images/safebox.png" Margin="207,88,10,103" />
+                    <Button Margin="10,31,11,140.5" Content="Fund" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="1,1,200,1"/>
+                    <Image Source="/images/safebox.png" Margin="233,55,11,161" />
 
-                    <Button Grid.Row="1" Margin="10,45,10,90" Content="Get money" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="1,1,200,1"/>
+                    <Button Margin="1,223,10,282" Content="Get money" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="200,1,2,1" Grid.RowSpan="2"/>
+                    <Button Margin="1,83,10,93" Content="Set VIP price" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="1,1,170,1" Grid.Row="1"/>
+                    <Image Source="/images/Fund.png" Margin="11,222,225,282" Grid.RowSpan="2"/>
+                    <Image Source="/images/VIPprice.png" HorizontalAlignment="Left" Height="154" VerticalAlignment="Top" Width="157" Margin="254,83,0,0" Grid.Row="1"/>
 
                 </Grid>
             </TabItem>
