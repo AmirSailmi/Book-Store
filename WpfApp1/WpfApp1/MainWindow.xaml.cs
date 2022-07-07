@@ -56,7 +56,7 @@ namespace WpfApp1
             string Family = CustomerFamily_SignUP.Text.ToString();
             string Email = CustomerEmail_SignUP.Text.ToString();
             string Password = CustomerPassword_SignUP.Password.ToString();
-            string ShoppingList = "", BuyedList = "", BookMarked = "";
+            string ShoppingList = "", BuyedList = "", BookMarked = "",VIPTime="";
             float wallet = 0;
 
             try
@@ -64,7 +64,7 @@ namespace WpfApp1
                 connection.Open();
 
                 string command = "insert into UserTable values" +
-                        "('" + Email.Trim() + "','" + Name.Trim() + "' , '" + Family.Trim() + "','" + Password.Trim() + "','" + ShoppingList.Trim() + "','" + BuyedList + "','" + BookMarked + "','"+wallet+"')";
+                        "('" + Email.Trim() + "','" + Name.Trim() + "' , '" + Family.Trim() + "','" + Password.Trim() + "','" + ShoppingList.Trim() + "','" + BuyedList + "','" + BookMarked + "','"+wallet+"','"+ VIPTime + ";)";
 
                 SqlCommand Command = new SqlCommand(command, connection);
                 Command.ExecuteNonQuery();
