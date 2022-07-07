@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace WpfApp1
-{ 
+{
 
     public partial class CustomerPanel : Window
     {
@@ -60,37 +60,41 @@ namespace WpfApp1
         {
             MainGrid.Visibility = Visibility.Hidden;
             string nameofbook = BookName.Text.ToString();
-            nameofbook = nameofbook.Replace("Name =", "").Replace(",","").Trim();
-            
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
+            nameofbook = nameofbook.Replace("Name =", "").Replace(",", "").Trim();
+            string email;
+            string name;
+            string family;
+            string password;
+            string shoppinglist;
+            string buyedlist;
+            string bookmarked;
+            float wallet;
+            string VIPTime;
+            bool exist;
 
-            connection.Open();
+            SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
+            if (!exist) return;
 
-            command = "select * from UserTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
 
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
+            if (bookmarked.Contains($"{nameofbook}"))
             {
-                if (data.Rows[i][0].ToString() == EmailOfUser)
-                {
-                    exist = true;
-                    row = i;
-                }
+                bookmarked = bookmarked.Replace($"{nameofbook}, ", "");
+                MessageBoxResult message = MessageBox.Show("You unbookmaarked the book");
             }
+            else bookmarked += $"{nameofbook}, ";
 
+            SQLmethodes.UpdateUserTable(EmailOfUser, email, name, family, password, shoppinglist, buyedlist, bookmarked, wallet, VIPTime, out exist);
             if (!exist)
             {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
+                MessageBoxResult message = MessageBox.Show($"Bookmarking Book was unsuccessful!");
                 return;
             }
+        }
 
-            connection.Close();
+        private void CartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            cartGrid.Visibility = Visibility.Visible;
+            MainGrid.Visibility = Visibility.Hidden;
 
             string email;
             string name;
@@ -101,88 +105,14 @@ namespace WpfApp1
             string bookmarked;
             float wallet;
             string VIPTime;
+            bool exist;
 
-            email = data.Rows[row][0].ToString();
-            name = data.Rows[row][1].ToString();
-            family = data.Rows[row][2].ToString();
-            password = data.Rows[row][3].ToString();
-            shoppinglist = data.Rows[row][4].ToString();
-            buyedlist = data.Rows[row][5].ToString();
-            bookmarked = data.Rows[row][6].ToString();
-            wallet = float.Parse(data.Rows[row][7].ToString());
-            VIPTime = data.Rows[row][8].ToString();
-
-
-            if (bookmarked.Contains($"{nameofbook}"))
-            {
-                bookmarked = bookmarked.Replace($"{nameofbook}, ", "");
-                MessageBoxResult message = MessageBox.Show("You unbookmaarked the book");
-            }
-            else bookmarked += $"{nameofbook}, ";
-
-            try
-            {
-                connection.Open();
-
-                string DeleteCommand;
-                DeleteCommand = "delete from UserTable where Email = '" + EmailOfUser + "'";
-                SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
-                DeleteRow.ExecuteNonQuery();
-
-
-                command = "insert into UserTable values" +
-                        "('" + EmailOfUser.Trim() + "','" + name.Trim() + "' , '" + family.Trim() + "','" + password.Trim() + "','" + shoppinglist.Trim() + "','" + buyedlist + "','" + bookmarked + "','" + wallet + "','"+VIPTime+"')";
-
-                SqlCommand Command = new SqlCommand(command, connection);
-                Command.ExecuteNonQuery();
-                connection.Close();
-            }
-            catch (Exception Error)
-            {
-                connection.Close();
-                MessageBoxResult message = MessageBox.Show($"Bookmarking Book was unsuccessful!/nError descriiption : \n{Error.Message}");return;
-            }
-        }
-
-        private void CartBtn_Click(object sender, RoutedEventArgs e)
-        {
-            cartGrid.Visibility = Visibility.Visible;
-            MainGrid.Visibility = Visibility.Hidden;
-
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
-
-            connection.Open();
-
-            command = "select * from UserTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][0].ToString() == EmailOfUser)
-                {
-                    exist = true;
-                    row = i;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
-                return;
-            }
-
-            connection.Close();
-            string ShoppingList;
-            ShoppingList = data.Rows[row][4].ToString();
+            SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
+            if (!exist) return;
 
             List<string> books = new List<string>();
-            string[] arr = ShoppingList.Split(',');
+            string[] arr = shoppinglist.Split(',');
+
             for (int i = 0; i < arr.Length; i++)
             {
                 arr[i] = arr[i].Replace(" ", ",Price = ");
@@ -209,36 +139,6 @@ namespace WpfApp1
         private void VIPBtn_Click(object sender, RoutedEventArgs e)
         {
             VIPGrid.Visibility = Visibility.Visible;
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
-
-            connection.Open();
-
-            command = "select * from UserTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][0].ToString().ToLower() == EmailOfUser)
-                {
-                    exist = true;
-                    row = i;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
-                return;
-            }
-
-            connection.Close();
-
             string email;
             string name;
             string family;
@@ -247,23 +147,18 @@ namespace WpfApp1
             string buyedlist;
             string bookmarked;
             float wallet;
-
-            email = data.Rows[row][0].ToString();
-            name = data.Rows[row][1].ToString();
-            family = data.Rows[row][2].ToString();
-            password = data.Rows[row][3].ToString();
-            shoppinglist = data.Rows[row][4].ToString();
-            buyedlist = data.Rows[row][5].ToString();
-            bookmarked = data.Rows[row][6].ToString();
-            wallet = float.Parse(data.Rows[row][7].ToString());
             string VIPTime;
-            VIPTime = data.Rows[row][8].ToString();
+            bool exist;
+
+            SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
+            if (!exist) return;
+
             if (VIPTime == "") { nonVIPGrid.Visibility = Visibility.Visible; return; }
             else
             {
                 haveVIPGrid.Visibility = Visibility.Visible;
             }
-          }
+        }
 
         private void SearchSearchBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -286,36 +181,6 @@ namespace WpfApp1
         {
             float price = cost;
 
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
-
-            connection.Open();
-
-            command = "select * from UserTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][0].ToString() == EmailOfUser)
-                {
-                    exist = true;
-                    row = i;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
-                return;
-            }
-
-            connection.Close();
-
             string email;
             string name;
             string family;
@@ -324,41 +189,27 @@ namespace WpfApp1
             string buyedlist;
             string bookmarked;
             float wallet;
-
-            email = data.Rows[row][0].ToString();
-            name = data.Rows[row][1].ToString();
-            family = data.Rows[row][2].ToString();
-            password = data.Rows[row][3].ToString();
-            shoppinglist = data.Rows[row][4].ToString();
-            buyedlist = data.Rows[row][5].ToString();
-            bookmarked = data.Rows[row][6].ToString();
-            wallet = float.Parse(data.Rows[row][7].ToString());
             string VIPTime;
-            VIPTime = data.Rows[row][8].ToString();
+            bool exist;
+
+            SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
+            if (!exist) return;
 
             if (price > wallet) { MessageBoxResult message = MessageBox.Show($"money in wallet is not enough \nWallet : {wallet}\nCost : {price}"); return; }
-            else 
+            else
             {
                 wallet -= price;
-                shoppinglist = ""; 
+                shoppinglist = "";
 
-                connection.Open();
-
-                string DeleteCommand;
-                DeleteCommand = "delete from UserTable where Email = '" + email + "'";
-                SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
-                DeleteRow.ExecuteNonQuery();
-
-                command = "insert into UserTable values" +
-                        "('" + email.Trim() + "','" + name.Trim() + "' , '" + family.Trim() + "','" + password.Trim() + "','" + shoppinglist.Trim() + "','" + buyedlist + "','" + bookmarked + "','" + wallet + "','"+VIPTime+"')";
-
-                SqlCommand Command = new SqlCommand(command, connection);
-                Command.ExecuteNonQuery();
-                connection.Close();
+                SQLmethodes.UpdateUserTable(EmailOfUser, email, name, family, password, shoppinglist, buyedlist, bookmarked, wallet, VIPTime, out exist);
+                if (!exist)
+                {
+                    MessageBoxResult message1 = MessageBox.Show($"Your purchase was unsuccessful");
+                    return;
+                }
 
                 cost = 0;
                 MessageBoxResult message = MessageBox.Show($"Your purchase was successful");
-
             }
 
         }
@@ -366,7 +217,7 @@ namespace WpfApp1
         {
             if (!Check.PassesLuhnCheck(numberofcard.Text.ToString()))
             {
-                MessageBoxResult message = MessageBox.Show("Card number is false");return;
+                MessageBoxResult message = MessageBox.Show("Card number is false"); return;
             }
             if (!Check.PasswordCheck(passwordofcard.Text.ToString()))
             {
@@ -379,38 +230,6 @@ namespace WpfApp1
 
             //Check card in sql table
 
-            cost = 0;
-
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
-
-            connection.Open();
-
-            command = "select * from UserTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][0].ToString() == EmailOfUser)
-                {
-                    exist = true;
-                    row = i;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
-                return;
-            }
-
-            connection.Close();
-
             string email;
             string name;
             string family;
@@ -419,73 +238,29 @@ namespace WpfApp1
             string buyedlist;
             string bookmarked;
             float wallet;
-
-            email = data.Rows[row][0].ToString();
-            name = data.Rows[row][1].ToString();
-            family = data.Rows[row][2].ToString();
-            password = data.Rows[row][3].ToString();
-            shoppinglist = data.Rows[row][4].ToString();
-            buyedlist = data.Rows[row][5].ToString();
-            bookmarked = data.Rows[row][6].ToString();
-            wallet = float.Parse(data.Rows[row][7].ToString());
             string VIPTime;
-            VIPTime = data.Rows[row][8].ToString();
+            bool exist;
+
+            SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
+            if (!exist) return;
 
             shoppinglist = "";
 
-            connection.Open();
-
-            string DeleteCommand;
-            DeleteCommand = "delete from UserTable where Email = '" + email + "'";
-            SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
-            DeleteRow.ExecuteNonQuery();
-
-            command = "insert into UserTable values" +
-                    "('" + email.Trim() + "','" + name.Trim() + "' , '" + family.Trim() + "','" + password.Trim() + "','" + shoppinglist.Trim() + "','" + buyedlist + "','" + bookmarked + "','" + wallet + "','"+VIPTime+"')";
-
-            SqlCommand Command = new SqlCommand(command, connection);
-            Command.ExecuteNonQuery();
-            connection.Close();
+            SQLmethodes.UpdateUserTable(EmailOfUser, email, name, family, password, shoppinglist, buyedlist, bookmarked, wallet, VIPTime, out exist);
+            if (!exist)
+            {
+                MessageBoxResult message2 = MessageBox.Show($"Your purchase was unsuccessful");
+                return;
+            }
 
             cost = 0;
             MessageBoxResult message1 = MessageBox.Show($"Your purchase was successful");
-
         }
 
         private void removeBookIDBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (removeBookName.Text.ToString()==null) { MessageBoxResult message1 = MessageBox.Show("Enter a name");return; }
+            if (removeBookName.Text.ToString() == null) { MessageBoxResult message1 = MessageBox.Show("Enter a name"); return; }
             string nameofbook = removeBookName.Text.ToString();
-
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
-
-            connection.Open();
-
-            command = "select * from UserTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][0].ToString() == EmailOfUser)
-                {
-                    exist = true;
-                    row = i;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
-                return;
-            }
-
-            connection.Close();
 
             string email;
             string name;
@@ -495,17 +270,11 @@ namespace WpfApp1
             string buyedlist;
             string bookmarked;
             float wallet;
-
-            email = data.Rows[row][0].ToString();
-            name = data.Rows[row][1].ToString();
-            family = data.Rows[row][2].ToString();
-            password = data.Rows[row][3].ToString();
-            shoppinglist = data.Rows[row][4].ToString();
-            buyedlist = data.Rows[row][5].ToString();
-            bookmarked = data.Rows[row][6].ToString();
-            wallet = float.Parse(data.Rows[row][7].ToString());
             string VIPTime;
-            VIPTime = data.Rows[row][8].ToString();
+            bool exist;
+
+            SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
+            if (!exist) return;
 
             string[] arr = shoppinglist.Split(',');
             List<string> books = new List<string>();
@@ -515,28 +284,22 @@ namespace WpfApp1
                 for (int i = 0; i < arr.Length; i++)
                 {
                     if (arr[i].Contains(nameofbook)) continue;
-                    else books.Add(arr[i]+",");
+                    else books.Add(arr[i] + ",");
                 }
 
             }
-            string NewShoppingList="";
-            foreach(string i in books) { NewShoppingList += i; }
+            string NewShoppingList = "";
+            foreach (string i in books) { NewShoppingList += i; }
 
             shoppinglist = NewShoppingList;
 
-            connection.Open();
+            SQLmethodes.UpdateUserTable(EmailOfUser, email, name, family, password, shoppinglist, buyedlist, bookmarked, wallet, VIPTime, out exist);
+            if (!exist)
+            {
+                MessageBoxResult message2 = MessageBox.Show($"book isn\'t deleted");
+                return;
+            }
 
-            string DeleteCommand;
-            DeleteCommand = "delete from UserTable where Email = '" + email + "'";
-            SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
-            DeleteRow.ExecuteNonQuery();
-
-            command = "insert into UserTable values" +
-                    "('" + email.Trim() + "','" + name.Trim() + "' , '" + family.Trim() + "','" + password.Trim() + "','" + shoppinglist.Trim() + "','" + buyedlist + "','" + bookmarked + "','" + wallet + "','"+VIPTime+"')";
-
-            SqlCommand Command = new SqlCommand(command, connection);
-            Command.ExecuteNonQuery();
-            connection.Close();
             MessageBoxResult message = MessageBox.Show("Deleted successfuly");
         }
 
@@ -549,40 +312,10 @@ namespace WpfApp1
         private void AddBallanceBtn_Click(object sender, RoutedEventArgs e)
         {
             float AddBalanceValue = 0;
-            if (AddBallanceAmount==null || !float.TryParse(AddBallanceAmount.Text.ToString(),out AddBalanceValue))
+            if (AddBallanceAmount == null || !float.TryParse(AddBallanceAmount.Text.ToString(), out AddBalanceValue))
             {
-                MessageBoxResult message = MessageBox.Show("Enter correct value");return;
+                MessageBoxResult message = MessageBox.Show("Enter correct value"); return;
             }
-
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
-
-            connection.Open();
-
-            command = "select * from UserTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][0].ToString() == EmailOfUser)
-                {
-                    exist = true;
-                    row = i;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
-                return;
-            }
-
-            connection.Close();
 
             string email;
             string name;
@@ -592,35 +325,25 @@ namespace WpfApp1
             string buyedlist;
             string bookmarked;
             float wallet;
-
-            email = data.Rows[row][0].ToString();
-            name = data.Rows[row][1].ToString();
-            family = data.Rows[row][2].ToString();
-            password = data.Rows[row][3].ToString();
-            shoppinglist = data.Rows[row][4].ToString();
-            buyedlist = data.Rows[row][5].ToString();
-            bookmarked = data.Rows[row][6].ToString();
-            wallet = float.Parse(data.Rows[row][7].ToString());
             string VIPTime;
-            VIPTime = data.Rows[row][8].ToString();
+            bool exist;
+
+            SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
+            if (!exist) return;
 
             wallet += AddBalanceValue;
 
-            connection.Open();
+            SQLmethodes.UpdateUserTable(EmailOfUser, email, name, family, password, shoppinglist, buyedlist, bookmarked, wallet, VIPTime, out exist);
 
-            string DeleteCommand;
-            DeleteCommand = "delete from UserTable where Email = '" + email + "'";
-            SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
-            DeleteRow.ExecuteNonQuery();
-
-            command = "insert into UserTable values" +
-                    "('" + email.Trim() + "','" + name.Trim() + "' , '" + family.Trim() + "','" + password.Trim() + "','" + shoppinglist.Trim() + "','" + buyedlist + "','" + bookmarked + "','" + wallet + "','"+VIPTime+"')";
-
-            SqlCommand Command = new SqlCommand(command, connection);
-            Command.ExecuteNonQuery();
-            connection.Close();
+            if (!exist)
+            {
+                MessageBoxResult message3 = MessageBox.Show($"balance isn\'t added");
+                return;
+            }
 
             balanceValue.Text = wallet.ToString();
+            balanceValue.IsReadOnly = true;
+
             MessageBoxResult message2 = MessageBox.Show("Added successfuly");
         }
 
@@ -642,7 +365,7 @@ namespace WpfApp1
 
             if (!Check.NameCheck(newFirstName.Text.ToString()))
             {
-                MessageBoxResult message = MessageBox.Show("Enter a correct name");return;
+                MessageBoxResult message = MessageBox.Show("Enter a correct name"); return;
             }
             if (!Check.NameCheck(newFamillyName.Text.ToString()))
             {
@@ -652,36 +375,6 @@ namespace WpfApp1
             Newname = newFirstName.Text.ToString();
             Newfamily = newFamillyName.Text.ToString();
 
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
-
-            connection.Open();
-
-            command = "select * from UserTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][0].ToString() == EmailOfUser)
-                {
-                    exist = true;
-                    row = i;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
-                return;
-            }
-
-            connection.Close();
-
             string email;
             string name;
             string family;
@@ -690,31 +383,21 @@ namespace WpfApp1
             string buyedlist;
             string bookmarked;
             float wallet;
+            string VIPTime;
+            bool exist;
 
-            email = data.Rows[row][0].ToString();
+            SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
+            if (!exist) return;
+
             name = Newname;
             family = Newfamily;
-            password = data.Rows[row][3].ToString();
-            shoppinglist = data.Rows[row][4].ToString();
-            buyedlist = data.Rows[row][5].ToString();
-            bookmarked = data.Rows[row][6].ToString();
-            wallet = float.Parse(data.Rows[row][7].ToString());
-            string VIPTime;
-            VIPTime = data.Rows[row][8].ToString();
 
-            connection.Open();
-
-            string DeleteCommand;
-            DeleteCommand = "delete from UserTable where Email = '" + email + "'";
-            SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
-            DeleteRow.ExecuteNonQuery();
-
-            command = "insert into UserTable values" +
-                    "('" + email.Trim() + "','" + name.Trim() + "' , '" + family.Trim() + "','" + password.Trim() + "','" + shoppinglist.Trim() + "','" + buyedlist + "','" + bookmarked + "','" + wallet + "','"+VIPTime+"')";
-
-            SqlCommand Command = new SqlCommand(command, connection);
-            Command.ExecuteNonQuery();
-            connection.Close();
+            SQLmethodes.UpdateUserTable(EmailOfUser, email, name, family, password, shoppinglist, buyedlist, bookmarked, wallet, VIPTime, out exist);
+            if (!exist)
+            {
+                MessageBoxResult message3 = MessageBox.Show($"Edits Sumbiton was unsuccessful");
+                return;
+            }
 
             MessageBoxResult message1 = MessageBox.Show("Edits Sumbited successfuly");
         }
@@ -741,7 +424,7 @@ namespace WpfApp1
             {
                 MessageBoxResult message = MessageBox.Show("Enter a correct Password"); return;
             }
-            
+
             Password = newPass.Password.ToString();
             RepeatPasswoed = repeatPass.Password.ToString();
 
@@ -749,36 +432,6 @@ namespace WpfApp1
             {
                 MessageBoxResult message = MessageBox.Show("Passwords are not equal"); return;
             }
-
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
-
-            connection.Open();
-
-            command = "select * from UserTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][0].ToString() == EmailOfUser)
-                {
-                    exist = true;
-                    row = i;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
-                return;
-            }
-
-            connection.Close();
 
             string email;
             string name;
@@ -788,31 +441,20 @@ namespace WpfApp1
             string buyedlist;
             string bookmarked;
             float wallet;
-
-            email = data.Rows[row][0].ToString();
-            name = data.Rows[row][1].ToString();
-            family = data.Rows[row][2].ToString();
-            password = RepeatPasswoed;
-            shoppinglist = data.Rows[row][4].ToString();
-            buyedlist = data.Rows[row][5].ToString();
-            bookmarked = data.Rows[row][6].ToString();
-            wallet = float.Parse(data.Rows[row][7].ToString());
             string VIPTime;
-            VIPTime = data.Rows[row][8].ToString();
+            bool exist;
 
-            connection.Open();
+            SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
+            if (!exist) return;
 
-            string DeleteCommand;
-            DeleteCommand = "delete from UserTable where Email = '" + email + "'";
-            SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
-            DeleteRow.ExecuteNonQuery();
+            password = Password;
 
-            command = "insert into UserTable values" +
-                    "('" + email.Trim() + "','" + name.Trim() + "' , '" + family.Trim() + "','" + password.Trim() + "','" + shoppinglist.Trim() + "','" + buyedlist + "','" + bookmarked + "','" + wallet + "','"+VIPTime+"')";
-
-            SqlCommand Command = new SqlCommand(command, connection);
-            Command.ExecuteNonQuery();
-            connection.Close();
+            SQLmethodes.UpdateUserTable(EmailOfUser, email, name, family, password, shoppinglist, buyedlist, bookmarked, wallet, VIPTime, out exist);
+            if (!exist)
+            {
+                MessageBoxResult message3 = MessageBox.Show($"Edits Sumbiton was unsuccessful");
+                return;
+            }
 
             MessageBoxResult message1 = MessageBox.Show("Edits Sumbited successfuly");
         }
@@ -831,7 +473,7 @@ namespace WpfApp1
 
         private void buyVIPBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void VIPBack_Click(object sender, RoutedEventArgs e)
@@ -848,36 +490,6 @@ namespace WpfApp1
             }
 
             string Name = searchBook.Text.ToString();
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Books.mdf;Integrated Security=True;Connect Timeout=30");
-
-            connection.Open();
-
-            command = "select * from BookTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][0].ToString().ToLower() == Name.ToLower())
-                {
-                    exist = true;
-                    row = i;
-                    break;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no book with this name!");
-                return;
-            }
-
-            connection.Close();
 
             string name;
             string price;
@@ -892,20 +504,10 @@ namespace WpfApp1
             float vipfee;
             string timefordiscount;
             float discount;
+            bool exist;
 
-            name = data.Rows[row][0].ToString();
-            authorname = data.Rows[row][1].ToString();
-            year = data.Rows[row][2].ToString();
-            price = data.Rows[row][3].ToString();
-            bookdescription = data.Rows[row][4].ToString();
-            authorprofile = data.Rows[row][5].ToString();
-            isvip = Convert.ToBoolean(data.Rows[row][6]);
-            salenumber = int.Parse(data.Rows[row][7].ToString());
-            point = int.Parse(data.Rows[row][8].ToString());
-            bookimagepath = data.Rows[row][9].ToString();
-            vipfee = float.Parse(data.Rows[row][10].ToString());
-            timefordiscount = data.Rows[row][11].ToString().ToString();
-            discount = float.Parse(data.Rows[row][12].ToString());
+            SQLmethodes.ReturnBookStats(0 , Name , out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out exist);
+            if (!exist) return;
 
             imageofbook.Source = new BitmapImage(new Uri(bookimagepath));
 
@@ -946,37 +548,8 @@ namespace WpfApp1
 
             if (nameofbook.Trim() != "" && nameofauthor.Trim() != "")
             {
-                MessageBoxResult message = MessageBox.Show("Fill just one of the fields"); return;
+                MessageBoxResult message5 = MessageBox.Show("Fill just one of the fields"); return;
             }
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
-
-            connection.Open();
-
-            command = "select * from UserTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][0].ToString().ToLower() == EmailOfUser)
-                {
-                    exist = true;
-                    row = i;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
-                return;
-            }
-
-            connection.Close();
 
             string email;
             string name;
@@ -986,23 +559,17 @@ namespace WpfApp1
             string buyedlist;
             string bookmarked;
             float wallet;
-
-            email = data.Rows[row][0].ToString();
-            name = data.Rows[row][1].ToString();
-            family = data.Rows[row][2].ToString();
-            password = data.Rows[row][3].ToString();
-            shoppinglist = data.Rows[row][4].ToString();
-            buyedlist = data.Rows[row][5].ToString();
-            bookmarked = data.Rows[row][6].ToString();
-            wallet = float.Parse(data.Rows[row][7].ToString());
             string VIPTime;
-            VIPTime = data.Rows[row][8].ToString();
+            bool exist;
+
+            SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
+            if (!exist) return;
 
             SqlConnection connectiontobooktable = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Books.mdf;Integrated Security=True;Connect Timeout=30");
 
-            connection.Open();
+            connectiontobooktable.Open();
 
-            command = "select * from BookTable";
+            string command = "select * from BookTable";
             SqlDataAdapter adapter2 = new SqlDataAdapter(command, connectiontobooktable);
             DataTable databook = new DataTable();
             adapter2.Fill(databook);
@@ -1023,34 +590,20 @@ namespace WpfApp1
                 }
             }
 
-            connection.Close();
-
-
+            connectiontobooktable.Close();
 
             shoppinglist += $"{nameofbook} {price},";
 
-            try
+
+            SQLmethodes.UpdateUserTable(EmailOfUser, email, name, family, password, shoppinglist, buyedlist, bookmarked, wallet, VIPTime, out exist);
+            if (!exist)
             {
-                connection.Open();
-
-                string DeleteCommand;
-                DeleteCommand = "delete from UserTable where Email = '" + email + "'";
-                SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
-                DeleteRow.ExecuteNonQuery();
-
-                command = "insert into UserTable values" +
-                        "('" + email.Trim() + "','" + name.Trim() + "' , '" + family.Trim() + "','" + password.Trim() + "','" + shoppinglist.Trim() + "','" + buyedlist + "','" + bookmarked + "','" + wallet + "','"+VIPTime+"')";
-
-                SqlCommand Command = new SqlCommand(command, connection);
-                Command.ExecuteNonQuery();
-                connection.Close();
-                MessageBoxResult message = MessageBox.Show("Book Added successfuly!");
+                MessageBoxResult message3 = MessageBox.Show($"Adding Book was unsuccessful!");
+                return;
             }
-            catch (Exception Error)
-            {
-                connection.Close();
-                MessageBoxResult message = MessageBox.Show($"Adding Book was unsuccessful!/nError descriiption : \n{Error.Message}");
-            }
+            MessageBoxResult message = MessageBox.Show("Book Added successfuly!");
+
+
             searchGrid.Visibility = Visibility.Hidden;
             ShowBook.Visibility = Visibility.Visible;
         }
@@ -1063,36 +616,6 @@ namespace WpfApp1
             }
 
             string Name = searchAuthor.Text.ToString();
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Books.mdf;Integrated Security=True;Connect Timeout=30");
-
-            connection.Open();
-
-            command = "select * from BookTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][1].ToString().ToLower() == Name.ToLower())
-                {
-                    exist = true;
-                    row = i;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no book with this author!");
-                return;
-            }
-
-            connection.Close();
-
             string name;
             string price;
             string year;
@@ -1106,20 +629,10 @@ namespace WpfApp1
             float vipfee;
             string timefordiscount;
             float discount;
+            bool exist;
 
-            name = data.Rows[row][0].ToString();
-            authorname = data.Rows[row][1].ToString();
-            year = data.Rows[row][2].ToString();
-            price = data.Rows[row][3].ToString();
-            bookdescription = data.Rows[row][4].ToString();
-            authorprofile = data.Rows[row][5].ToString();
-            isvip = Convert.ToBoolean(data.Rows[row][6]);
-            salenumber = int.Parse(data.Rows[row][7].ToString());
-            point = int.Parse(data.Rows[row][8].ToString());
-            bookimagepath = data.Rows[row][9].ToString();
-            vipfee = float.Parse(data.Rows[row][10].ToString());
-            timefordiscount = data.Rows[row][11].ToString().ToString();
-            discount = float.Parse(data.Rows[row][12].ToString());
+            SQLmethodes.ReturnBookStats(1 , Name , out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out exist);
+            if (!exist) return;
 
             imageofbook.Source = new BitmapImage(new Uri(bookimagepath));
 
@@ -1149,79 +662,6 @@ namespace WpfApp1
         private void BookIist(object sender, RoutedEventArgs e)
         {
             MainGrid.Visibility = Visibility.Hidden;
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
-
-            connection.Open();
-
-            command = "select * from UserTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][0].ToString().ToLower() == EmailOfUser)
-                {
-                    exist = true;
-                    row = i;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
-                return;
-            }
-
-            connection.Close();
-            string bookmarked;
-            bookmarked = data.Rows[row][6].ToString();
-
-            //list
-            List<string> books = new List<string>();
-            string []arr = bookmarked.Split(',');
-
-            foreach(string nameofbookmarked in arr) { books.Add(nameofbookmarked.Trim()); }
-
-            YourListBox.ItemsSource = books;
-            bookmarksGrid.Visibility = Visibility.Visible;
-        }
-
-        private void WalletGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
-
-            connection.Open();
-
-            command = "select * from UserTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][0].ToString() == EmailOfUser)
-                {
-                    exist = true;
-                    row = i;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
-                return;
-            }
-
-            connection.Close();
 
             string email;
             string name;
@@ -1231,17 +671,37 @@ namespace WpfApp1
             string buyedlist;
             string bookmarked;
             float wallet;
-
-            email = data.Rows[row][0].ToString();
-            name = data.Rows[row][1].ToString();
-            family = data.Rows[row][2].ToString();
-            password = data.Rows[row][3].ToString();
-            shoppinglist = data.Rows[row][4].ToString();
-            buyedlist = data.Rows[row][5].ToString();
-            bookmarked = data.Rows[row][6].ToString();
-            wallet = float.Parse(data.Rows[row][7].ToString());
             string VIPTime;
-            VIPTime = data.Rows[row][8].ToString();
+            bool exist;
+
+            SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
+            if (!exist) return;
+
+            //list
+            List<string> books = new List<string>();
+            string[] arr = bookmarked.Split(',');
+
+            foreach (string nameofbookmarked in arr) { books.Add(nameofbookmarked.Trim()); }
+
+            YourListBox.ItemsSource = books;
+            bookmarksGrid.Visibility = Visibility.Visible;
+        }
+
+        private void WalletGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            string email;
+            string name;
+            string family;
+            string password;
+            string shoppinglist;
+            string buyedlist;
+            string bookmarked;
+            float wallet;
+            string VIPTime;
+            bool exist;
+
+            SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
+            if (!exist) return;
 
             balanceValue.Text = wallet.ToString();
         }

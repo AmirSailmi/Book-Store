@@ -35,49 +35,16 @@ namespace WpfApp1
 
         private void SubmitChange(object sender, RoutedEventArgs e)
         {
-            bool exist = false;
             string nameofchoosedbook = NameOfSearchedBook.Text.ToString();
             string  choosedfield;
-
             if (ChoosedField.SelectedItem == null) { MessageBoxResult message = MessageBox.Show("Choose one option!"); return; }
-
             ComboBoxItem cbi = (ComboBoxItem)ChoosedField.SelectedItem;
             choosedfield = cbi.Content.ToString();
 
             string editedText;
             if (EditText.Text.ToString() != null || EditText.Text.ToString().Trim() != "") { editedText = EditText.Text.ToString().Trim(); }
             else { MessageBoxResult message = MessageBox.Show("Fill Edit Part!");return; }
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Books.mdf;Integrated Security=True;Connect Timeout=30");
 
-            connection.Open();
-
-            command = "select * from BookTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if(data.Rows[i][0].ToString() == nameofchoosedbook)
-                {
-                    exist = true;
-                    row = i;
-                    break;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no book with this name!");
-                return;
-            }
-
-            SqlCommand sqlCommand = new SqlCommand(command, connection);
-            sqlCommand.ExecuteNonQuery();
-            
             string name;
             string price;
             string year;
@@ -91,30 +58,16 @@ namespace WpfApp1
             float vipfee;
             bool timefordiscount;
             float discount;
+            bool exist;
 
-            name = data.Rows[row][0].ToString();
-            authorname = data.Rows[row][1].ToString();
-            year = data.Rows[row][2].ToString();
-            price = data.Rows[row][3].ToString();
-            bookdescription = data.Rows[row][4].ToString();
-            authorprofile = data.Rows[row][5].ToString();
-            isvip = Convert.ToBoolean( data.Rows[row][6] );
-            salenumber = int.Parse( data.Rows[row][7].ToString() );
-            point = int.Parse( data.Rows[row][8].ToString() );
-            bookimagepath = data.Rows[row][9].ToString();
-            vipfee = float.Parse(data.Rows[row][10].ToString());
-            timefordiscount = Convert.ToBoolean(data.Rows[row][11].ToString());
-            discount = float.Parse(data.Rows[row][12].ToString());
-
-            string DeleteCommand="";
-            string AddCommand="";
-            
+            SQLmethodes.ReturnBookStats(0, nameofchoosedbook, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out exist);
+            if (!exist) return;
 
             switch (choosedfield)
             {
                 case "Name":
                     {
-                        if (!Regex.IsMatch(editedText, @"^[A-Za-z0-9\s]+$") || editedText.Trim() == "")
+                        if (Check.NameCheck(editedText))
                         {
                             MessageBoxResult message = MessageBox.Show("Enter a name for book");
                             return;
@@ -154,7 +107,7 @@ namespace WpfApp1
                     }
                 case "Author_profile":
                     {
-                        if (!Regex.IsMatch(editedText, @"^[A-Za-z0-9()_.-?!\s]+$"))
+                        if (!Regex.IsMatch(editedText, @"^[A-Za-z0-9()_.-?!,\s]+$"))
                         {
                             MessageBoxResult message = MessageBox.Show("Enter a description for author");
                             return;
@@ -164,7 +117,7 @@ namespace WpfApp1
                     }
                 case "Book_description":
                     {
-                        if (!Regex.IsMatch(editedText, @"^[A-Za-z0-9()_.-?!\s]+$"))
+                        if (!Regex.IsMatch(editedText, @"^[A-Za-z0-9()_.-?,!\s]+$"))
                         {
                             MessageBoxResult message = MessageBox.Show("Enter a description for book");
                             return;
@@ -174,15 +127,14 @@ namespace WpfApp1
                     }
             }
 
-            DeleteCommand = "delete from BookTable where BookName = '" + nameofchoosedbook + "'";
-            SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
-            DeleteRow.ExecuteNonQuery();
+            bool ok;
+            SQLmethodes.DeleteBookFromBookTable(nameofchoosedbook, out ok);
+            if (!ok) return;
 
-            AddCommand = "insert into BookTable values" +
-                    "('" + name + "','" + authorname.Trim() + "' , '" + year.Trim() + "','" + price.Trim() + "','" + bookdescription.Trim() + "','" + authorprofile.Trim() + "','" + isvip + "','" + salenumber + "','" + point + "' , '" + bookimagepath + "','"+vipfee+"','"+timefordiscount+"','"+discount+"')";
-            SqlCommand AddRow = new SqlCommand(AddCommand , connection);
-            AddRow.ExecuteNonQuery();
-            connection.Close();
+            bool isok;
+            SQLmethodes.AddBookToBookTable(name, authorname, year, price, bookdescription, authorprofile, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, out isok);
+            if (!isok) return;
+          
             MessageBoxResult endmessage = MessageBox.Show("Changes Submited successfuly!");
         }
     }

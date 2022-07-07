@@ -101,18 +101,13 @@
     <Compile Include="Fund.xaml.cs">
       <DependentUpon>Fund.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GetMoney.xaml.cs">
-      <DependentUpon>GetMoney.xaml</DependentUpon>
-    </Compile>
     <Compile Include="NormalMembers.xaml.cs">
       <DependentUpon>NormalMembers.xaml</DependentUpon>
     </Compile>
     <Compile Include="SearchBook.xaml.cs">
       <DependentUpon>SearchBook.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SearchUser.xaml.cs">
-      <DependentUpon>SearchUser.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="SQLmethodes.cs" />
     <Compile Include="StatusForm.xaml.cs">
       <DependentUpon>StatusForm.xaml</DependentUpon>
     </Compile>
@@ -140,10 +135,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Fund.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GetMoney.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -178,10 +169,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SearchBook.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SearchUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

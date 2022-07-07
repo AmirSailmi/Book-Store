@@ -58,24 +58,10 @@ namespace WpfApp1
             string Password = CustomerPassword_SignUP.Password.ToString();
             string ShoppingList = "", BuyedList = "", BookMarked = "",VIPTime="";
             float wallet = 0;
+            bool ok;
 
-            try
-            {
-                connection.Open();
-
-                string command = "insert into UserTable values" +
-                        "('" + Email.Trim() + "','" + Name.Trim() + "' , '" + Family.Trim() + "','" + Password.Trim() + "','" + ShoppingList.Trim() + "','" + BuyedList + "','" + BookMarked + "','"+wallet+"','"+ VIPTime + ";)";
-
-                SqlCommand Command = new SqlCommand(command, connection);
-                Command.ExecuteNonQuery();
-
-                connection.Close();
-            }catch(Exception Er)
-            {
-                connection.Close();
-                MessageBoxResult message = MessageBox.Show(Er.Message);
-                return;
-            }
+            SQLmethodes.AddToUserTable(Email, Name, Family, Password, ShoppingList, BuyedList, BookMarked, wallet, VIPTime, out ok);
+            if (!ok) return;
 
             MessageBoxResult messageend = MessageBox.Show($"{Name} {Family} signed up successfuly");
         }
