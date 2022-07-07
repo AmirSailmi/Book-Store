@@ -34,16 +34,10 @@ namespace WpfApp1
 
         private void Delete(object sender, RoutedEventArgs e)
         {
+            bool ok;
             string bookname = Bookname.Text.ToString().Trim();
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Books.mdf;Integrated Security=True;Connect Timeout=30");
-            connection.Open();
-
-            string DeleteCommand;
-            DeleteCommand = "delete from BookTable where BookName = '" + bookname + "'";
-            SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
-            DeleteRow.ExecuteNonQuery();
-
-            connection.Close();
+            SQLmethodes.DeleteBookFromBookTable(bookname, out ok);
+            if (!ok) return;
             MessageBoxResult message = MessageBox.Show("Book Deleted Successfuly!");
         }
     }

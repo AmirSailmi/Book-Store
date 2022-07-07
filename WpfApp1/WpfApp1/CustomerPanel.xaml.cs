@@ -506,7 +506,7 @@ namespace WpfApp1
             float discount;
             bool exist;
 
-            SQLmethodes.ReturnBookStats(Name , out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out exist);
+            SQLmethodes.ReturnBookStats(0 , Name , out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out exist);
             if (!exist) return;
 
             imageofbook.Source = new BitmapImage(new Uri(bookimagepath));
@@ -631,7 +631,7 @@ namespace WpfApp1
             float discount;
             bool exist;
 
-            SQLmethodes.ReturnBookStats(Name , out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out exist);
+            SQLmethodes.ReturnBookStats(1 , Name , out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out exist);
             if (!exist) return;
 
             imageofbook.Source = new BitmapImage(new Uri(bookimagepath));

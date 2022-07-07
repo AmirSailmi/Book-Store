@@ -38,7 +38,7 @@ namespace WpfApp1
 
         private void Show(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Books.mdf;Integrated Security=True;Connect Timeout=30"))
+            using (SqlConnection sqlConnection = SQLmethodes.SQLconnection())
             {
                 string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
 

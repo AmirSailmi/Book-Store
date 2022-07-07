@@ -85,10 +85,7 @@ namespace WpfApp1
 
         private void BackToLoginPage(object sender, RoutedEventArgs e)
         {
-           
-
             this.Close();
-
             Mainwindow.Show();
         }
 
@@ -108,34 +105,6 @@ namespace WpfApp1
             }
 
             string Name = nameofbook.Text.ToString();
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Books.mdf;Integrated Security=True;Connect Timeout=30");
-
-            connection.Open();
-
-            command = "select * from BookTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][0].ToString().ToLower() == Name.ToLower())
-                {
-                    exist = true;
-                    row = i;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no book with this name!");
-                return;
-            }
-
             string name;
             string price;
             string year;
@@ -149,20 +118,10 @@ namespace WpfApp1
             float vipfee;
             string timefordiscount;
             float discount;
+            bool exist;
 
-            name = data.Rows[row][0].ToString();
-            authorname = data.Rows[row][1].ToString();
-            year = data.Rows[row][2].ToString();
-            price = data.Rows[row][3].ToString();
-            bookdescription = data.Rows[row][4].ToString();
-            authorprofile = data.Rows[row][5].ToString();
-            isvip = Convert.ToBoolean(data.Rows[row][6]);
-            salenumber = int.Parse(data.Rows[row][7].ToString());
-            point = int.Parse(data.Rows[row][8].ToString());
-            bookimagepath = data.Rows[row][9].ToString();
-            vipfee = float.Parse(data.Rows[row][10].ToString());
-            timefordiscount = data.Rows[row][11].ToString().ToString();
-            discount = float.Parse(data.Rows[row][12].ToString());
+            SQLmethodes.ReturnBookStats(0, Name, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out exist);
+            if (!exist) return;
 
             SearchBook searchBook = new SearchBook(name, price, year, authorname, authorprofile, bookdescription, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, this);
             this.Visibility = Visibility.Hidden;
@@ -176,36 +135,9 @@ namespace WpfApp1
             {
                 MessageBoxResult message = MessageBox.Show("Enter name");
             }
+
             string Authorname = authornamee.Text.ToString();
-            bool exist = false;
-            string command;
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Books.mdf;Integrated Security=True;Connect Timeout=30");
-
-            connection.Open();
-
-            command = "select * from BookTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][1].ToString().ToLower() == Authorname.ToLower())
-                {
-                    exist = true;
-                    row = i;
-                    break;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no book with this author!");
-                return;
-            }
-
+            string Name = nameofbook.Text.ToString();
             string name;
             string price;
             string year;
@@ -219,20 +151,10 @@ namespace WpfApp1
             float vipfee;
             string timefordiscount;
             float discount;
+            bool exist;
 
-            name = data.Rows[row][0].ToString();
-            authorname = data.Rows[row][1].ToString();
-            year = data.Rows[row][2].ToString();
-            price = data.Rows[row][3].ToString();
-            bookdescription = data.Rows[row][4].ToString();
-            authorprofile = data.Rows[row][5].ToString();
-            isvip = Convert.ToBoolean(data.Rows[row][6]);
-            salenumber = int.Parse(data.Rows[row][7].ToString());
-            point = int.Parse(data.Rows[row][8].ToString());
-            bookimagepath = data.Rows[row][9].ToString();
-            vipfee = float.Parse(data.Rows[row][10].ToString());
-            timefordiscount = data.Rows[row][11].ToString().ToString();
-            discount = float.Parse(data.Rows[row][12].ToString());
+            SQLmethodes.ReturnBookStats(1, Authorname, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out exist);
+            if (!exist) return;
 
             SearchBook searchBook = new SearchBook(name, price, year, authorname, authorprofile, bookdescription, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, this);
             this.Visibility = Visibility.Hidden;
