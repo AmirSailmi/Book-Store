@@ -19,6 +19,7 @@ namespace WpfApp1
 
     public partial class CustomerPanel : Window
     {
+        public float cost { get; set; }
         public string EmailOfUser { get; set; }
         public string PassWordOfUser { get; set; }
         MainWindow main_window { get; set; }
@@ -143,6 +144,50 @@ namespace WpfApp1
         {
             cartGrid.Visibility = Visibility.Visible;
             MainGrid.Visibility = Visibility.Hidden;
+
+            bool exist = false;
+            string command;
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
+
+            connection.Open();
+
+            command = "select * from UserTable";
+            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
+            DataTable data = new DataTable();
+            adapter.Fill(data);
+
+            int row = 0;
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                if (data.Rows[i][0].ToString() == EmailOfUser)
+                {
+                    exist = true;
+                    row = i;
+                }
+            }
+
+            if (!exist)
+            {
+                connection.Close();
+                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
+                return;
+            }
+
+            connection.Close();
+            string ShoppingList;
+            ShoppingList = data.Rows[row][4].ToString();
+
+            List<string> books = new List<string>();
+            string[] arr = ShoppingList.Split(',');
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = arr[i].Replace(" ", ",Price = ");
+                cost += int.Parse(arr[i].Substring(arr[i].IndexOf("Price =") + 8));
+            }
+
+            foreach (string book in arr) { books.Add(book.Trim()); }
+
+            ShoppingListview.ItemsSource = books;
         }
 
         private void WalletBtn_Click(object sender, RoutedEventArgs e)
@@ -176,6 +221,173 @@ namespace WpfApp1
 
         private void cartBuyBtn_Click(object sender, RoutedEventArgs e)
         {
+            buyingPage.Visibility = Visibility.Visible;
+            cartGrid.Visibility = Visibility.Hidden;
+        }
+
+        private void BuyFromWallet(object sender, RoutedEventArgs e)
+        {
+            float price = cost;
+
+            bool exist = false;
+            string command;
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
+
+            connection.Open();
+
+            command = "select * from UserTable";
+            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
+            DataTable data = new DataTable();
+            adapter.Fill(data);
+
+            int row = 0;
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                if (data.Rows[i][0].ToString() == EmailOfUser)
+                {
+                    exist = true;
+                    row = i;
+                }
+            }
+
+            if (!exist)
+            {
+                connection.Close();
+                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
+                return;
+            }
+
+            connection.Close();
+
+            string email;
+            string name;
+            string family;
+            string password;
+            string shoppinglist;
+            string buyedlist;
+            string bookmarked;
+            float wallet;
+
+            email = data.Rows[row][0].ToString();
+            name = data.Rows[row][1].ToString();
+            family = data.Rows[row][2].ToString();
+            password = data.Rows[row][3].ToString();
+            shoppinglist = data.Rows[row][4].ToString();
+            buyedlist = data.Rows[row][5].ToString();
+            bookmarked = data.Rows[row][6].ToString();
+            wallet = float.Parse(data.Rows[row][7].ToString());
+
+            if (price > wallet) { MessageBoxResult message = MessageBox.Show($"money in wallet is not enough \nWallet : {wallet}\nCost : {price}"); return; }
+            else 
+            {
+                wallet -= price;
+                shoppinglist = ""; 
+
+                connection.Open();
+
+                string DeleteCommand;
+                DeleteCommand = "delete from UserTable where Email = '" + email + "'";
+                SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
+                DeleteRow.ExecuteNonQuery();
+
+                command = "insert into UserTable values" +
+                        "('" + email.Trim() + "','" + name.Trim() + "' , '" + family.Trim() + "','" + password.Trim() + "','" + shoppinglist.Trim() + "','" + buyedlist + "','" + bookmarked + "','" + wallet + "')";
+
+                SqlCommand Command = new SqlCommand(command, connection);
+                Command.ExecuteNonQuery();
+                connection.Close();
+
+                cost = 0;
+                MessageBoxResult message = MessageBox.Show($"Your purchase was successful");
+
+            }
+
+        }
+        private void ByfromCard(object sender, RoutedEventArgs e)
+        {
+            if (!Check.PassesLuhnCheck(numberofcard.Text.ToString()))
+            {
+                MessageBoxResult message = MessageBox.Show("Card number is false");return;
+            }
+            if (!Check.PasswordCheck(passwordofcard.Text.ToString()))
+            {
+                MessageBoxResult message = MessageBox.Show("pattern of Password is not true!"); return;
+            }
+            if (!Check.CVVCheck(cvvofcard.Text.ToString()))
+            {
+                MessageBoxResult message = MessageBox.Show("pattern of CVV is not true!"); return;
+            }
+
+            //Check card in sql table
+
+            cost = 0;
+
+            bool exist = false;
+            string command;
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
+
+            connection.Open();
+
+            command = "select * from UserTable";
+            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
+            DataTable data = new DataTable();
+            adapter.Fill(data);
+
+            int row = 0;
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                if (data.Rows[i][0].ToString() == EmailOfUser)
+                {
+                    exist = true;
+                    row = i;
+                }
+            }
+
+            if (!exist)
+            {
+                connection.Close();
+                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
+                return;
+            }
+
+            connection.Close();
+
+            string email;
+            string name;
+            string family;
+            string password;
+            string shoppinglist;
+            string buyedlist;
+            string bookmarked;
+            float wallet;
+
+            email = data.Rows[row][0].ToString();
+            name = data.Rows[row][1].ToString();
+            family = data.Rows[row][2].ToString();
+            password = data.Rows[row][3].ToString();
+            shoppinglist = data.Rows[row][4].ToString();
+            buyedlist = data.Rows[row][5].ToString();
+            bookmarked = data.Rows[row][6].ToString();
+            wallet = float.Parse(data.Rows[row][7].ToString());
+
+            shoppinglist = "";
+
+            connection.Open();
+
+            string DeleteCommand;
+            DeleteCommand = "delete from UserTable where Email = '" + email + "'";
+            SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
+            DeleteRow.ExecuteNonQuery();
+
+            command = "insert into UserTable values" +
+                    "('" + email.Trim() + "','" + name.Trim() + "' , '" + family.Trim() + "','" + password.Trim() + "','" + shoppinglist.Trim() + "','" + buyedlist + "','" + bookmarked + "','" + wallet + "')";
+
+            SqlCommand Command = new SqlCommand(command, connection);
+            Command.ExecuteNonQuery();
+            connection.Close();
+
+            cost = 0;
+            MessageBoxResult message1 = MessageBox.Show($"Your purchase was successful");
 
         }
 
@@ -192,7 +404,78 @@ namespace WpfApp1
 
         private void AddBallanceBtn_Click(object sender, RoutedEventArgs e)
         {
+            float AddBalanceValue = 0;
+            if (AddBallanceAmount==null || !float.TryParse(AddBallanceAmount.Text.ToString(),out AddBalanceValue))
+            {
+                MessageBoxResult message = MessageBox.Show("Enter correct value");return;
+            }
 
+            bool exist = false;
+            string command;
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
+
+            connection.Open();
+
+            command = "select * from UserTable";
+            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
+            DataTable data = new DataTable();
+            adapter.Fill(data);
+
+            int row = 0;
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                if (data.Rows[i][0].ToString() == EmailOfUser)
+                {
+                    exist = true;
+                    row = i;
+                }
+            }
+
+            if (!exist)
+            {
+                connection.Close();
+                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
+                return;
+            }
+
+            connection.Close();
+
+            string email;
+            string name;
+            string family;
+            string password;
+            string shoppinglist;
+            string buyedlist;
+            string bookmarked;
+            float wallet;
+
+            email = data.Rows[row][0].ToString();
+            name = data.Rows[row][1].ToString();
+            family = data.Rows[row][2].ToString();
+            password = data.Rows[row][3].ToString();
+            shoppinglist = data.Rows[row][4].ToString();
+            buyedlist = data.Rows[row][5].ToString();
+            bookmarked = data.Rows[row][6].ToString();
+            wallet = float.Parse(data.Rows[row][7].ToString());
+
+            wallet += AddBalanceValue;
+
+            connection.Open();
+
+            string DeleteCommand;
+            DeleteCommand = "delete from UserTable where Email = '" + email + "'";
+            SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
+            DeleteRow.ExecuteNonQuery();
+
+            command = "insert into UserTable values" +
+                    "('" + email.Trim() + "','" + name.Trim() + "' , '" + family.Trim() + "','" + password.Trim() + "','" + shoppinglist.Trim() + "','" + buyedlist + "','" + bookmarked + "','" + wallet + "')";
+
+            SqlCommand Command = new SqlCommand(command, connection);
+            Command.ExecuteNonQuery();
+            connection.Close();
+
+            balanceValue.Text = wallet.ToString();
+            MessageBoxResult message2 = MessageBox.Show("Added successfuly");
         }
 
         private void walletBack_Click(object sender, RoutedEventArgs e)
@@ -434,7 +717,7 @@ namespace WpfApp1
 
 
 
-            shoppinglist += $"{nameofbook} {price}, ";
+            shoppinglist += $"{nameofbook} {price},";
 
             try
             {
@@ -596,6 +879,59 @@ namespace WpfApp1
 
             YourListBox.ItemsSource = books;
             bookmarksGrid.Visibility = Visibility.Visible;
+        }
+
+        private void WalletGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            bool exist = false;
+            string command;
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
+
+            connection.Open();
+
+            command = "select * from UserTable";
+            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
+            DataTable data = new DataTable();
+            adapter.Fill(data);
+
+            int row = 0;
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                if (data.Rows[i][0].ToString() == EmailOfUser)
+                {
+                    exist = true;
+                    row = i;
+                }
+            }
+
+            if (!exist)
+            {
+                connection.Close();
+                MessageBoxResult messageBox = MessageBox.Show("There is no user with this email!");
+                return;
+            }
+
+            connection.Close();
+
+            string email;
+            string name;
+            string family;
+            string password;
+            string shoppinglist;
+            string buyedlist;
+            string bookmarked;
+            float wallet;
+
+            email = data.Rows[row][0].ToString();
+            name = data.Rows[row][1].ToString();
+            family = data.Rows[row][2].ToString();
+            password = data.Rows[row][3].ToString();
+            shoppinglist = data.Rows[row][4].ToString();
+            buyedlist = data.Rows[row][5].ToString();
+            bookmarked = data.Rows[row][6].ToString();
+            wallet = float.Parse(data.Rows[row][7].ToString());
+
+            balanceValue.Text = wallet.ToString();
         }
     }
 }
