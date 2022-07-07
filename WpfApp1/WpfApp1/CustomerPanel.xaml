@@ -130,14 +130,14 @@
             <TextBox x:Name="balanceValue" HorizontalAlignment="Left" Height="49" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="125,274,0,0" FontSize="20" TextAlignment="Center" Background="{x:Null}" Foreground="#FF95AD29" BorderBrush="#FF2D2F36"/>
 
         </Grid>
-        <Grid x:Name="editProfileGrid" Visibility="Hidden" Grid.RowSpan="2">
+        <Grid x:Name="editProfileGrid" Visibility="Hidden" Grid.RowSpan="2" Background="#FF1B1717">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="50" Text="Edit Profile" VerticalAlignment="Top" Margin="76,10,0,0" Height="82" Width="293" FontFamily="MV Boli"/>
-            <Grid x:Name="editPanelGrid" Visibility="Visible">
+            <Grid x:Name="editPanelGrid" Visibility="Visible" Background="#FF1B1717">
                 <Button x:Name="editNameBtn" Content="Edit Name" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="252" Margin="93,234,0,0" Height="84" FontFamily="SimSun" Click="editNameBtn_Click"/>
                 <Button x:Name="editPassBtn" Content="Edit Password" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="252" Margin="93,419,0,0" Height="84" FontFamily="SimSun" Click="editPassBtn_Click"/>
                 <Button x:Name="editProfileBack" Content="Back" Foreground="White" FontSize="20"  Background="darkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="10,663,0,0" Height="29" FontFamily="SimSun" Click="editProfileBack_Click"/>
             </Grid>
-            <Grid x:Name="editNameGrid" Visibility="Hidden">
+            <Grid x:Name="editNameGrid" Visibility="Hidden" Background="#FF1B1717">
                 <TextBlock HorizontalAlignment="Left" TextAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="25" Text="New first name:" VerticalAlignment="Top" Margin="96,149,0,0" Height="36" Width="236" FontFamily="MV Boli"/>
                 <TextBox x:Name="newFirstName" HorizontalAlignment="Left" Height="48" TextWrapping="Wrap" FontSize="25" VerticalAlignment="Top" Width="345" Margin="43,190,0,0"/>
                 <TextBlock HorizontalAlignment="Left" TextAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="25" Text="New familly name:" VerticalAlignment="Top" Margin="96,292,0,0" Height="36" Width="236" FontFamily="MV Boli"/>
@@ -145,7 +145,7 @@
                 <Button x:Name="editNameSubmitBtn" Content="Edit" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="236" Margin="96,474,0,0" Height="60" FontFamily="SimSun" Click="editNameSubmitBtn_Click"/>
                 <Button x:Name="editNameBack" Content="Back" Foreground="White" FontSize="20"  Background="darkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="10,663,0,0" Height="29" FontFamily="SimSun" Click="editNameBack_Click"/>
             </Grid>
-            <Grid x:Name="editPassGrid" Visibility="Hidden">
+            <Grid x:Name="editPassGrid" Visibility="Hidden" Background="#FF1B1717">
                 <TextBlock HorizontalAlignment="Left" TextAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="25" Text="New Password:" VerticalAlignment="Top" Margin="96,149,0,0" Height="36" Width="236" FontFamily="MV Boli"/>
                 <PasswordBox x:Name="newPass" HorizontalAlignment="Left" VerticalAlignment="Top" Height="47" Width="345" Margin="39,190,0,0"/>
                 <TextBlock HorizontalAlignment="Left" TextAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="25" Text="repeat Password:" VerticalAlignment="Top" Margin="96,297,0,0" Height="36" Width="236" FontFamily="MV Boli"/>
@@ -154,14 +154,14 @@
                 <Button x:Name="editPassBack" Content="Back" Foreground="White" FontSize="20"  Background="darkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="10,663,0,0" Height="29" FontFamily="SimSun" Click="editPassBack_Click"/>
             </Grid>
         </Grid>
-        <Grid x:Name="VIPGrid" Visibility="Hidden" Grid.RowSpan="2">
+        <Grid x:Name="VIPGrid" Visibility="Hidden" Grid.RowSpan="2" Background="#FF1B1717">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="50" Text="VIP" VerticalAlignment="Top" Margin="77,25,0,0" Height="82" Width="293" FontFamily="MV Boli"/>
-            <Grid x:Name="nonVIPGrid" Visibility="Hidden">
+            <Grid x:Name="nonVIPGrid" Visibility="Hidden" Background="#FF1B1717">
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" Text="one month VIP:" VerticalAlignment="Top" Margin="77,182,0,0" Height="59" Width="293" FontFamily="MV Boli"/>
                 <TextBlock x:Name="VIPprice" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" Text="(price)" VerticalAlignment="Top" Margin="77,246,0,0" Height="59" Width="293" FontFamily="MV Boli"/>
                 <Button x:Name="buyVIPBtn" Content="Buy VIP" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="123,347,0,0" Height="55" FontFamily="SimSun" Click="buyVIPBtn_Click"/>
             </Grid>
-            <Grid x:Name="haveVIPGrid" Visibility="Visible">
+            <Grid x:Name="haveVIPGrid" Visibility="Hidden" Background="#FF1B1717">
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" VerticalAlignment="Top" Margin="55,182,0,0" Height="59" Width="328" FontFamily="MV Boli"><Run Text="You are VIP "/><Run Text="already"/></TextBlock>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" VerticalAlignment="Top" Margin="55,307,0,0" Height="59" Width="328" FontFamily="MV Boli" Text="VIP time left:"/>
                 <TextBlock x:Name="VIPtimeLeft" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" VerticalAlignment="Top" Margin="55,371,0,0" Height="59" Width="328" FontFamily="MV Boli" Text="(time left)"/>
