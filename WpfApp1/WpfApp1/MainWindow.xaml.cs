@@ -76,7 +76,7 @@ namespace WpfApp1
             string password = Password_SignIn.Password.ToString();
 
             string Command = "select * from UserTable";
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlConnection connection = SQLmethodes.SQLconnectionToUsersTable();
             connection.Open();
 
             SqlDataAdapter adapter = new SqlDataAdapter(Command, connection);
