@@ -36,8 +36,10 @@ namespace WpfApp1
         private void SubmitChange(object sender, RoutedEventArgs e)
         {
             string nameofchoosedbook = NameOfSearchedBook.Text.ToString();
+
             string  choosedfield;
             if (ChoosedField.SelectedItem == null) { MessageBoxResult message = MessageBox.Show("Choose one option!"); return; }
+
             ComboBoxItem cbi = (ComboBoxItem)ChoosedField.SelectedItem;
             choosedfield = cbi.Content.ToString();
 
@@ -69,7 +71,7 @@ namespace WpfApp1
             {
                 case "Name":
                     {
-                        if (Check.NameCheck(editedText))
+                        if (!Check.NameCheck(editedText))
                         {
                             MessageBoxResult message = MessageBox.Show("Enter a name for book");
                             return;
@@ -107,7 +109,7 @@ namespace WpfApp1
                         authorname = editedText;
                         break;
                     }
-                case "Author_profile":
+                case "AuthorProfile":
                     {
                         if (!Regex.IsMatch(editedText, @"^[A-Za-z0-9()_.-?!,\s]+$"))
                         {
@@ -117,7 +119,7 @@ namespace WpfApp1
                         authorprofile = editedText;
                         break;
                     }
-                case "Book_description":
+                case "BookDescription":
                     {
                         if (!Regex.IsMatch(editedText, @"^[A-Za-z0-9()_.-?,!\s]+$"))
                         {
