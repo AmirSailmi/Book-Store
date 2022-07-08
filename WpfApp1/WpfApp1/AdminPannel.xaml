@@ -26,8 +26,11 @@
                     <Button Grid.Row= "2" Content=" Edit " Height="134" Margin="33,0,32,21" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="150,1,1,20" Click="Edit"/>
                     <Image Grid.Row= "2" Source="/images/Edit.png" Margin="0,0,228,10"/>
 
-                    <Button Grid.Row= "3" Content=" Status" Height="124" Margin="33,0,32,31" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="0,1,150,20" Click="Status"/>
+                    <Button Grid.Row= "3" Content=" Status" Height="119" Margin="33,0,32,41" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="0,1,150,20" Click="Status"/>
                     <Image Grid.Row= "2" Source="/images/StatusOfBooks.png" Margin="228,149,0,26" Grid.RowSpan="2"/>
+                    <Button Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Margin="10,129,0,0" Height="26" Background="#FF1B1717" Foreground="#FF95AD29" Click="Exit" Grid.Row="3" FontSize="12" Padding="1,3,1,1"/>
+                    <Button Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Margin="65,129,0,0" Height="25" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" Click="BackToLoginPage" Grid.Row="3"/>
+
                 </Grid>
             </TabItem>
             <TabItem Width="162" Height="30" Header="Serach" FontSize="16">
@@ -60,6 +63,8 @@
                     <TextBox x:Name="authornamee" Grid.Row="1" HorizontalAlignment="Left" Height="39" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="220,32,0,0" Background="{x:Null}" BorderBrush="#FF92991F" Foreground="#FF92991F"/>
                     <TextBox x:Name="nameofbook" Grid.Row="1" HorizontalAlignment="Left" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="220,95,0,0" Background="{x:Null}" Foreground="#FF92991F" BorderBrush="#FF92991F"/>
 
+                    <Button Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Margin="10,151,0,0" Height="29" Background="#FF1B1717" Foreground="#FF95AD29" Click="Exit" Grid.Row="1" BorderBrush="#FF383232" FontSize="12" Padding="1,5,1,1"/>
+                    <Button Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="65,151,0,0" Height="29" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" Click="BackToLoginPage" Grid.Row="1" BorderBrush="#FF383232"/>
 
 
                 </Grid>
@@ -74,15 +79,25 @@
                     <Image Source="/images/safebox.png" Margin="233,55,11,161" />
 
                     <Button Margin="1,223,10,282" Content="Get money" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="200,1,2,1" Grid.RowSpan="2"/>
-                    <Button Margin="1,83,10,93" Content="Set VIP price" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="1,1,170,1" Grid.Row="1"/>
+
+                    <Button Margin="1,83,10,93" Content="Set VIP price" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="1,1,170,1" Grid.Row="1" Click="SetVIPprice"/>
+
                     <Image Source="/images/Fund.png" Margin="11,222,225,282" Grid.RowSpan="2"/>
                     <Image Source="/images/VIPprice.png" HorizontalAlignment="Left" Height="154" VerticalAlignment="Top" Width="157" Margin="254,83,0,0" Grid.Row="1"/>
+                    <Button Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Margin="10,296,0,0" Height="24" Background="#FF1B1717" Foreground="#FF95AD29" Click="Exit" Grid.Row="1" FontSize="12" BorderBrush="#FF383232" Padding="1,2,1,1"/>
+                    <Button Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="65,296,0,0" Height="23" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" Click="BackToLoginPage" Grid.Row="1" BorderBrush="#FF383232"/>
 
                 </Grid>
+
             </TabItem>
 
         </TabControl>
-        <Button Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Margin="10,670,0,0" Height="19" Background="#FF1B1717" Foreground="#FF95AD29" Click="Exit"/>
-        <Button Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="70,670,0,0" Height="19" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" Click="BackToLoginPage"/>
+        <Grid x:Name="VIPSET" Background="#FF1B1717" Visibility="Hidden">
+            <TextBlock FontFamily="MV Boli" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="64,54,0,0" Height="80" Width="301" Foreground="#FF95AD29" FontSize="30"><Run Text="SET VIP mothly fee"/><InlineUIContainer>
+                </InlineUIContainer></TextBlock>
+            <TextBox x:Name="MonthlyFee" TextWrapping="Wrap" Margin="105,179,118,480" FontSize="20" Foreground="#FF95AD29" BorderBrush="#FF43464F" Background="{x:Null}"/>
+            <Button x:Name="SumbitmonthlyFee" Content="Sumbit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Margin="141,253,0,0" Height="45" Background="{x:Null}" Foreground="#FF95AD29" BorderBrush="#FF383232" Click="SumbitmonthlyFee_Click"/>
+        </Grid>
+
     </Grid>
 </Window>
