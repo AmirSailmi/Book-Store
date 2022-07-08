@@ -44,7 +44,7 @@ namespace WpfApp1
 
                 string CmdString = string.Empty;
 
-                using (SqlConnection con = new SqlConnection(ConString))
+                using (SqlConnection con = SQLmethodes.SQLconnectionToBooksTable())
 
                 {
 

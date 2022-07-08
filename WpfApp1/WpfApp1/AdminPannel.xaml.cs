@@ -70,7 +70,7 @@ namespace WpfApp1
 
         private void ShowListOfVIPmembers(object sender, RoutedEventArgs e)
         {
-            VIPmembers form = new VIPmembers();
+            VIPmembers form = new VIPmembers(this);
             this.Visibility = Visibility.Hidden;
             form.Show();
 
@@ -79,7 +79,9 @@ namespace WpfApp1
 
         private void ShowListOfNormalMembers(object sender, RoutedEventArgs e)
         {
-
+            NormalMembers form = new NormalMembers(this);
+            this.Visibility = Visibility.Hidden;
+            form.Show();
         }
 
         private void EmailSearchedText(object sender, TextChangedEventArgs e)

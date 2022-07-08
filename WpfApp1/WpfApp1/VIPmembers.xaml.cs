@@ -21,8 +21,11 @@ namespace WpfApp1
     /// </summary>
     public partial class VIPmembers : Window
     {
-        public VIPmembers()
+        Window1 AdminPanel { get; set; }
+
+        public VIPmembers(Window1 adminpanel)
         {
+            AdminPanel = adminpanel;
             InitializeComponent();
         }
 
@@ -55,7 +58,7 @@ namespace WpfApp1
         private void VIPmembersBack_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            //ReformtoAdmin.Show();
+            AdminPanel.Show();
         }
     }
 }
