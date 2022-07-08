@@ -215,6 +215,7 @@ namespace WpfApp1
 
             VIPSET.Visibility = Visibility.Hidden;
         }
-        
+
+       
     }
 }
