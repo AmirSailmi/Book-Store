@@ -11,7 +11,7 @@
             <RowDefinition Height="59*"/>
             <RowDefinition Height="292*"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="MainGrid" Visibility="Hidden" Grid.RowSpan="2">
+        <Grid x:Name="MainGrid" Visibility="Visible" Grid.RowSpan="2">
             <TabControl HorizontalAlignment="Left" Width="448" Margin="-8,0" Background="#FF1B1717">
                 <TabItem Width="224" Height="30" Header="Buy Books" FontSize="16">
                     <Grid>
@@ -31,7 +31,7 @@
                         <Button x:Name="EditProfileBtn" Content="Edit Profile" Height="134" Margin="35,0,30,283" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="170,1,1,1" Click="EditProfileBtn_Click"/>
                         <Button x:Name="VIPBtn" Content="VIP" Height="134" Margin="35,0,30,79" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="1,1,280,1" Click="VIPBtn_Click"/>
                         <Image Source="/images/wallet.png" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="137" Margin="275,24,0,0"/>
-                        <Image Source="/images/editProfile.png" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="141" Margin="35,247,0,0"/>
+                        <Image Source="/images/editProfile.png" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="141" Margin="35,248,0,0"/>
                         <Image Source="/images/VIPuser.png" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="137" Margin="275,451,0,0"/>
                     </Grid>
                 </TabItem>
@@ -50,7 +50,7 @@
             <Button x:Name="SearchDependingauthor" Content="Search" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="116,421,0,0" Height="55" FontFamily="SimSun" Click="SearchDependingAuthor"/>
 
         </Grid>
-        <Grid x:Name="ShowBook" Background="#FF1B1717" Visibility="Visible" Margin="-9,0,-8,0" Grid.RowSpan="2">
+        <Grid x:Name="ShowBook" Background="#FF1B1717" Visibility="Hidden" Margin="-9,0,-8,0" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
@@ -143,6 +143,7 @@
             <TextBox x:Name="cvvofcard" HorizontalAlignment="Left" Height="38" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" Margin="44,438,0,0" FontSize="20"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Margin="44,310,0,0" Height="32" Width="88" Foreground="#FF95AD29" FontSize="20"/>
             <TextBox x:Name="passwordofcard" Margin="44,343,117,318"/>
+            <Button x:Name="BuyingPageBack" Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="101" Margin="18,645,0,0" Height="47" Background="{x:Null}" BorderBrush="#FF4B4545" Foreground="#FF95AD29" FontSize="20" Click="BuyingPageBack_Click"/>
         </Grid>
         <Grid x:Name="walletGrid" Visibility="Hidden" OpacityMask="#FF423C3C" Background="#FF1B1717" Margin="-9,0,-8,0" Loaded="WalletGrid_Loaded" Grid.RowSpan="2">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="50" Text="Wallet:" VerticalAlignment="Top" Margin="131,10,0,0" Height="82" Width="179" FontFamily="MV Boli"/>
@@ -181,13 +182,14 @@
             </Grid>
         </Grid>
         <Grid x:Name="VIPGrid" Visibility="Hidden" Grid.RowSpan="2" Background="#FF1B1717">
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="50" Text="VIP" VerticalAlignment="Top" Margin="77,25,0,0" Height="82" Width="293" FontFamily="MV Boli"/>
-            <Grid x:Name="nonVIPGrid" Visibility="Hidden" Background="#FF1B1717">
+            <Grid x:Name="nonVIPGrid" Visibility="Visible" Background="#FF1B1717">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="50" Text="VIP" VerticalAlignment="Top" Margin="77,25,0,0" Height="82" Width="293" FontFamily="MV Boli"/>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" Text="one month VIP:" VerticalAlignment="Top" Margin="77,182,0,0" Height="59" Width="293" FontFamily="MV Boli"/>
                 <TextBlock x:Name="VIPprice" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" Text="(price)" VerticalAlignment="Top" Margin="77,246,0,0" Height="59" Width="293" FontFamily="MV Boli"/>
                 <Button x:Name="buyVIPBtn" Content="Buy VIP" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="123,347,0,0" Height="55" FontFamily="SimSun" Click="buyVIPBtn_Click"/>
             </Grid>
             <Grid x:Name="haveVIPGrid" Visibility="Hidden" Background="#FF1B1717">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="50" Text="VIP" VerticalAlignment="Top" Margin="77,25,0,0" Height="82" Width="293" FontFamily="MV Boli"/>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" VerticalAlignment="Top" Margin="55,182,0,0" Height="59" Width="328" FontFamily="MV Boli"><Run Text="You are VIP "/><Run Text="already"/></TextBlock>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" VerticalAlignment="Top" Margin="55,307,0,0" Height="59" Width="328" FontFamily="MV Boli" Text="VIP time left:"/>
                 <TextBlock x:Name="VIPtimeLeft" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" VerticalAlignment="Top" Margin="55,371,0,0" Height="59" Width="328" FontFamily="MV Boli" Text="(time left)"/>

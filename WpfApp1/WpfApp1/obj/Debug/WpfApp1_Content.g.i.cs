@@ -8,7 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("books.mdf")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("books_log.ldf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bookmarks.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/cart.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/editprofile.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/searchbook.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/searchuser.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/vipprice.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/wallet.png")]
 
 
