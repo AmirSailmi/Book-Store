@@ -229,5 +229,10 @@ namespace WpfApp1
             this.Visibility = Visibility.Hidden;
             getMoney.Show();
         }
+
+        private void BackToAdminPannel(object sender, RoutedEventArgs e)
+        {
+            VIPSET.Visibility = Visibility.Hidden;
+        }
     }
 }
