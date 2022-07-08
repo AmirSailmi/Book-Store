@@ -56,11 +56,13 @@ namespace WpfApp1
             int point;
             string bookimagepath;
             float vipfee;
-            bool timefordiscount;
+            string timefordiscount;
             float discount;
+            int numberofpoints;
+            string pdfpath;
             bool exist;
 
-            SQLmethodes.ReturnBookStats(0, nameofchoosedbook, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out exist);
+            SQLmethodes.ReturnBookStats(0, nameofchoosedbook, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount,out numberofpoints , out pdfpath ,out exist);
             if (!exist) return;
 
             switch (choosedfield)
@@ -132,7 +134,7 @@ namespace WpfApp1
             if (!ok) return;
 
             bool isok;
-            SQLmethodes.AddBookToBookTable(name, authorname, year, price, bookdescription, authorprofile, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, out isok);
+            SQLmethodes.AddBookToBookTable(name, authorname, year, price, bookdescription, authorprofile, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount,numberofpoints , pdfpath ,out isok);
             if (!isok) return;
           
             MessageBoxResult endmessage = MessageBox.Show("Changes Submited successfuly!");

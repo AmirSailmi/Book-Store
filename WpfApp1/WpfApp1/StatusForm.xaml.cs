@@ -30,11 +30,10 @@ namespace WpfApp1
 
         private void SubmitChangesForType(object sender, RoutedEventArgs e)
         {
-            string searchedbook, type="", command;
+            string searchedbook, type = "";
             bool IsVip;
             float Fee;
-            string fee = "";
-            bool exist = false;
+
             if (Check.NameCheck(SearchedBookName.Text.ToString()))
             {
                 searchedbook = SearchedBookName.Text.ToString();
@@ -55,41 +54,18 @@ namespace WpfApp1
             else if (type == "Normal") IsVip = false;
             else { MessageBoxResult message = MessageBox.Show("Choose one type!"); return; }
 
-            if (!float.TryParse(VIPmonthlyFee.Text.ToString(), out Fee)) { MessageBoxResult message = MessageBox.Show("Enter monthly fee!"); return; } else
+            if (!float.TryParse(VIPmonthlyFee.Text.ToString(), out Fee)) { MessageBoxResult message = MessageBox.Show("Enter monthly fee!"); return; }
+            else
             {
                 if (Fee < 0)
                 {
                     MessageBoxResult message = MessageBox.Show("Enter positive value"); return;
                 }
 
-                if (Type.Text.ToString() == "Normal" && Fee>0)
+                if (Type.Text.ToString() == "Normal" && Fee > 0)
                 {
                     MessageBoxResult message = MessageBox.Show("when account is normal you can not set VIP subscription monthly fee"); return;
                 }
-            }
-
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Books.mdf;Integrated Security=True;Connect Timeout=30");
-            connection.Open();
-            command = "select * from BookTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][0].ToString() == SearchedBookName.Text.ToString())
-                {
-                    exist = true;
-                    row = i;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no book with this name!");
-                return;
             }
 
             string name;
@@ -98,51 +74,42 @@ namespace WpfApp1
             string authorname;
             string authorprofile;
             string bookdescription;
-            bool isvip = IsVip;
+            bool isvip;
             int salenumber;
             int point;
             string bookimagepath;
-            float vipfee = Fee;
+            float vipfee;
             string timefordiscount;
             float discount;
+            int numberofpoints;
+            string pdfpath;
+            bool exist;
 
-            name = data.Rows[row][0].ToString();
-            authorname = data.Rows[row][1].ToString();
-            year = data.Rows[row][2].ToString();
-            price = data.Rows[row][3].ToString();
-            bookdescription = data.Rows[row][4].ToString();
-            authorprofile = data.Rows[row][5].ToString();
-            salenumber = int.Parse(data.Rows[row][7].ToString());
-            point = int.Parse(data.Rows[row][8].ToString());
-            bookimagepath = data.Rows[row][9].ToString();
-            timefordiscount = data.Rows[row][11].ToString();
-            discount = float.Parse(data.Rows[row][12].ToString());
+            SQLmethodes.ReturnBookStats(0, searchedbook, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
+            if (!exist) return;
+
+            isvip = IsVip;
+            vipfee = Fee;
 
             if (isvip == false)
                 Fee = 0;
 
-            string DeleteCommand = "";
-            string AddCommand = "";
+            bool ok;
+            SQLmethodes.DeleteBookFromBookTable(name, out ok);
+            if (!ok) return;
 
-            DeleteCommand = "delete from BookTable where BookName = '" + searchedbook + "'";
-            SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
-            DeleteRow.ExecuteNonQuery();
+            bool isok;
+            SQLmethodes.AddBookToBookTable(name, authorname, year, price, bookdescription, authorprofile, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, numberofpoints, pdfpath, out isok);
+            if (!isok) return;
 
-            AddCommand = "insert into BookTable values" +
-                    "('" + name + "','" + authorname.Trim() + "' , '" + year.Trim() + "','" + price.Trim() + "','" + bookdescription.Trim() + "','" + authorprofile.Trim() + "','" + isvip + "','" + salenumber + "','" + point + "' , '" + bookimagepath + "','" + vipfee + "','" + timefordiscount + "','" + discount + "')";
-            SqlCommand AddRow = new SqlCommand(AddCommand, connection);
-            AddRow.ExecuteNonQuery();
-
-            connection.Close();
             MessageBoxResult endmessage = MessageBox.Show($"Changes Submited successfuly!\n=> name = {searchedbook}\ntype = {type}\nVIP Subscription fee = {Fee}");
         }
 
         private void SubmitChangesForDiscount(object sender, RoutedEventArgs e)
         {
-            bool exist=false;
             int dayInt, monthInt, yearInt;
             float discountpercentage = 0;
-            string date, choosedbook,command;
+            string date, choosedbook;
 
             if (!Check.NameCheck(ChoosedBook.Text.ToString()))
             {
@@ -170,71 +137,37 @@ namespace WpfApp1
 
             date = $"{dayInt}/{monthInt}/{yearInt}";
 
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Books.mdf;Integrated Security=True;Connect Timeout=30");
-            connection.Open();
-            command = "select * from BookTable";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            int row = 0;
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                if (data.Rows[i][0].ToString() == choosedbook)
-                {
-                    exist = true;
-                    row = i;
-                }
-            }
-
-            if (!exist)
-            {
-                connection.Close();
-                MessageBoxResult messageBox = MessageBox.Show("There is no book with this name!");
-                return;
-            }
-
             string name;
             string price;
             string year;
             string authorname;
             string authorprofile;
             string bookdescription;
-            bool isvip ;
+            bool isvip;
             int salenumber;
             int point;
             string bookimagepath;
-            float vipfee ;
+            float vipfee;
             string timefordiscount;
             float discount;
+            int numberofpoints;
+            string pdfpath;
+            bool exist;
 
-            name = data.Rows[row][0].ToString();
-            authorname = data.Rows[row][1].ToString();
-            year = data.Rows[row][2].ToString();
-            price = data.Rows[row][3].ToString();
-            bookdescription = data.Rows[row][4].ToString();
-            authorprofile = data.Rows[row][5].ToString();
-            isvip = Convert.ToBoolean(data.Rows[row][6]);
-            salenumber = int.Parse(data.Rows[row][7].ToString());
-            point = int.Parse(data.Rows[row][8].ToString());
-            bookimagepath = data.Rows[row][9].ToString();
-            vipfee = float.Parse(data.Rows[row][10].ToString());
+            SQLmethodes.ReturnBookStats(0, choosedbook, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
+            if (!exist) return;
+
             timefordiscount = date;
             discount = discountpercentage;
 
-            string DeleteCommand = "";
-            string AddCommand = "";
+            bool ok;
+            SQLmethodes.DeleteBookFromBookTable(name, out ok);
+            if (!ok) return;
 
-            DeleteCommand = "delete from BookTable where BookName = '" + choosedbook + "'";
-            SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
-            DeleteRow.ExecuteNonQuery();
+            bool isok;
+            SQLmethodes.AddBookToBookTable(name, authorname, year, price, bookdescription, authorprofile, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, numberofpoints, pdfpath, out isok);
+            if (!isok) return;
 
-            AddCommand = "insert into BookTable values" +
-                    "('" + name + "','" + authorname.Trim() + "' , '" + year.Trim() + "','" + price.Trim() + "','" + bookdescription.Trim() + "','" + authorprofile.Trim() + "','" + isvip + "','" + salenumber + "','" + point + "' , '" + bookimagepath + "','" + vipfee + "','" + timefordiscount + "','" + discount + "')";
-            SqlCommand AddRow = new SqlCommand(AddCommand, connection);
-            AddRow.ExecuteNonQuery();
-
-            connection.Close();
             MessageBoxResult endmessage = MessageBox.Show($"Changes Submited successfuly!\n=> name = {choosedbook}\ntime = {date}\nDiscount Percentage = {discountpercentage}");
         }
 

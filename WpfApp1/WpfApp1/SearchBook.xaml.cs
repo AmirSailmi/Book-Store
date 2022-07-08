@@ -30,10 +30,12 @@ namespace WpfApp1
         float vipfee;
         string timefordiscount;
         float discount;
+        int numberofpoints;
+        string pdfpath;
         Window1 adminpanel;
         public SearchBook(string name, string price, string year, string authorname,
             string authorprofile, string bookdescription, bool isvip, int salenumber
-            , int point, string bookimagepath, float vipfee, string timefordiscount, float discount, Window1 adminpanel)
+            , int point, string bookimagepath, float vipfee, string timefordiscount, float discount,int numberofpoints ,string pdfpath ,Window1 adminpanel)
         {
             this.name = name;
             this.price = price;
@@ -49,6 +51,9 @@ namespace WpfApp1
             this.timefordiscount = timefordiscount;
             this.discount = discount;
             this.adminpanel = adminpanel;
+            this.numberofpoints = numberofpoints;
+            this.pdfpath = pdfpath;
+
             InitializeComponent();
         }
 

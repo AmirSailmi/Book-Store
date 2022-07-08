@@ -38,7 +38,7 @@ namespace WpfApp1
 
         private void Show(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection sqlConnection = SQLmethodes.SQLconnection())
+            using (SqlConnection sqlConnection = SQLmethodes.SQLconnectionToBooksTable())
             {
                 string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
 
