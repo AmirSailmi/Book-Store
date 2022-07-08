@@ -71,3 +71,9 @@ C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\WpfApp1.pdb
 C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\Fund.g.cs
 C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\NormalMembers.g.cs
 C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\VIPmembers.g.cs
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\Fund.g.cs
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\NormalMembers.g.cs
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\VIPmembers.g.cs
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\Fund.baml
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\NormalMembers.baml
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\VIPmembers.baml

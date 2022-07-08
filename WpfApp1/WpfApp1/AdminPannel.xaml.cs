@@ -169,5 +169,25 @@ namespace WpfApp1
         {
 
         }
+
+        private void SetVIPprice(object sender, RoutedEventArgs e)
+        {
+            VIPSET.Visibility = Visibility.Visible;
+        }
+
+        private void SumbitmonthlyFee_Click(object sender, RoutedEventArgs e)
+        {
+            float monthlyFee;
+            if(!float.TryParse(MonthlyFee.Text.ToString() , out monthlyFee) || monthlyFee < 0)
+            {
+                MessageBoxResult message = MessageBox.Show("Enter fee");return;
+            }
+
+            VIPsee.VIPfee = monthlyFee;
+
+            MessageBoxResult message1 = MessageBox.Show("Fee sumbited"); 
+
+            VIPSET.Visibility = Visibility.Hidden;
+        }
     }
 }
