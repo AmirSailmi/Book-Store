@@ -70,6 +70,10 @@ namespace WpfApp1
 
         private void ShowListOfVIPmembers(object sender, RoutedEventArgs e)
         {
+            VIPmembers form = new VIPmembers();
+            this.Visibility = Visibility.Hidden;
+            form.Show();
+
 
         }
 

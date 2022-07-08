@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +24,32 @@ namespace WpfApp1
         public VIPmembers()
         {
             InitializeComponent();
+        }
+
+        private void VIPmembersShowBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Saleh\PROGRAMING\DB\APproject\users.mdf;Integrated Security=True;Connect Timeout=30");
+            con.Open();
+            string command = "select * from UserTable";
+            SqlDataAdapter adapter = new SqlDataAdapter(command, con);
+            DataTable data = new DataTable();
+            adapter.Fill(data);
+            List<string> names = new List<string>();
+            List<string> Emails = new List<string>();
+
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                if (data.Rows[i][8] != null)
+                {
+                    names.Add(data.Rows[i][1].ToString());
+                    Emails.Add(data.Rows[i][0].ToString());
+                }
+            }
+            VIPnamesList.ItemsSource = names;
+            VIPemailsList.ItemsSource = Emails;
+            con.Close();
+
         }
     }
 }
