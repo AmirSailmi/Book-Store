@@ -135,13 +135,13 @@ namespace WpfApp1
 
         private void EditProfileBtn_Click(object sender, RoutedEventArgs e)
         {
-            editPanelGrid.Visibility = Visibility.Visible;
+            editProfileGrid.Visibility = Visibility.Visible;
             MainGrid.Visibility = Visibility.Hidden;
         }
 
         private void VIPBtn_Click(object sender, RoutedEventArgs e)
         {
-            VIPprice.Text = VIPsee.VIPfee.ToString();
+            //VIPprice.Text = VIPsee.VIPfee.ToString();
             VIPGrid.Visibility = Visibility.Visible;
             string email;
             string name;
@@ -395,7 +395,7 @@ namespace WpfApp1
         {
             float price = 0;
             float total_price = 0;
-            for (int i = 0; i < BooksNames.Length; i++)
+            for (int i = 0; i < BooksNames.Length-1; i++)
             {
                 string bookname;
                 string bookprice;
@@ -505,8 +505,8 @@ namespace WpfApp1
                 return;
             }
 
-            balanceValue.Text = wallet.ToString();
-            balanceValue.IsReadOnly = true;
+            walletBall.Text = wallet.ToString();
+            //balanceValue.IsReadOnly = true;
 
             MessageBoxResult message2 = MessageBox.Show("Added successfuly");
         }
@@ -638,7 +638,7 @@ namespace WpfApp1
         private void buyVIPBtn_Click(object sender, RoutedEventArgs e)
         {
             isBuyingVIP = true;
-            cost = VIPsee.VIPfee;
+            //cost = VIPsee.VIPfee;
             VIPGrid.Visibility = Visibility.Hidden;
             buyingPage.Visibility = Visibility.Visible;
         }
@@ -884,7 +884,7 @@ namespace WpfApp1
             SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
             if (!exist) return;
 
-            balanceValue.Text = wallet.ToString();
+            walletBall.Text = wallet.ToString();
         }
 
         private void SumbitPoint(object sender, RoutedEventArgs e)
