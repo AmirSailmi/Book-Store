@@ -20,6 +20,7 @@ namespace WpfApp1
     public partial class CustomerPanel : Window
     {
         public float cost { get; set; }
+        public bool isBuyingVIP { get; set; }
         public string EmailOfUser { get; set; }
         public string PassWordOfUser { get; set; }
         MainWindow main_window { get; set; }
@@ -140,6 +141,7 @@ namespace WpfApp1
 
         private void VIPBtn_Click(object sender, RoutedEventArgs e)
         {
+            VIPprice.Text = VIPsee.VIPfee.ToString();
             VIPGrid.Visibility = Visibility.Visible;
             string email;
             string name;
@@ -155,9 +157,15 @@ namespace WpfApp1
             SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
             if (!exist) return;
 
-            if (VIPTime == "") { nonVIPGrid.Visibility = Visibility.Visible; return; }
+            if (VIPTime == "")
+            {
+                nonVIPGrid.Visibility = Visibility.Visible;
+                return;
+            }
             else
             {
+                VIPtimeLeft.Text = "30 days";//TMP
+                // VIP time ?? ----------------------------------------
                 haveVIPGrid.Visibility = Visibility.Visible;
             }
         }
@@ -201,7 +209,7 @@ namespace WpfApp1
 
             cost = DiscountCalculator(BooksNames);
 
-            MessageBoxResult message = MessageBox.Show($"Total Cost : {cost}");
+            MessageBoxResult meessage = MessageBox.Show($"Total Cost : {cost}");
 
             buyingPage.Visibility = Visibility.Visible;
             cartGrid.Visibility = Visibility.Hidden;
@@ -230,6 +238,16 @@ namespace WpfApp1
             {
                 wallet -= price;
 
+                if (isBuyingVIP)
+                {
+                    VIPTime = "VIP";
+                    //VIPTime+ ? <--------------------------
+                    haveVIPGrid.Visibility = Visibility.Visible;
+                    nonVIPGrid.Visibility = Visibility.Hidden;
+                    VIPGrid.Visibility = Visibility.Visible;
+                    buyingPage.Visibility = Visibility.Hidden;
+                    isBuyingVIP = false;
+                }
                 string[] BooksNamesAndPrice = shoppinglist.Split(',');
                 string[] BooksNames = new string[BooksNamesAndPrice.Length];
 
@@ -312,7 +330,16 @@ namespace WpfApp1
 
             SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
             if (!exist) return;
-
+            if (isBuyingVIP)
+            {
+                VIPTime = "VIP";
+                //VIPTime+ ? <--------------------------
+                haveVIPGrid.Visibility = Visibility.Visible;
+                nonVIPGrid.Visibility = Visibility.Hidden;
+                VIPGrid.Visibility = Visibility.Visible;
+                buyingPage.Visibility = Visibility.Hidden;
+                isBuyingVIP = false;
+            }
             string[] BooksNamesAndPrice = shoppinglist.Split(',');
             string[] BooksNames = new string[BooksNamesAndPrice.Length];
             string[] BooksPrices = new string[BooksNamesAndPrice.Length];
@@ -610,7 +637,10 @@ namespace WpfApp1
 
         private void buyVIPBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            isBuyingVIP = true;
+            cost = VIPsee.VIPfee;
+            VIPGrid.Visibility = Visibility.Hidden;
+            buyingPage.Visibility = Visibility.Visible;
         }
 
         private void VIPBack_Click(object sender, RoutedEventArgs e)
@@ -900,6 +930,16 @@ namespace WpfApp1
 
             MessageBoxResult messageBox = MessageBox.Show("Point Submited successfuly");
             PointGiven.Text = null;
+        }
+
+        private void BuyingPageBack_Click(object sender, RoutedEventArgs e)
+        {
+            cost = 0;
+            buyingPage.Visibility = Visibility.Hidden;
+            MainGrid.Visibility = Visibility.Visible;
+            numberofcard.Text = "";
+            passwordofcard.Text = "";
+            cvvofcard.Text = "";
         }
     }
 }

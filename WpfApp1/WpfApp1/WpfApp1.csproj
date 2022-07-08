@@ -259,5 +259,14 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\bookmarks.png" />
+    <Resource Include="images\cart.png" />
+    <Resource Include="images\editProfile.png" />
+    <Resource Include="images\searchBook.png" />
+    <Resource Include="images\SearchUser.png" />
+    <Resource Include="images\VIPprice.png" />
+    <Resource Include="images\wallet.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

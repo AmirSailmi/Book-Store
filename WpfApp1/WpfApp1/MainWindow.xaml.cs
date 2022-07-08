@@ -44,7 +44,7 @@ namespace WpfApp1
 
         private void UserSignUp(object sender, RoutedEventArgs e)
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Saleh\PROGRAMING\DB\APproject\users.MDF;Integrated Security=True;Connect Timeout=30");
 
             if (!Check.NameCheck(Customername_SignUP.Text.ToString()) || !Check.NameCheck(CustomerFamily_SignUP.Text.ToString())) { MessageBoxResult message = MessageBox.Show("Wrong name / family", "Sign up error"); return; }
 
