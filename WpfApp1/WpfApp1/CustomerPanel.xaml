@@ -11,7 +11,7 @@
             <RowDefinition Height="59*"/>
             <RowDefinition Height="292*"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="MainGrid" Visibility="Visible" Grid.RowSpan="2">
+        <Grid x:Name="MainGrid" Visibility="Hidden" Grid.RowSpan="2">
             <TabControl HorizontalAlignment="Left" Width="448" Margin="-8,0" Background="#FF1B1717">
                 <TabItem Width="224" Height="30" Header="Buy Books" FontSize="16">
                     <Grid>
@@ -19,7 +19,9 @@
                         <Button x:Name="saerchBookBtn" Content="Search Book"  Height="134" Margin="35,0,30,506" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="1,1,150,1" Click="saerchBookBtn_Click"/>
                         <Button x:Name="Booklist" Content="Bookmarks" Height="134" Margin="35,0,30,290" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="150,1,1,1" Click="BookIist"/>
                         <Button x:Name="CartBtn" Content="Cart" Height="134" Margin="35,0,30,79" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="1,1,250,1" Click="CartBtn_Click"/>
-
+                        <Image Source="/images/searchBook.png" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="137" Margin="275,24,0,0"/>
+                        <Image Source="/images/bookmarks.png" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="141" Margin="35,247,0,0"/>
+                        <Image Source="/images/cart.png" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="137" Margin="275,451,0,0"/>
                     </Grid>
                 </TabItem>
                 <TabItem Width="220" Height="30" Header="Profile" FontSize="16" Margin="4,0,-4,0">
@@ -28,7 +30,9 @@
                         <Button x:Name="WalletBtn" Content="Wallet"  Height="134" Margin="35,0,30,506" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="1,1,230,1" Click="WalletBtn_Click"/>
                         <Button x:Name="EditProfileBtn" Content="Edit Profile" Height="134" Margin="35,0,30,283" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="170,1,1,1" Click="EditProfileBtn_Click"/>
                         <Button x:Name="VIPBtn" Content="VIP" Height="134" Margin="35,0,30,79" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="1,1,280,1" Click="VIPBtn_Click"/>
-
+                        <Image Source="/images/wallet.png" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="137" Margin="275,24,0,0"/>
+                        <Image Source="/images/editProfile.png" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="141" Margin="35,247,0,0"/>
+                        <Image Source="/images/VIPuser.png" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="137" Margin="275,451,0,0"/>
                     </Grid>
                 </TabItem>
             </TabControl>
@@ -46,7 +50,7 @@
             <Button x:Name="SearchDependingauthor" Content="Search" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="116,421,0,0" Height="55" FontFamily="SimSun" Click="SearchDependingAuthor"/>
 
         </Grid>
-        <Grid x:Name="ShowBook" Background="#FF1B1717" Visibility="Hidden" Margin="-9,0,-8,0" Grid.RowSpan="2">
+        <Grid x:Name="ShowBook" Background="#FF1B1717" Visibility="Visible" Margin="-9,0,-8,0" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
@@ -60,7 +64,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <TextBox x:Name="PointGiven" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Margin="220,450,0,0" Grid.Row="1" Background="{x:Null}" BorderBrush="#FF444649" FontSize="20" Foreground="#FF95AD29" TextAlignment="Center"/>
+            <TextBox x:Name="PointGiven" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Margin="226,569,0,0" Background="{x:Null}" BorderBrush="#FF444649" FontSize="20" Foreground="#FF95AD29" TextAlignment="Center"/>
             <Button Click="BookmarkBtn_Click" Content="Bookmark" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="346,-1,0,0" Height="76" Background="#FF95AD29"/>
             <TextBlock x:Name="YEAR" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="174,195,0,0" Width="69" Height="20" Foreground="#FF95AD29" TextAlignment="Center"/>
             <TextBlock x:Name="authorName" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="22,220,15,0" Width="394" VerticalAlignment="Top" TextAlignment="Center" Foreground="#FF95AD29" Height="24"/>
