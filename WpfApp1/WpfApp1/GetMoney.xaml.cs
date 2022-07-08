@@ -22,6 +22,7 @@ namespace WpfApp1
     public partial class GetMoney : Window
     {
         Window1 AdminPanel { get; set; }
+
         public GetMoney(Window1 adminpanel)
         {
             AdminPanel = adminpanel;
