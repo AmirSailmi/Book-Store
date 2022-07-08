@@ -130,7 +130,7 @@ namespace WpfApp1
         private void WalletBtn_Click(object sender, RoutedEventArgs e)
         {
             walletGrid.Visibility = Visibility.Visible;
-            balanceValue.IsReadOnly = true;
+            //balanceValue.IsReadOnly = true;
             MainGrid.Visibility = Visibility.Hidden;
         }
 
@@ -585,8 +585,8 @@ namespace WpfApp1
                 return;
             }
 
-            balanceValue.Text = wallet.ToString();
-            balanceValue.IsReadOnly = true;
+            walletBall.Text = wallet.ToString();
+            //balanceValue.IsReadOnly = true;
 
             MessageBoxResult message2 = MessageBox.Show("Added successfuly");
         }
@@ -968,7 +968,7 @@ namespace WpfApp1
             SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
             if (!exist) return;
 
-            balanceValue.Text = wallet.ToString();
+            walletBall.Text = wallet.ToString();
         }
 
         private void SumbitPoint(object sender, RoutedEventArgs e)
