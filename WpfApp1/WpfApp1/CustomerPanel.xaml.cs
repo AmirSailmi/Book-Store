@@ -659,7 +659,7 @@ namespace WpfApp1
             SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
             if (!exist) return;
 
-            SqlConnection connectiontobooktable = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Books.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlConnection connectiontobooktable = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Saleh\PROGRAMING\DB\APproject\books.mdf;Integrated Security=True;Connect Timeout=30");
 
             connectiontobooktable.Open();
 
@@ -674,11 +674,22 @@ namespace WpfApp1
             {
                 if (nameofbook != null && databook.Rows[i][0].ToString().ToLower() == nameofbook.ToLower())
                 {
+
+                    if (databook.Rows[i][6].ToString() == "True" && VIPTime == "")
+                    {
+                        MessageBoxResult message3 = MessageBox.Show($"Adding Book was unsuccessful! \n this book needs VIP subscription");
+                        return;
+                    }
                     price = databook.Rows[i][3].ToString();
                     break;
                 }
                 if (nameofauthor != null && databook.Rows[i][1].ToString().ToLower() == searchAuthor.Text.ToString())
                 {
+                    if (databook.Rows[i][6].ToString() == "True" && VIPTime == "")
+                    {
+                        MessageBoxResult message3 = MessageBox.Show($"Adding Book was unsuccessful! \n this book needs VIP subscription");
+                        return;
+                    }
                     price = databook.Rows[i][3].ToString();
                     break;
                 }
