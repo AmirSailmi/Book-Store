@@ -17,6 +17,7 @@ namespace WpfApp1
 
     public partial class SearchBook : Window
     {
+   
         public string name;
         string price;
         string year;
@@ -82,6 +83,12 @@ namespace WpfApp1
             {
                 discounte.Text = "No Discount";
             }
+        }
+
+        private void Serachback_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            adminpanel.Show();
         }
     }
 

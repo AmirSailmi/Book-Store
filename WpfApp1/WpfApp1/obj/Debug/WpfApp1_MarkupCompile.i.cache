@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\App.xaml
-12-477408506
+13971351152
 
-22-424512309
+23-1015758697
 24350182256
-AddBookForm.xaml;BookList.xaml;CustomerPanel.xaml;DeleteForm.xaml;EditForm.xaml;Fund.xaml;MainWindow.xaml;AdminPannel.xaml;NormalMembers.xaml;SearchBook.xaml;StatusForm.xaml;VIPmembers.xaml;
+AddBookForm.xaml;BookList.xaml;CustomerPanel.xaml;DeleteForm.xaml;EditForm.xaml;Fund.xaml;GetMoney.xaml;MainWindow.xaml;AdminPannel.xaml;NormalMembers.xaml;SearchBook.xaml;StatusForm.xaml;VIPmembers.xaml;
 
-True
+False
 

@@ -215,5 +215,19 @@ namespace WpfApp1
 
             VIPSET.Visibility = Visibility.Hidden;
         }
+
+        private void FundBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Fund form = new Fund(this);
+            this.Visibility = Visibility.Hidden;
+            form.Show();
+        }
+
+        private void GetMoneyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            GetMoney form = new GetMoney(this);
+            this.Visibility = Visibility.Hidden;
+            form.Show();
+        }
     }
 }

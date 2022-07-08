@@ -301,6 +301,32 @@ namespace WpfApp1
             {
                 wallet -= price;
 
+                SqlConnection con = SQLmethodes.SQLconnectionToBooksTable();
+                con.Open();
+                string command = "select * from TotalMoney";
+                SqlDataAdapter adapter = new SqlDataAdapter(command, con);
+                DataTable data = new DataTable();
+                adapter.Fill(data);
+                float t = float.Parse(data.Rows[0][0].ToString());
+                t += price;
+
+                con = SQLmethodes.SQLconnectionToBooksTable();
+                con.Open();
+                command = "delete from TotalMoney";
+                SqlCommand com = new SqlCommand(command, con);
+                com.ExecuteNonQuery();
+                con.Close();
+
+                con = SQLmethodes.SQLconnectionToBooksTable();
+                con.Open();
+                command = "insert into TotalMoney values('" + t + "')";
+                com = new SqlCommand(command, con);
+                com.ExecuteNonQuery();
+                con.Close();
+
+
+                con.Close();
+
                 if (isBuyingVIP)
                 {
                     var date = DateTime.Now;
@@ -419,6 +445,7 @@ namespace WpfApp1
             }
             else
             {
+                float price = 0;
                 string[] BooksNamesAndPrice = shoppinglist.Split(',');
                 string[] BooksNames = new string[BooksNamesAndPrice.Length];
                 string[] BooksPrices = new string[BooksNamesAndPrice.Length];
@@ -445,7 +472,7 @@ namespace WpfApp1
 
                     SQLmethodes.ReturnBookStats(0, BooksNames[i], out bookname, out authorname, out year, out bookprice, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
                     if (!exist) return;
-
+                    price += (float.Parse(bookprice)*((100- discount)/100));
                     salenumber++;
 
                     bool ok;
@@ -456,6 +483,32 @@ namespace WpfApp1
                     SQLmethodes.AddBookToBookTable(bookname, authorname, year, bookprice, bookdescription, authorprofile, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, numberofpoints, pdfpath, out isok);
                     if (!isok) return;
                 }
+
+                SqlConnection con = SQLmethodes.SQLconnectionToBooksTable();
+                con.Open();
+                string command = "select * from TotalMoney";
+                SqlDataAdapter adapter = new SqlDataAdapter(command, con);
+                DataTable data = new DataTable();
+                adapter.Fill(data);
+                float t = float.Parse(data.Rows[0][0].ToString());
+                t += price;
+
+                con = SQLmethodes.SQLconnectionToBooksTable();
+                con.Open();
+                command = "delete from TotalMoney";
+                SqlCommand com = new SqlCommand(command, con);
+                com.ExecuteNonQuery();
+                con.Close();
+
+                con = SQLmethodes.SQLconnectionToBooksTable();
+                con.Open();
+                command = "insert into TotalMoney values('" + t + "')";
+                com = new SqlCommand(command, con);
+                com.ExecuteNonQuery();
+                con.Close();
+
+                con.Close();
+
 
                 shoppinglist = "";
             }

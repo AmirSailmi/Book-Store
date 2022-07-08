@@ -75,10 +75,10 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button Margin="10,31,11,140.5" Content="Fund" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="1,1,200,1"/>
+                    <Button x:Name="FundBtn" Margin="10,31,11,140.5" Content="Fund" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="1,1,200,1" Click="FundBtn_Click"/>
                     <Image Source="/images/safebox.png" Margin="233,55,11,161" />
 
-                    <Button Margin="1,223,10,282" Content="Get money" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="200,1,2,1" Grid.RowSpan="2"/>
+                    <Button x:Name="GetMoneyBtn" Margin="1,223,10,282" Content="Get money" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="200,1,2,1" Grid.RowSpan="2" Click="GetMoneyBtn_Click"/>
 
                     <Button Margin="1,83,10,93" Content="Set VIP price" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="1,1,170,1" Grid.Row="1" Click="SetVIPprice"/>
 
