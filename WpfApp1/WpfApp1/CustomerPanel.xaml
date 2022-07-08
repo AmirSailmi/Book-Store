@@ -46,7 +46,7 @@
             <Button x:Name="SearchDependingauthor" Content="Search" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="116,421,0,0" Height="55" FontFamily="SimSun" Click="SearchDependingAuthor"/>
 
         </Grid>
-        <Grid x:Name="ShowBook" Background="#FF1B1717" Visibility="Hidden" Margin="-9,0,-8,0" Grid.RowSpan="2">
+        <Grid x:Name="ShowBook" Background="#FF1B1717" Visibility="Visible" Margin="-9,0,-8,0" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
@@ -72,6 +72,28 @@
             <TextBlock x:Name="discounte" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="68,508,0,0" Width="281" Height="32" Foreground="#FF95AD29" TextAlignment="Center"/>
             <Button Click="BackToSearchBookPaage" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Margin="334,638,0,0" Foreground="#FF95AD29" Background="{x:Null}" BorderBrush="#FF272424" Height="54" FontSize="17" />
             <Button Click="AddToShoppingList" Content="Add to Shopping list" HorizontalAlignment="Left" VerticalAlignment="Top" Width="169" Margin="160,638,0,0" Height="54" Background="{x:Null}" Foreground="#FF95AD29" BorderBrush="#FF2C2C2C" FontSize="17" />
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="point to the book " VerticalAlignment="Top" Margin="18,562,0,0" Height="46" Width="190" Foreground="#FF95AD29" RenderTransformOrigin="0.5,0.5" FontSize="20">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0.313"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <Button Click="SumbitPoint" Content="Sumbit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Margin="334,555,0,0" Height="54" Background="{x:Null}" Foreground="#FF95AD29" FontSize="17" BorderBrush="#FF2B2828"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="/5" VerticalAlignment="Top" Margin="262,564,0,0" Height="30" Width="27" Foreground="#FF95AD29" RenderTransformOrigin="0.5,0.5" FontSize="20">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0.313"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+
         </Grid>
         <Grid x:Name="bookmarksGrid" Background="#FF1B1717" Visibility="Hidden" Margin="-9,0,-8,0" Grid.RowSpan="2">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="50" Text="Bookmarks:" VerticalAlignment="Top" Margin="86,10,0,0" Height="82" Width="272" FontFamily="MV Boli"/>
@@ -168,6 +190,7 @@
             </Grid>
             <Button x:Name="VIPBack" Content="Back" Foreground="White" FontSize="20"  Background="darkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="10,663,0,0" Height="29" FontFamily="SimSun" Click="VIPBack_Click"/>
         </Grid>
+        <TextBox x:Name="PointGiven" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Margin="220,450,0,0" Grid.Row="1" Background="{x:Null}" BorderBrush="#FF444649" FontSize="20" Foreground="#FF95AD29" TextAlignment="Center"/>
 
     </Grid>
 </Window>

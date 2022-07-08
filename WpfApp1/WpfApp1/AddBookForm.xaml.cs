@@ -112,14 +112,16 @@ namespace WpfApp1
             TimeForDiscount = "";
             VIPSubscriptionMonthlyFee = 0;
             Discount = 0;
-            //Save to database
+            int numberofpoints =0;
+            string pdfpath="";//get it
+
             try
             {
-                SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Books.mdf;Integrated Security=True;Connect Timeout=30");
+                SqlConnection connection = SQLmethodes.SQLconnectionToBooksTable();
                 connection.Open();
                 string command;
                 command = "insert into BookTable values" +
-                    "('" + bookname.Trim() + "','" + authorName.Trim() + "' , '" + year.Trim() + "','" + price.Trim() + "','" + BookDescription.Trim() + "','" + authorProfile.Trim() + "','" + isVIP + "','" + saleNumber + "','" + point + "' , '"+filepath+"','"+VIPSubscriptionMonthlyFee+"','"+TimeForDiscount+"','"+Discount+"')";
+                    "('" + bookname.Trim() + "','" + authorName.Trim() + "' , '" + year.Trim() + "','" + price.Trim() + "','" + BookDescription.Trim() + "','" + authorProfile.Trim() + "','" + isVIP + "','" + saleNumber + "','" + point + "' , '"+filepath+"','"+VIPSubscriptionMonthlyFee+"','"+TimeForDiscount+"','"+Discount+"','"+numberofpoints+"','"+pdfpath+"')";
                 SqlCommand Command = new SqlCommand(command, connection);
                 Command.ExecuteNonQuery();
                 connection.Close();

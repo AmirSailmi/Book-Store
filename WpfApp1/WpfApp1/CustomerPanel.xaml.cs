@@ -504,9 +504,11 @@ namespace WpfApp1
             float vipfee;
             string timefordiscount;
             float discount;
+            int numberofpoints;
+            string pdfpath;
             bool exist;
 
-            SQLmethodes.ReturnBookStats(0 , Name , out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out exist);
+            SQLmethodes.ReturnBookStats(0 , Name , out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount,out numberofpoints , out pdfpath,out exist);
             if (!exist) return;
 
             imageofbook.Source = new BitmapImage(new Uri(bookimagepath));
@@ -629,9 +631,11 @@ namespace WpfApp1
             float vipfee;
             string timefordiscount;
             float discount;
+            int numberofpoints;
+            string pdfpath;
             bool exist;
 
-            SQLmethodes.ReturnBookStats(1 , Name , out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out exist);
+            SQLmethodes.ReturnBookStats(1 , Name , out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath,out exist);
             if (!exist) return;
 
             imageofbook.Source = new BitmapImage(new Uri(bookimagepath));
@@ -704,6 +708,35 @@ namespace WpfApp1
             if (!exist) return;
 
             balanceValue.Text = wallet.ToString();
+        }
+
+        private void SumbitPoint(object sender, RoutedEventArgs e)
+        {
+            if(PointGiven.Text.ToString()==null || PointGiven.Text.ToString() !="0" || PointGiven.Text.ToString() != "1" || PointGiven.Text.ToString() != "2" || PointGiven.Text.ToString() != "3" || PointGiven.Text.ToString() != "4" || PointGiven.Text.ToString() != "5")
+            { MessageBoxResult message = MessageBox.Show("Enter an integer");return; }
+
+            string Name = BookName.Text.ToString();
+
+            string name;
+            string price;
+            string year;
+            string authorname;
+            string authorprofile;
+            string bookdescription;
+            bool isvip;
+            int salenumber;
+            int point;
+            string bookimagepath;
+            float vipfee;
+            string timefordiscount;
+            float discount;
+            int numberofpoints;
+            string pdfpath;
+            bool exist;
+
+            SQLmethodes.ReturnBookStats(0, Name, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints,out pdfpath ,out exist);
+            if (!exist) return;
+
         }
     }
 }
