@@ -8,7 +8,14 @@
         Title="VIPmembers" Height="605" Width="400" Background="#FF1B1717" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="VIP members" VerticalAlignment="Top" Margin="88,10,0,0" Height="57" Width="219" Foreground="#FFC4D334" FontSize="36"/>
-        <Button x:Name="VIPmembersBack" Content="Back" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="30,545,0,0" Height="29"/>
+        <Button x:Name="VIPmembersBack" Content="Back" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="10,545,0,0" Height="29"/>
+        <Grid Margin="10,85,10,57">
+            <ListBox x:Name="VIPnamesList" HorizontalAlignment="Left" FontSize="20" Background="#FF1B1717" Foreground="#FF95AD29" Height="428" VerticalAlignment="Top" Width="171" Margin="0,27,0,0"/>
+            <ListBox x:Name="VIPemailsList" HorizontalAlignment="Left" FontSize="20" Background="#FF1B1717" Foreground="#FF95AD29" Height="428" Margin="171,27,0,0" VerticalAlignment="Top" Width="201"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="20" Background="#FF1B1717" Foreground="#FF95AD29" Height="27" TextWrapping="Wrap" Text="Name :" VerticalAlignment="Top" Width="174"/>
+            <TextBlock  HorizontalAlignment="Left" FontSize="20" Background="#FF1B1717" Foreground="#FF95AD29" Height="27" TextWrapping="Wrap" Text="Email :" VerticalAlignment="Top" Width="196" Margin="176,0,0,0"/>
 
+        </Grid>
+        <Button x:Name="VIPmembersShowBtn" Content="Show" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" HorizontalAlignment="Left" VerticalAlignment="Top" Width="165" Margin="195,545,0,0" Height="29" Click="VIPmembersShowBtn_Click"/>
     </Grid>
 </Window>

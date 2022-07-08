@@ -92,7 +92,7 @@
             </TabItem>
 
         </TabControl>
-        <Grid x:Name="VIPSET" Background="#FF1B1717" Visibility="Visible">
+        <Grid x:Name="VIPSET" Background="#FF1B1717" Visibility="Hidden">
             <TextBlock FontFamily="MV Boli" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="64,54,0,0" Height="80" Width="301" Foreground="#FF95AD29" FontSize="30"><Run Text="SET VIP mothly fee"/><InlineUIContainer>
                 </InlineUIContainer></TextBlock>
             <TextBox x:Name="MonthlyFee" TextWrapping="Wrap" Margin="105,179,118,480" FontSize="20" Foreground="#FF95AD29" BorderBrush="#FF43464F" Background="{x:Null}"/>
