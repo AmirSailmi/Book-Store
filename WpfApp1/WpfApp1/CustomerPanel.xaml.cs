@@ -209,7 +209,7 @@ namespace WpfApp1
 
             cost = DiscountCalculator(BooksNames);
 
-            MessageBoxResult message = MessageBox.Show($"Total Cost : {cost}");
+            MessageBoxResult meessage = MessageBox.Show($"Total Cost : {cost}");
 
             buyingPage.Visibility = Visibility.Visible;
             cartGrid.Visibility = Visibility.Hidden;

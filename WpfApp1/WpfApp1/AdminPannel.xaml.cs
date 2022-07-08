@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 
 namespace WpfApp1
 {
-    
+
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
@@ -26,7 +26,7 @@ namespace WpfApp1
         string pass { get; set; }
         MainWindow Mainwindow { get; set; }
 
-        public Window1(string name , string pass , MainWindow window)
+        public Window1(string name, string pass, MainWindow window)
         {
             this.name = name;
             this.pass = pass;
@@ -36,7 +36,7 @@ namespace WpfApp1
 
         private void AddBook(object sender, RoutedEventArgs e)
         {
-            AddBookForm form = new AddBookForm( this);
+            AddBookForm form = new AddBookForm(this);
             this.Visibility = Visibility.Hidden;
             form.Show();
         }
@@ -122,17 +122,17 @@ namespace WpfApp1
             string pdfpath;
             bool exist;
 
-            SQLmethodes.ReturnBookStats(0, Name, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount,out  numberofpoints , out  pdfpath, out exist);
+            SQLmethodes.ReturnBookStats(0, Name, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
             if (!exist) return;
 
-            SearchBook searchBook = new SearchBook(name, price, year, authorname, authorprofile, bookdescription, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, numberofpoints , pdfpath , this);
+            SearchBook searchBook = new SearchBook(name, price, year, authorname, authorprofile, bookdescription, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, numberofpoints, pdfpath, this);
             this.Visibility = Visibility.Hidden;
             searchBook.Show();
         }
 
         private void SearchBookByAuthorName(object sender, RoutedEventArgs e)
         {
-            
+
             if (!Check.NameCheck(authornamee.Text.ToString()))
             {
                 MessageBoxResult message = MessageBox.Show("Enter name");
@@ -157,10 +157,10 @@ namespace WpfApp1
             string pdfpath;
             bool exist;
 
-            SQLmethodes.ReturnBookStats(1, Authorname, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints , out pdfpath,out exist);
+            SQLmethodes.ReturnBookStats(1, Authorname, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
             if (!exist) return;
 
-            SearchBook searchBook = new SearchBook(name, price, year, authorname, authorprofile, bookdescription, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount,numberofpoints , pdfpath, this);
+            SearchBook searchBook = new SearchBook(name, price, year, authorname, authorprofile, bookdescription, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, numberofpoints, pdfpath, this);
             this.Visibility = Visibility.Hidden;
             searchBook.Show();
         }
@@ -178,14 +178,25 @@ namespace WpfApp1
         private void SumbitmonthlyFee_Click(object sender, RoutedEventArgs e)
         {
             float monthlyFee;
-            if(!float.TryParse(MonthlyFee.Text.ToString() , out monthlyFee) || monthlyFee < 0)
+            if (!float.TryParse(MonthlyFee.Text.ToString(), out monthlyFee) || monthlyFee < 0)
             {
-                MessageBoxResult message = MessageBox.Show("Enter fee");return;
+                MessageBoxResult message = MessageBox.Show("Enter fee"); return;
             }
 
             VIPsee.VIPfee = monthlyFee;
-
-            MessageBoxResult message1 = MessageBox.Show("Fee sumbited"); 
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Saleh\PROGRAMING\DB\APproject\books.mdf;Integrated Security=True;Connect Timeout=30");
+            con.Open();
+            string command = "delete from VIPfeee";
+            SqlCommand com = new SqlCommand(command, con);
+            com.ExecuteNonQuery();
+            con.Close();
+            con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Saleh\PROGRAMING\DB\APproject\books.mdf;Integrated Security=True;Connect Timeout=30");
+            con.Open();
+            command = "insert into VIPfeee values('" + monthlyFee + "' )";
+            SqlCommand comm = new SqlCommand(command, con);
+            comm.ExecuteNonQuery();
+            con.Close();
+            MessageBoxResult message1 = MessageBox.Show("Fee sumbited");
 
             VIPSET.Visibility = Visibility.Hidden;
         }
