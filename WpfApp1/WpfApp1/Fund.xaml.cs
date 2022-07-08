@@ -33,6 +33,7 @@ namespace WpfApp1
             DataTable data = new DataTable();
             adapter.Fill(data);
             fundMoney.Text = data.Rows[0][0].ToString();
+
             con.Close();
 
         }

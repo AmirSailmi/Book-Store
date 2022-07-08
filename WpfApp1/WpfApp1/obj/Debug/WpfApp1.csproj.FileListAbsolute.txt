@@ -82,3 +82,5 @@ C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\NormalMember
 C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\VIPmembers.baml
 C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\GetMoney.g.cs
 C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\GetMoney.baml
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\GetMoney.g.cs
+D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\GetMoney.baml
