@@ -11,7 +11,7 @@
             <RowDefinition Height="59*"/>
             <RowDefinition Height="292*"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="MainGrid" Visibility="Hidden" Grid.RowSpan="2">
+        <Grid x:Name="MainGrid" Visibility="Visible" Grid.RowSpan="2">
             <TabControl HorizontalAlignment="Left" Width="448" Margin="-8,0" Background="#FF1B1717">
                 <TabItem Width="224" Height="30" Header="Buy Books" FontSize="16">
                     <Grid>
@@ -50,7 +50,7 @@
             <Button x:Name="SearchDependingauthor" Content="Search" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="116,421,0,0" Height="55" FontFamily="SimSun" Click="SearchDependingAuthor"/>
 
         </Grid>
-        <Grid x:Name="ShowBook" Background="#FF1B1717" Visibility="Visible" Margin="-9,0,-8,0" Grid.RowSpan="2">
+        <Grid x:Name="ShowBook" Background="#FF1B1717" Visibility="Hidden" Margin="-9,0,-8,0" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
@@ -113,7 +113,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
-        <Grid x:Name="cartGrid" Visibility="Hidden" Background="#FF1B1717" Grid.RowSpan="2">
+        <Grid x:Name="cartGrid" Visibility="Visible" Background="#FF1B1717" Grid.RowSpan="2">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="50" Text="Cart:" VerticalAlignment="Top" Margin="153,10,0,0" Height="82" Width="142" FontFamily="MV Boli"/>
             <Button x:Name="cartBuyBtn" Content="Buy" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="120,402,0,0" Height="55" FontFamily="SimSun" Click="cartBuyBtn_Click"/>
             <TextBox x:Name="removeBookName" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Text="" FontSize="25" VerticalAlignment="Top" Width="190" Margin="120,579,0,0"/>

@@ -113,10 +113,12 @@ namespace WpfApp1
             List<string> books = new List<string>();
             string[] arr = shoppinglist.Split(',');
 
+
+
             for (int i = 0; i < arr.Length; i++)
             {
                 arr[i] = arr[i].Replace(" ", ",Price = ");
-                cost += int.Parse(arr[i].Substring(arr[i].IndexOf("Price =") + 8));
+                //cost += int.Parse(arr[i].Substring(arr[i].IndexOf("Price =") + 8));
             }
 
             foreach (string book in arr) { books.Add(book.Trim()); }
@@ -188,6 +190,18 @@ namespace WpfApp1
             if (!exist) return;
 
             if (shoppinglist.Trim() == "") { MessageBoxResult message = MessageBox.Show("Cart is empty!"); return; }
+
+            string[] BooksNamesAndPrice = shoppinglist.Split(',');
+            string[] BooksNames = new string[BooksNamesAndPrice.Length];
+
+            for (int i = 0; i < BooksNamesAndPrice.Length; i++)
+            {
+                BooksNames[i] = BooksNamesAndPrice[i].Split(' ')[0];
+            }
+
+            cost = DiscountCalculator(BooksNames);
+
+            MessageBoxResult message = MessageBox.Show($"Total Cost : {cost}");
 
             buyingPage.Visibility = Visibility.Visible;
             cartGrid.Visibility = Visibility.Hidden;
@@ -301,6 +315,7 @@ namespace WpfApp1
 
             string[] BooksNamesAndPrice = shoppinglist.Split(',');
             string[] BooksNames = new string[BooksNamesAndPrice.Length];
+            string[] BooksPrices = new string[BooksNamesAndPrice.Length];
 
             for (int i = 0; i < BooksNamesAndPrice.Length; i++)
             {
@@ -347,6 +362,36 @@ namespace WpfApp1
 
             cost = 0;
             MessageBoxResult message1 = MessageBox.Show($"Your purchase was successful");
+        }
+
+        public float DiscountCalculator(string[] BooksNames)
+        {
+            float price = 0;
+            float total_price = 0;
+            for (int i = 0; i < BooksNames.Length; i++)
+            {
+                string bookname;
+                string bookprice;
+                string year;
+                string authorname;
+                string authorprofile;
+                string bookdescription;
+                bool isvip;
+                int salenumber;
+                int point;
+                string bookimagepath;
+                float vipfee;
+                string timefordiscount;
+                float discount;
+                int numberofpoints;
+                string pdfpath;
+                bool exist;
+
+                SQLmethodes.ReturnBookStats(0, BooksNames[i], out bookname, out authorname, out year, out bookprice, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
+                price = float.Parse(bookprice) - float.Parse(bookprice) * (discount / 100);
+                total_price += price;
+            }
+            return total_price;
         }
 
         private void removeBookIDBtn_Click(object sender, RoutedEventArgs e)
@@ -659,8 +704,7 @@ namespace WpfApp1
             SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
             if (!exist) return;
 
-            SqlConnection connectiontobooktable = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Saleh\PROGRAMING\DB\APproject\books.mdf;Integrated Security=True;Connect Timeout=30");
-
+            SqlConnection connectiontobooktable = SQLmethodes.SQLconnectionToBooksTable();
             connectiontobooktable.Open();
 
             string command = "select * from BookTable";
