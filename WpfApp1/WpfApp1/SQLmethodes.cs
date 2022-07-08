@@ -146,7 +146,7 @@ namespace WpfApp1
                 connection.Open();
 
                 string command = "insert into UserTable values" +
-                        "('" + Email.Trim() + "','" + Name.Trim() + "' , '" + Family.Trim() + "','" + Password.Trim() + "','" + ShoppingList.Trim() + "','" + BuyedList + "','" + BookMarked + "','" + wallet + "','" + VIPTime + ";)";
+                        "('" + Email.Trim() + "','" + Name.Trim() + "' , '" + Family.Trim() + "','" + Password.Trim() + "','" + ShoppingList.Trim() + "','" + BuyedList + "','" + BookMarked + "','" + wallet + "','" + VIPTime + "')";
 
                 SqlCommand Command = new SqlCommand(command, connection);
                 Command.ExecuteNonQuery();
