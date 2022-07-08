@@ -58,6 +58,7 @@ namespace WpfApp1
             bool isVIP;
             float VIPSubscriptionMonthlyFee , Discount ;
             int point, saleNumber;
+            
 
             if (filepath == null)
             {
@@ -101,6 +102,12 @@ namespace WpfApp1
                 return;
             }
 
+            if (PDFpath == null)
+            {
+                MessageBoxResult message = MessageBox.Show("Upload pdf of book");
+                return;
+            }
+
             price = (Price.Text.ToString());
             year = (Year.Text.ToString());
             authorName = (AuthorName.Text.ToString());
@@ -139,7 +146,7 @@ namespace WpfApp1
             PDFpath = null;
             OpenFileDialog op = new OpenFileDialog();
             op.Title = "Select a pdf";
-            op.Filter = "PDF Files|*.pdf";
+            op.Filter = "PDF document (*.pdf)|*.pdf";
 
             if (op.ShowDialog() == true)
             {

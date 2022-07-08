@@ -29,7 +29,8 @@
         <TextBlock x:Name="VIPe" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="35" Width="32" Foreground="#FF95AD29" FontSize="20" Margin="22,10,0,0"/>
         <TextBlock x:Name="VIPFEE" TextWrapping="Wrap" Margin="10,55,297,520" Foreground="#FF95AD29" FontSize="15" TextAlignment="Center"/>
         <TextBlock x:Name="discounte" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="52,521,0,0" Width="281" Height="31" Foreground="#FF95AD29" TextAlignment="Center"/>
-        <Button Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="307,603,0,0" Foreground="#FF95AD29" Background="{x:Null}" BorderBrush="#FF272424"/>
+        <Button Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="307,603,0,0" Foreground="#FF95AD29" Background="{x:Null}" BorderBrush="#FF272424" Click="Button_Click"/>
+        <Button Click="SeePdf" Content="see pdf" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,603,0,0" Foreground="#FF95AD29" Background="{x:Null}"/>
 
 
     </Grid>
