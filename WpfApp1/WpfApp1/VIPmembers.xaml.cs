@@ -29,7 +29,7 @@ namespace WpfApp1
         private void VIPmembersShowBtn_Click(object sender, RoutedEventArgs e)
         {
 
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Saleh\PROGRAMING\DB\APproject\users.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlConnection con = SQLmethodes.SQLconnectionToUsersTable();
             con.Open();
             string command = "select * from UserTable";
             SqlDataAdapter adapter = new SqlDataAdapter(command, con);
@@ -40,7 +40,7 @@ namespace WpfApp1
 
             for (int i = 0; i < data.Rows.Count; i++)
             {
-                if (data.Rows[i][8] != null)
+                if (data.Rows[i][8] != "")
                 {
                     names.Add(data.Rows[i][1].ToString());
                     Emails.Add(data.Rows[i][0].ToString());
@@ -50,6 +50,12 @@ namespace WpfApp1
             VIPemailsList.ItemsSource = Emails;
             con.Close();
 
+        }
+
+        private void VIPmembersBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            //ReformtoAdmin.Show();
         }
     }
 }
