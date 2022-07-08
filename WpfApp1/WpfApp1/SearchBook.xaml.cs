@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,6 @@ namespace WpfApp1
 
     public partial class SearchBook : Window
     {
-   
         public string name;
         string price;
         string year;
@@ -85,7 +85,23 @@ namespace WpfApp1
             }
         }
 
-        private void Serachback_Click(object sender, RoutedEventArgs e)
+        private void SeePdf(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process process = new Process();
+                process.StartInfo.UseShellExecute = true;
+                process.StartInfo.FileName = pdfpath;
+                process.Start();
+                process.WaitForExit();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Could not open the file.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             adminpanel.Show();

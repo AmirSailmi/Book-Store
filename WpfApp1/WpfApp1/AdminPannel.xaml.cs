@@ -105,7 +105,7 @@ namespace WpfApp1
 
         private void SearchBookByBookName(object sender, RoutedEventArgs e)
         {
-            if (!Check.NameCheck(nameofbook.Text.ToString()))
+            if (nameofbook==null)
             {
                 MessageBoxResult message = MessageBox.Show("Enter name");
             }
@@ -139,7 +139,7 @@ namespace WpfApp1
         private void SearchBookByAuthorName(object sender, RoutedEventArgs e)
         {
             
-            if (!Check.NameCheck(authornamee.Text.ToString()))
+            if (authornamee==null)
             {
                 MessageBoxResult message = MessageBox.Show("Enter name");
             }
@@ -215,19 +215,6 @@ namespace WpfApp1
 
             VIPSET.Visibility = Visibility.Hidden;
         }
-
-        private void FundBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Fund form = new Fund(this);
-            this.Visibility = Visibility.Hidden;
-            form.Show();
-        }
-
-        private void GetMoneyBtn_Click(object sender, RoutedEventArgs e)
-        {
-            GetMoney form = new GetMoney(this);
-            this.Visibility = Visibility.Hidden;
-            form.Show();
-        }
+        
     }
 }

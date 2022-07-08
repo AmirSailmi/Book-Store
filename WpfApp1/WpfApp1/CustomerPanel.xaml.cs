@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace WpfApp1
     
     public partial class CustomerPanel : Window
     {
+        string PDFpath { get; set; }
         public float cost { get; set; }
         public bool isBuyingVIP { get; set; }
         public string EmailOfUser { get; set; }
@@ -1077,6 +1079,44 @@ namespace WpfApp1
             numberofcard.Text = "";
             passwordofcard.Text = "";
             cvvofcard.Text = "";
+        }
+
+        private void SeePdf(object sender, RoutedEventArgs e)
+        {
+           string Name = searchBook.Text.ToString();
+
+            string name;
+            string price;
+            string year;
+            string authorname;
+            string authorprofile;
+            string bookdescription;
+            bool isvip;
+            int salenumber;
+            int point;
+            string bookimagepath;
+            float vipfee;
+            string timefordiscount;
+            float discount;
+            int numberofpoints;
+            string pdfpath;
+            bool exist;
+
+            SQLmethodes.ReturnBookStats(0, Name, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
+            if (!exist) return;
+
+            try
+            {
+                Process process = new Process();
+                process.StartInfo.UseShellExecute = true;
+                process.StartInfo.FileName = pdfpath;
+                process.Start();
+                process.WaitForExit();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Could not open the file.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

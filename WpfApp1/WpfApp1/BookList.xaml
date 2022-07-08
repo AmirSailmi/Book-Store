@@ -13,13 +13,7 @@
         <Button Content="show" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="707,412,0,0" Click="Show"/>
         <DataGrid x:Name="DataGrid" HorizontalAlignment="Left" Height="383" VerticalAlignment="Top" Width="738" Margin="28,10,0,0" Background="{x:Null}" Foreground="Black">
             <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name ="BookImagePath" Header="Image">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding BookImagePath}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                
                 <DataGridTextColumn x:Name="BookName" Header="Name" Binding="{Binding BookName}" />
                 <DataGridTextColumn x:Name="AuthorName"  Header="Author" Binding="{Binding AuthorName}"/>
                 <DataGridTextColumn x:Name="Price" Header="Price" Binding="{Binding Price}"/>

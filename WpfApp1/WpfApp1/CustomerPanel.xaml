@@ -64,6 +64,8 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
+            <Button Click="SeePdf" Content="See pdf" HorizontalAlignment="Left" VerticalAlignment="Top" Width="136" Margin="15,638,0,0" Height="54" Foreground="#FF95AD29" Background="{x:Null}" BorderBrush="#FF383737" FontSize="17"/>
+
             <TextBox x:Name="PointGiven" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Margin="226,569,0,0" Background="{x:Null}" BorderBrush="#FF444649" FontSize="20" Foreground="#FF95AD29" TextAlignment="Center"/>
             <Button Click="BookmarkBtn_Click" Content="Bookmark" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="346,-1,0,0" Height="76" Background="#FF95AD29"/>
             <TextBlock x:Name="YEAR" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="174,195,0,0" Width="69" Height="20" Foreground="#FF95AD29" TextAlignment="Center"/>
@@ -75,8 +77,8 @@
             <TextBlock x:Name="VIPe" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="35" Width="32" Foreground="#FF95AD29" FontSize="20" Margin="22,10,0,0"/>
             <TextBlock x:Name="VIPFEE" TextWrapping="Wrap" Margin="10,55,297,520" Foreground="#FF95AD29" FontSize="15" TextAlignment="Center"/>
             <TextBlock x:Name="discounte" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="68,508,0,0" Width="281" Height="32" Foreground="#FF95AD29" TextAlignment="Center"/>
-            <Button Click="BackToSearchBookPaage" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Margin="334,638,0,0" Foreground="#FF95AD29" Background="{x:Null}" BorderBrush="#FF272424" Height="54" FontSize="17" />
-            <Button Click="AddToShoppingList" Content="Add to Shopping list" HorizontalAlignment="Left" VerticalAlignment="Top" Width="169" Margin="160,638,0,0" Height="54" Background="{x:Null}" Foreground="#FF95AD29" BorderBrush="#FF2C2C2C" FontSize="17" />
+            <Button Click="BackToSearchBookPaage" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Margin="346,638,0,0" Foreground="#FF95AD29" Background="{x:Null}" BorderBrush="#FF272424" Height="54" FontSize="17" />
+            <Button Click="AddToShoppingList" Content="Add to Shopping list" HorizontalAlignment="Left" VerticalAlignment="Top" Width="169" Margin="165,638,0,0" Height="54" Background="{x:Null}" Foreground="#FF95AD29" BorderBrush="#FF2C2C2C" FontSize="17" />
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="point to the book " VerticalAlignment="Top" Margin="18,562,0,0" Height="46" Width="190" Foreground="#FF95AD29" RenderTransformOrigin="0.5,0.5" FontSize="20">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
