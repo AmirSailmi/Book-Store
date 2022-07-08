@@ -22,7 +22,8 @@ namespace WpfApp1
 
     public partial class AddBookForm : Window
     {
-        public string filepath;
+        public string PDFpath { get; set; }
+        public string filepath { get; set; }
         public Window ReformtoAdmin { get; set; }
         public AddBookForm(Window window)
         {
@@ -113,7 +114,7 @@ namespace WpfApp1
             VIPSubscriptionMonthlyFee = 0;
             Discount = 0;
             int numberofpoints =0;
-            string pdfpath="";//get it
+            string pdfpath=PDFpath;//get it
 
             try
             {
@@ -130,6 +131,19 @@ namespace WpfApp1
             catch(Exception Error)
             {
                 MessageBoxResult message = MessageBox.Show($"Adding Book was unsuccessful!/nError descriiption : \n{Error.Message}");
+            }
+        }
+
+        private void UploadPdf(object sender, RoutedEventArgs e)
+        {
+            PDFpath = null;
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a pdf";
+            op.Filter = "PDF Files|*.pdf";
+
+            if (op.ShowDialog() == true)
+            {
+                PDFpath = op.FileName;
             }
         }
     }

@@ -29,7 +29,7 @@ namespace WpfApp1
         private void VIPmembersShowBtn_Click(object sender, RoutedEventArgs e)
         {
 
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Saleh\PROGRAMING\DB\APproject\users.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlConnection con = SQLmethodes.SQLconnectionToUsersTable();
             con.Open();
             string command = "select * from UserTable";
             SqlDataAdapter adapter = new SqlDataAdapter(command, con);

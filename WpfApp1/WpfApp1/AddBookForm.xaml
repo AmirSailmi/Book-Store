@@ -26,6 +26,7 @@
         <Image x:Name="BookImage" HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="188" Margin="23,22,0,0"/>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Margin="305,33,0,0" Foreground="#FF95AD29" FontSize="20"/>
         <TextBox x:Name="BookName" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" Margin="270,67,0,0" Background="{x:Null}" BorderBrush="#FF2E2A2A" Foreground="#FF95AD29"/>
+        <Button Click="UploadPdf" Content="Upload pdf" HorizontalAlignment="Left" VerticalAlignment="Top" Width="104" Margin="294,646,0,0" Height="23" Background="{x:Null}" Foreground="#FF95AD29" />
 
     </Grid>
 </Window>
