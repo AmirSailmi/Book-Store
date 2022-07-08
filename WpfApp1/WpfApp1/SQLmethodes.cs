@@ -11,8 +11,8 @@ namespace WpfApp1
 {
     abstract class SQLmethodes
     {
-        public static SqlConnection SQLconnectionToBooksTable() { return new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Saleh\PROGRAMING\DB\APproject\books.mdf;Integrated Security=True;Connect Timeout=30"); }
-        public static SqlConnection SQLconnectionToUsersTable() { return new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Saleh\PROGRAMING\DB\APproject\users.mdf;Integrated Security=True;Connect Timeout=30"); }
+        public static SqlConnection SQLconnectionToBooksTable() { return new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Books.mdf;Integrated Security=True;Connect Timeout=30"); }
+        public static SqlConnection SQLconnectionToUsersTable() { return new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Coding\ApProject\Book-Store-\WpfApp1\Users.mdf;Integrated Security=True;Connect Timeout=30"); }
 
         public static void ReturnUserStats(string EmailOfUser, out string email, out string name, out string family, out string password, out string shoppinglist, out string buyedlist, out string bookmarked, out float wallet, out string VIPTime, out bool exist)
         {
