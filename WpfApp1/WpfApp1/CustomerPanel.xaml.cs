@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 
 namespace WpfApp1
 {
-
+    
     public partial class CustomerPanel : Window
     {
         public float cost { get; set; }
@@ -130,6 +130,7 @@ namespace WpfApp1
         private void WalletBtn_Click(object sender, RoutedEventArgs e)
         {
             walletGrid.Visibility = Visibility.Visible;
+            balanceValue.IsReadOnly = true;
             MainGrid.Visibility = Visibility.Hidden;
         }
 
@@ -141,7 +142,15 @@ namespace WpfApp1
 
         private void VIPBtn_Click(object sender, RoutedEventArgs e)
         {
-            VIPprice.Text = VIPsee.VIPfee.ToString();
+            DateTime time = DateTime.Now;
+            string nowtime = time.ToString("MM/dd/yyyy");
+            float fee;
+            bool exist;
+
+            SQLmethodes.ReturnVIPfee(out exist, out fee);
+
+            VIPprice.Text = fee.ToString();
+
             VIPGrid.Visibility = Visibility.Visible;
             string email;
             string name;
@@ -152,8 +161,7 @@ namespace WpfApp1
             string bookmarked;
             float wallet;
             string VIPTime;
-            bool exist;
-
+            
             SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
             if (!exist) return;
 
@@ -164,15 +172,51 @@ namespace WpfApp1
             }
             else
             {
-                VIPtimeLeft.Text = "30 days";//TMP
-                // VIP time ?? ----------------------------------------
+                string endTime = VIPTime;
+                string now = nowtime;
+
+                if (!CheckTime(now, endTime))
+                {
+                    MessageBoxResult message = MessageBox.Show("Your monthly subscription has expired");
+
+                    haveVIPGrid.Visibility = Visibility.Hidden;
+                    nonVIPGrid.Visibility = Visibility.Visible;
+                    return;
+                }
+
+                VIPtimeLeft.Text = VIPTime;
+
                 haveVIPGrid.Visibility = Visibility.Visible;
             }
         }
 
-        private void SearchSearchBtn_Click(object sender, RoutedEventArgs e)
+        public bool CheckTime(string now , string endtime)//if now < endTime returns true
         {
+            string[] month_day_year_NOW = now.Split('/');
 
+            int dayNow = int.Parse(month_day_year_NOW[1]);
+            int monthNow = int.Parse(month_day_year_NOW[0]);
+            int yearNow = int.Parse(month_day_year_NOW[2]);
+
+            string[] month_day_year_End = endtime.Split('/');
+
+            int dayEnd = int.Parse(month_day_year_End[1]);
+            int monthEnd = int.Parse(month_day_year_End[0]);
+            int yearEnd = int.Parse(month_day_year_End[2]);
+
+            if (yearNow > yearEnd) return false;
+            else if (yearNow < yearEnd) return true;
+            else
+            {
+                if (monthNow > monthEnd) return false;
+                else if (monthNow < monthEnd) return true;
+                else
+                {
+                    if (dayNow > dayEnd) return false;
+                    else if (dayNow < dayEnd) return true;
+                    else return false;
+                }
+            }
         }
 
         private void bookmarksBack_Click(object sender, RoutedEventArgs e)
@@ -214,6 +258,25 @@ namespace WpfApp1
             buyingPage.Visibility = Visibility.Visible;
             cartGrid.Visibility = Visibility.Hidden;
         }
+        public void DateSetting(string datenow , ref string VIPTime)
+        {
+            string[] month_day_year = datenow.Split('/');
+
+            int day = int.Parse(month_day_year[1]);
+            int month = int.Parse(month_day_year[0]);
+            int year = int.Parse(month_day_year[2]);
+
+            day += 30;
+            int newday = day % 30;
+            month++;
+
+            if (month == 13)
+            {
+                month = month % 12;
+                year++;
+            }
+            VIPTime = $"{month}/{newday}/{year}";
+        }
 
         private void BuyFromWallet(object sender, RoutedEventArgs e)
         {
@@ -240,16 +303,125 @@ namespace WpfApp1
 
                 if (isBuyingVIP)
                 {
-                    VIPTime = "VIP";
-                    //VIPTime+ ? <--------------------------
+                    var date = DateTime.Now;
+
+                    string datenow = date.ToString("MM/dd/yyyy");
+
+                    DateSetting(datenow, ref VIPTime);
+                    VIPtimeLeft.Text = VIPTime;
+
                     haveVIPGrid.Visibility = Visibility.Visible;
                     nonVIPGrid.Visibility = Visibility.Hidden;
                     VIPGrid.Visibility = Visibility.Visible;
                     buyingPage.Visibility = Visibility.Hidden;
                     isBuyingVIP = false;
                 }
+                else
+                {
+                    string[] BooksNamesAndPrice = shoppinglist.Split(',');
+                    string[] BooksNames = new string[BooksNamesAndPrice.Length];
+
+                    for (int i = 0; i < BooksNamesAndPrice.Length; i++)
+                    {
+                        BooksNames[i] = BooksNamesAndPrice[i].Split(' ')[0];
+
+                        string bookname;
+                        string bookprice;
+                        string year;
+                        string authorname;
+                        string authorprofile;
+                        string bookdescription;
+                        bool isvip;
+                        int salenumber;
+                        int point;
+                        string bookimagepath;
+                        float vipfee;
+                        string timefordiscount;
+                        float discount;
+                        int numberofpoints;
+                        string pdfpath;
+
+                        SQLmethodes.ReturnBookStats(0, BooksNames[i], out bookname, out authorname, out year, out bookprice, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
+                        if (!exist) return;
+
+                        salenumber++;
+
+                        bool ok;
+                        SQLmethodes.DeleteBookFromBookTable(bookname, out ok);
+                        if (!ok) return;
+
+                        bool isok;
+                        SQLmethodes.AddBookToBookTable(bookname, authorname, year, bookprice, bookdescription, authorprofile, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, numberofpoints, pdfpath, out isok);
+                        if (!isok) return;
+                    }
+
+                    shoppinglist = "";
+                }
+
+                SQLmethodes.UpdateUserTable(EmailOfUser, email, name, family, password, shoppinglist, buyedlist, bookmarked, wallet, VIPTime, out exist);
+                if (!exist)
+                {
+                    MessageBoxResult message1 = MessageBox.Show($"Your purchase was unsuccessful");
+                    return;
+                }
+
+                cost = 0;
+
+                MessageBoxResult message = MessageBox.Show($"Your purchase was successful");
+            }
+
+        }
+        private void ByfromCard(object sender, RoutedEventArgs e)
+        {
+            if (!Check.checkid(numberofcard.Text.ToString().Trim()))
+            {
+                MessageBoxResult message = MessageBox.Show("Card number is false"); return;
+            }
+            if (!Check.PasswordCheck(passwordofcard.Text.ToString().Trim()))
+            {
+                MessageBoxResult message = MessageBox.Show("pattern of Password is not true!"); return;
+            }
+            if (!Check.CVVCheck(cvvofcard.Text.ToString().Trim()))
+            {
+                MessageBoxResult message = MessageBox.Show("pattern of CVV is not true!"); return;
+            }
+
+            //Check card in sql table
+
+            string email;
+            string name;
+            string family;
+            string password;
+            string shoppinglist;
+            string buyedlist;
+            string bookmarked;
+            float wallet;
+            string VIPTime;
+            bool exist;
+
+            SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
+            if (!exist) return;
+            if (isBuyingVIP)
+            {
+
+                var date = DateTime.Now;
+
+                string datenow = date.ToString("MM/dd/yyyy");
+
+                DateSetting(datenow, ref VIPTime);
+                VIPtimeLeft.Text = VIPTime;
+
+                haveVIPGrid.Visibility = Visibility.Visible;
+                nonVIPGrid.Visibility = Visibility.Hidden;
+                VIPGrid.Visibility = Visibility.Visible;
+                buyingPage.Visibility = Visibility.Hidden;
+                isBuyingVIP = false;
+            }
+            else
+            {
                 string[] BooksNamesAndPrice = shoppinglist.Split(',');
                 string[] BooksNames = new string[BooksNamesAndPrice.Length];
+                string[] BooksPrices = new string[BooksNamesAndPrice.Length];
 
                 for (int i = 0; i < BooksNamesAndPrice.Length; i++)
                 {
@@ -286,99 +458,7 @@ namespace WpfApp1
                 }
 
                 shoppinglist = "";
-
-                SQLmethodes.UpdateUserTable(EmailOfUser, email, name, family, password, shoppinglist, buyedlist, bookmarked, wallet, VIPTime, out exist);
-                if (!exist)
-                {
-                    MessageBoxResult message1 = MessageBox.Show($"Your purchase was unsuccessful");
-                    return;
-                }
-
-                cost = 0;
-
-                MessageBoxResult message = MessageBox.Show($"Your purchase was successful");
             }
-
-        }
-        private void ByfromCard(object sender, RoutedEventArgs e)
-        {
-            if (!Check.PassesLuhnCheck(numberofcard.Text.ToString()))
-            {
-                MessageBoxResult message = MessageBox.Show("Card number is false"); return;
-            }
-            if (!Check.PasswordCheck(passwordofcard.Text.ToString()))
-            {
-                MessageBoxResult message = MessageBox.Show("pattern of Password is not true!"); return;
-            }
-            if (!Check.CVVCheck(cvvofcard.Text.ToString()))
-            {
-                MessageBoxResult message = MessageBox.Show("pattern of CVV is not true!"); return;
-            }
-
-            //Check card in sql table
-
-            string email;
-            string name;
-            string family;
-            string password;
-            string shoppinglist;
-            string buyedlist;
-            string bookmarked;
-            float wallet;
-            string VIPTime;
-            bool exist;
-
-            SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
-            if (!exist) return;
-            if (isBuyingVIP)
-            {
-                VIPTime = "VIP";
-                //VIPTime+ ? <--------------------------
-                haveVIPGrid.Visibility = Visibility.Visible;
-                nonVIPGrid.Visibility = Visibility.Hidden;
-                VIPGrid.Visibility = Visibility.Visible;
-                buyingPage.Visibility = Visibility.Hidden;
-                isBuyingVIP = false;
-            }
-            string[] BooksNamesAndPrice = shoppinglist.Split(',');
-            string[] BooksNames = new string[BooksNamesAndPrice.Length];
-            string[] BooksPrices = new string[BooksNamesAndPrice.Length];
-
-            for (int i = 0; i < BooksNamesAndPrice.Length; i++)
-            {
-                BooksNames[i] = BooksNamesAndPrice[i].Split(' ')[0];
-
-                string bookname;
-                string bookprice;
-                string year;
-                string authorname;
-                string authorprofile;
-                string bookdescription;
-                bool isvip;
-                int salenumber;
-                int point;
-                string bookimagepath;
-                float vipfee;
-                string timefordiscount;
-                float discount;
-                int numberofpoints;
-                string pdfpath;
-
-                SQLmethodes.ReturnBookStats(0, BooksNames[i], out bookname, out authorname, out year, out bookprice, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
-                if (!exist) return;
-
-                salenumber++;
-
-                bool ok;
-                SQLmethodes.DeleteBookFromBookTable(bookname, out ok);
-                if (!ok) return;
-
-                bool isok;
-                SQLmethodes.AddBookToBookTable(bookname, authorname, year, bookprice, bookdescription, authorprofile, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, numberofpoints, pdfpath, out isok);
-                if (!isok) return;
-            }
-
-            shoppinglist = "";
 
             SQLmethodes.UpdateUserTable(EmailOfUser, email, name, family, password, shoppinglist, buyedlist, bookmarked, wallet, VIPTime, out exist);
             if (!exist)
@@ -637,8 +717,12 @@ namespace WpfApp1
 
         private void buyVIPBtn_Click(object sender, RoutedEventArgs e)
         {
+            float fee;
+            bool exist;
+            SQLmethodes.ReturnVIPfee(out exist, out fee);
+            if (!exist) { MessageBoxResult message = MessageBox.Show("No VIP set");return; }
             isBuyingVIP = true;
-            cost = VIPsee.VIPfee;
+            cost = fee;
             VIPGrid.Visibility = Visibility.Hidden;
             buyingPage.Visibility = Visibility.Visible;
         }

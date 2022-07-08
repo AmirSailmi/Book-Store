@@ -135,7 +135,7 @@ namespace WpfApp1
                 MessageBoxResult message = MessageBox.Show("Enter a dicount percentage"); return;
             }
 
-            date = $"{dayInt}/{monthInt}/{yearInt}";
+            date = $"{monthInt}/{dayInt}/{yearInt}";
 
             string name;
             string price;

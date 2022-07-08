@@ -72,30 +72,27 @@ namespace WpfApp1
 
             if (!Check.PasswordCheck(Password_SignIn.Password.ToString())) { MessageBoxResult message = MessageBox.Show("Wrong passwoord", "Sign up error"); return; }
 
-            string email = CustomerEmail_SignIn.Text.ToString();
-            string password = Password_SignIn.Password.ToString();
+            string Email = CustomerEmail_SignIn.Text.ToString();
+            string Password = Password_SignIn.Password.ToString();
 
-            string Command = "select * from UserTable";
-            SqlConnection connection = SQLmethodes.SQLconnectionToUsersTable();
-            connection.Open();
+            string email;
+            string name;
+            string family;
+            string password;
+            string shoppinglist;
+            string buyedlist;
+            string bookmarked;
+            float wallet;
+            string VIPTime;
+            bool exist;
 
-            SqlDataAdapter adapter = new SqlDataAdapter(Command, connection);
-            DataTable dataTable = new DataTable();
-            adapter.Fill(dataTable);
+            SQLmethodes.ReturnUserStats(Email, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
+            if (!exist) return;
 
-            for (int i = 0; i < dataTable.Rows.Count; i++)
+            if (password != Password)
             {
-                if (dataTable.Rows[i][0].ToString().ToLower() == email.ToLower())
-                {
-                    if (dataTable.Rows[i][3].ToString() != password)
-                    {
-                        MessageBoxResult message = MessageBox.Show("Password uncorrect!");
-                        return;
-                    }
-                    break;
-                }
+                MessageBoxResult message = MessageBox.Show("Wrong password");return;
             }
-
 
             CustomerPanel customerPanel = new CustomerPanel(this , email ,password);
             customerPanel.Show();

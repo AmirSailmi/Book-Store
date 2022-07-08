@@ -36,35 +36,46 @@ namespace WpfApp1
             if(Regex.IsMatch(number, @"^09[0-9]{9}$")) return true; else return false;
         }
 
-        static public bool PassesLuhnCheck(string value)
+        public static bool checkid(string id)
         {
-            long sum = 0;
-
-            for (int i = 0; i < value.Length; i++)
+            string[] vs = id.Split(' ');
+            string ID = "";
+            for (int i = 0; i < vs.Length; i++)
             {
-                var digit = value[value.Length - 1 - i] - '0';
-                sum += (i % 2 != 0) ? GetDouble(digit) : digit;
+                ID += vs[i];
             }
-
-            return sum % 10 == 0;
+            int sum = 0;
+            for (int i = ID.Length - 1; i >= 0; i--)
+            {
+                int j = 0;
+                try
+                {
+                    j = int.Parse(ID[i].ToString());
+                }
+                catch { return false; }
+                if (i % 2 == 0)
+                {
+                    sum += digitsum(j * 2);
+                }
+                else
+                    sum += j;
+            }
+            if (sum % 10 == 0)
+            {
+                return true;
+            }
+            else return false;
         }
 
-        static private int GetDouble(long i)
+        public static int digitsum(int n)
         {
-            switch (i)
+            int m = 0;
+            while (n > 0)
             {
-                case 0: return 0;
-                case 1: return 2;
-                case 2: return 4;
-                case 3: return 6;
-                case 4: return 8;
-                case 5: return 1;
-                case 6: return 3;
-                case 7: return 5;
-                case 8: return 7;
-                case 9: return 9;
-                default: return 0;
+                m += n % 10;
+                n /= 10;
             }
+            return m;
         }
 
     }

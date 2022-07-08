@@ -182,10 +182,10 @@
             </Grid>
         </Grid>
         <Grid x:Name="VIPGrid" Visibility="Hidden" Grid.RowSpan="2" Background="#FF1B1717">
-            <Grid x:Name="nonVIPGrid" Visibility="Visible" Background="#FF1B1717">
+            <Grid x:Name="nonVIPGrid" Visibility="Hidden" Background="#FF1B1717">
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="50" Text="VIP" VerticalAlignment="Top" Margin="77,25,0,0" Height="82" Width="293" FontFamily="MV Boli"/>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" Text="one month VIP:" VerticalAlignment="Top" Margin="77,182,0,0" Height="59" Width="293" FontFamily="MV Boli"/>
-                <TextBlock x:Name="VIPprice" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" Text="(price)" VerticalAlignment="Top" Margin="77,246,0,0" Height="59" Width="293" FontFamily="MV Boli"/>
+                <TextBlock x:Name="VIPprice" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" VerticalAlignment="Top" Margin="77,246,0,0" Height="59" Width="293" FontFamily="MV Boli"/>
                 <Button x:Name="buyVIPBtn" Content="Buy VIP" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="123,347,0,0" Height="55" FontFamily="SimSun" Click="buyVIPBtn_Click"/>
             </Grid>
             <Grid x:Name="haveVIPGrid" Visibility="Hidden" Background="#FF1B1717">
