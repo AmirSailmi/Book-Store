@@ -189,7 +189,7 @@ namespace WpfApp1
             SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
             if (!exist) return;
 
-            if (shoppinglist.Trim() == "") { MessageBoxResult message = MessageBox.Show("Cart is empty!"); return; }
+            if (shoppinglist.Trim() == "") { MessageBoxResult message6 = MessageBox.Show("Cart is empty!"); return; }
 
             string[] BooksNamesAndPrice = shoppinglist.Split(',');
             string[] BooksNames = new string[BooksNamesAndPrice.Length];

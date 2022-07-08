@@ -83,12 +83,12 @@ namespace WpfApp1
             }
         }
         public static void ReturnBookStats(int CulomnIndex, string searchingfor, out string name, out string authorname, out string year, out string price, out string bookdescription, out string authorprofile, out bool isvip,
-            out int salenumber, out int point, out string bookimagepath, out float vipfee, out string timefordiscount, out float discount,out int numberofponits,out string pdfpath ,out bool exist)
+            out int salenumber, out int point, out string bookimagepath, out float vipfee, out string timefordiscount, out float discount, out int numberofponits, out string pdfpath, out bool exist)
         {
             //Column Index = ایندکس ستون اون چیزی که دنبالش میگردیم
             //searchingfor = اسم چیزی که دنبالش میگردیم
 
-            exist = true; name = ""; authorname = ""; year = ""; price = ""; bookdescription = ""; authorprofile = "";pdfpath = "";numberofponits = 0;
+            exist = true; name = ""; authorname = ""; year = ""; price = ""; bookdescription = ""; authorprofile = ""; pdfpath = ""; numberofponits = 0;
             isvip = false; salenumber = 0; point = 0; bookimagepath = ""; vipfee = 0; timefordiscount = ""; discount = 0; exist = false;
             string command;
             SqlConnection connection = SQLconnectionToBooksTable();
@@ -134,8 +134,10 @@ namespace WpfApp1
             timefordiscount = data.Rows[row][11].ToString().ToString();
             discount = float.Parse(data.Rows[row][12].ToString());
             numberofponits = int.Parse(data.Rows[row][13].ToString());
-            pdfpath =data.Rows[row][14].ToString();
+            pdfpath = data.Rows[row][14].ToString();
         }
+
+
         public static void AddToUserTable(string Email, string Name, string Family, string Password, string ShoppingList, string BuyedList, string BookMarked, float wallet, string VIPTime, out bool ok)
         {
             ok = true;
@@ -161,6 +163,7 @@ namespace WpfApp1
                 return;
             }
         }
+
         public static void DeleteBookFromBookTable(string bookname, out bool ok)
         {
             ok = true;
@@ -181,7 +184,7 @@ namespace WpfApp1
                 MessageBoxResult message = MessageBox.Show("Book was not deleted \n" + error.Message);
             }
         }
-        public static void AddBookToBookTable(string name , string authorname , string year , string price , string bookdescription , string authorprofile , bool isvip , int salenumber , int point , string bookimagepath , float vipfee , string timefordiscount , float discount,  int numberofponits,  string pdfpath,  out bool isok)
+        public static void AddBookToBookTable(string name, string authorname, string year, string price, string bookdescription, string authorprofile, bool isvip, int salenumber, int point, string bookimagepath, float vipfee, string timefordiscount, float discount, int numberofponits, string pdfpath, out bool isok)
         {
             isok = true;
             SqlConnection connection = SQLconnectionToBooksTable();
@@ -191,15 +194,108 @@ namespace WpfApp1
                 string AddCommand = "insert into BookTable values" +
                         "('" + name + "','" + authorname.Trim() + "' , '" + year.Trim() + "','" + price.Trim() + "','" + bookdescription.Trim() + "','" + authorprofile.Trim() + "','"
                         + isvip + "','" + salenumber + "','" + point + "' , '" + bookimagepath + "','" + vipfee +
-                        "','" + timefordiscount + "','" + discount + "' , '"+numberofponits+"','"+pdfpath+"')";
+                        "','" + timefordiscount + "','" + discount + "' , '" + numberofponits + "','" + pdfpath + "')";
                 SqlCommand AddRow = new SqlCommand(AddCommand, connection);
                 AddRow.ExecuteNonQuery();
                 connection.Close();
-            }catch(Exception error)
+            }
+            catch (Exception error)
             {
                 isok = false;
                 connection.Close();
                 MessageBoxResult message = MessageBox.Show("inserting book was unsuccessful");
+            }
+        }
+        public static void ReturnVIPfee(out bool exist , out float fee)
+        {
+            fee = 0;
+            exist = true;
+            string command;
+            SqlConnection connection = SQLconnectionToBooksTable();
+
+            connection.Open();
+
+            command = "select * from VIPfeee";
+            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
+            DataTable data = new DataTable();
+            adapter.Fill(data);
+
+            try
+            {
+                fee = float.Parse(data.Rows[0][0].ToString());
+            }
+            catch (Exception error)
+            {
+                connection.Close();
+                exist = false;
+                return;
+            }
+            connection.Close();
+        }
+        public static void DeleteVIPfee(out bool ok)
+        {
+            bool exist;
+            float fee;
+
+            ReturnVIPfee(out exist, out fee);
+            if (!exist) { ok = false; return; }
+
+            ok = true;
+            SqlConnection connection = SQLconnectionToBooksTable();
+            try
+            {
+                connection.Open();
+                string DeleteCommand;
+                DeleteCommand = "delete from VIPfeee where VIPfeee = '" + fee + "'";
+                SqlCommand DeleteRow = new SqlCommand(DeleteCommand, connection);
+                DeleteRow.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception error)
+            {
+                ok = false;
+                connection.Close();
+                MessageBoxResult message = MessageBox.Show("Book was not deleted \n" + error.Message);
+            }
+        }
+        public static void EditVIPfee(float NewVIPfee , out bool isok)
+        {
+            isok = true;
+            bool ok;
+            DeleteVIPfee(out ok);
+
+            if(!ok)
+            {
+                MessageBoxResult message = MessageBox.Show("The last VIP fee isn\'t deleted");
+            }
+
+            bool done;
+            AddToVIPfee(NewVIPfee, out done);
+            if (!done)
+            {
+                MessageBoxResult messageBox = MessageBox.Show("New fee isn\'t added");
+                isok = false;
+            }
+        }
+        public static void AddToVIPfee(float fee , out bool done)
+        {
+            done = true;
+
+            SqlConnection connection = SQLconnectionToBooksTable();
+            try
+            {
+                connection.Open();
+                string AddCommand = "insert into VIPfeee values" +
+                        "('" + fee + "')";
+                SqlCommand AddRow = new SqlCommand(AddCommand, connection);
+                AddRow.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception error)
+            {
+                done = false;
+                connection.Close();
+                MessageBoxResult message = MessageBox.Show("VIP add editing was unsuccessful");
             }
         }
     }

@@ -114,7 +114,6 @@
     <Compile Include="VIPmembers.xaml.cs">
       <DependentUpon>VIPmembers.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VIPsee.cs" />
     <Page Include="AddBookForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

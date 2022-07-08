@@ -183,8 +183,28 @@ namespace WpfApp1
                 MessageBoxResult message = MessageBox.Show("Enter fee");return;
             }
 
-            VIPsee.VIPfee = monthlyFee;
+            float fee;
+            bool exist;
 
+            SQLmethodes.ReturnVIPfee(out exist, out fee);
+            if (fee==null)
+            {
+                bool done;
+                SQLmethodes.AddToVIPfee(fee,out done);
+                if (!done)
+                {
+                    MessageBoxResult message = MessageBox.Show("VIP fee isn\'t added");return;
+                }
+            }
+            else
+            {
+                bool isok;
+                SQLmethodes.EditVIPfee(monthlyFee, out isok);
+                if (!isok)
+                {
+                    MessageBoxResult messageBox = MessageBox.Show("Edit isn\'t sumbited");return;
+                }
+            }
             MessageBoxResult message1 = MessageBox.Show("Fee sumbited"); 
 
             VIPSET.Visibility = Visibility.Hidden;

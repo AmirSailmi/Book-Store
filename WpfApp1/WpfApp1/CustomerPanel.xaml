@@ -113,7 +113,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
-        <Grid x:Name="cartGrid" Visibility="Visible" Background="#FF1B1717" Grid.RowSpan="2">
+        <Grid x:Name="cartGrid" Visibility="Hidden" Background="#FF1B1717" Grid.RowSpan="2">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="50" Text="Cart:" VerticalAlignment="Top" Margin="153,10,0,0" Height="82" Width="142" FontFamily="MV Boli"/>
             <Button x:Name="cartBuyBtn" Content="Buy" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="120,402,0,0" Height="55" FontFamily="SimSun" Click="cartBuyBtn_Click"/>
             <TextBox x:Name="removeBookName" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Text="" FontSize="25" VerticalAlignment="Top" Width="190" Margin="120,579,0,0"/>
