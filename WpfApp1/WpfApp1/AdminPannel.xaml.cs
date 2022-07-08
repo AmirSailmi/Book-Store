@@ -160,7 +160,7 @@ namespace WpfApp1
             SQLmethodes.ReturnBookStats(1, Authorname, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints , out pdfpath,out exist);
             if (!exist) return;
 
-            SearchBook searchBook = new SearchBook(name, price, year, authorname, authorprofile, bookdescription, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, this);
+            SearchBook searchBook = new SearchBook(name, price, year, authorname, authorprofile, bookdescription, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount,numberofpoints , pdfpath, this);
             this.Visibility = Visibility.Hidden;
             searchBook.Show();
         }

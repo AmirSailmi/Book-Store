@@ -173,6 +173,22 @@ namespace WpfApp1
 
         private void cartBuyBtn_Click(object sender, RoutedEventArgs e)
         {
+            string email;
+            string name;
+            string family;
+            string password;
+            string shoppinglist;
+            string buyedlist;
+            string bookmarked;
+            float wallet;
+            string VIPTime;
+            bool exist;
+
+            SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
+            if (!exist) return;
+
+            if (shoppinglist.Trim() == "") { MessageBoxResult message = MessageBox.Show("Cart is empty!"); return; }
+
             buyingPage.Visibility = Visibility.Visible;
             cartGrid.Visibility = Visibility.Hidden;
         }
@@ -199,6 +215,44 @@ namespace WpfApp1
             else
             {
                 wallet -= price;
+
+                string[] BooksNamesAndPrice = shoppinglist.Split(',');
+                string[] BooksNames = new string[BooksNamesAndPrice.Length];
+
+                for (int i = 0; i < BooksNamesAndPrice.Length; i++)
+                {
+                    BooksNames[i] = BooksNamesAndPrice[i].Split(' ')[0];
+
+                    string bookname;
+                    string bookprice;
+                    string year;
+                    string authorname;
+                    string authorprofile;
+                    string bookdescription;
+                    bool isvip;
+                    int salenumber;
+                    int point;
+                    string bookimagepath;
+                    float vipfee;
+                    string timefordiscount;
+                    float discount;
+                    int numberofpoints;
+                    string pdfpath;
+
+                    SQLmethodes.ReturnBookStats(0, BooksNames[i], out bookname, out authorname, out year, out bookprice, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
+                    if (!exist) return;
+
+                    salenumber++;
+
+                    bool ok;
+                    SQLmethodes.DeleteBookFromBookTable(bookname, out ok);
+                    if (!ok) return;
+
+                    bool isok;
+                    SQLmethodes.AddBookToBookTable(bookname, authorname, year, bookprice, bookdescription, authorprofile, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, numberofpoints, pdfpath, out isok);
+                    if (!isok) return;
+                }
+
                 shoppinglist = "";
 
                 SQLmethodes.UpdateUserTable(EmailOfUser, email, name, family, password, shoppinglist, buyedlist, bookmarked, wallet, VIPTime, out exist);
@@ -209,6 +263,7 @@ namespace WpfApp1
                 }
 
                 cost = 0;
+
                 MessageBoxResult message = MessageBox.Show($"Your purchase was successful");
             }
 
@@ -243,6 +298,43 @@ namespace WpfApp1
 
             SQLmethodes.ReturnUserStats(EmailOfUser, out email, out name, out family, out password, out shoppinglist, out buyedlist, out bookmarked, out wallet, out VIPTime, out exist);
             if (!exist) return;
+
+            string[] BooksNamesAndPrice = shoppinglist.Split(',');
+            string[] BooksNames = new string[BooksNamesAndPrice.Length];
+
+            for (int i = 0; i < BooksNamesAndPrice.Length; i++)
+            {
+                BooksNames[i] = BooksNamesAndPrice[i].Split(' ')[0];
+
+                string bookname;
+                string bookprice;
+                string year;
+                string authorname;
+                string authorprofile;
+                string bookdescription;
+                bool isvip;
+                int salenumber;
+                int point;
+                string bookimagepath;
+                float vipfee;
+                string timefordiscount;
+                float discount;
+                int numberofpoints;
+                string pdfpath;
+
+                SQLmethodes.ReturnBookStats(0, BooksNames[i], out bookname, out authorname, out year, out bookprice, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
+                if (!exist) return;
+
+                salenumber++;
+
+                bool ok;
+                SQLmethodes.DeleteBookFromBookTable(bookname, out ok);
+                if (!ok) return;
+
+                bool isok;
+                SQLmethodes.AddBookToBookTable(bookname, authorname, year, bookprice, bookdescription, authorprofile, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, numberofpoints, pdfpath, out isok);
+                if (!isok) return;
+            }
 
             shoppinglist = "";
 
@@ -508,7 +600,7 @@ namespace WpfApp1
             string pdfpath;
             bool exist;
 
-            SQLmethodes.ReturnBookStats(0 , Name , out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount,out numberofpoints , out pdfpath,out exist);
+            SQLmethodes.ReturnBookStats(0, Name, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
             if (!exist) return;
 
             imageofbook.Source = new BitmapImage(new Uri(bookimagepath));
@@ -635,7 +727,7 @@ namespace WpfApp1
             string pdfpath;
             bool exist;
 
-            SQLmethodes.ReturnBookStats(1 , Name , out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath,out exist);
+            SQLmethodes.ReturnBookStats(1, Name, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
             if (!exist) return;
 
             imageofbook.Source = new BitmapImage(new Uri(bookimagepath));
@@ -712,10 +804,11 @@ namespace WpfApp1
 
         private void SumbitPoint(object sender, RoutedEventArgs e)
         {
-            if(PointGiven.Text.ToString()==null || PointGiven.Text.ToString() !="0" || PointGiven.Text.ToString() != "1" || PointGiven.Text.ToString() != "2" || PointGiven.Text.ToString() != "3" || PointGiven.Text.ToString() != "4" || PointGiven.Text.ToString() != "5")
-            { MessageBoxResult message = MessageBox.Show("Enter an integer");return; }
+            if (PointGiven.Text.ToString() == null || PointGiven.Text.ToString() != "0" || PointGiven.Text.ToString() != "1" || PointGiven.Text.ToString() != "2" || PointGiven.Text.ToString() != "3" || PointGiven.Text.ToString() != "4" || PointGiven.Text.ToString() != "5")
+            { MessageBoxResult message = MessageBox.Show("Enter an integer"); return; }
 
             string Name = BookName.Text.ToString();
+            int userpoint = int.Parse(PointGiven.Text.ToString());
 
             string name;
             string price;
@@ -734,9 +827,24 @@ namespace WpfApp1
             string pdfpath;
             bool exist;
 
-            SQLmethodes.ReturnBookStats(0, Name, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints,out pdfpath ,out exist);
+            SQLmethodes.ReturnBookStats(0, Name, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
             if (!exist) return;
 
+            point += userpoint;
+            numberofpoints++;
+
+            point = point / numberofpoints;
+
+            bool ok;
+            SQLmethodes.DeleteBookFromBookTable(Name, out ok);
+            if (!ok) return;
+
+            bool isok;
+            SQLmethodes.AddBookToBookTable(name, authorname, year, price, bookdescription, authorprofile, isvip, salenumber, point, bookimagepath, vipfee, timefordiscount, discount, numberofpoints, pdfpath, out isok);
+            if (!isok) return;
+
+            MessageBoxResult messageBox = MessageBox.Show("Point Submited successfuly");
+            PointGiven.Text = null;
         }
     }
 }
