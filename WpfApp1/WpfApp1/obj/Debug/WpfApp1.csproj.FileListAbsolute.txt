@@ -77,3 +77,6 @@ D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\VIPmembers.g.cs
 D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\Fund.baml
 D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\NormalMembers.baml
 D:\Coding\ApProject\Book-Store-\WpfApp1\WpfApp1\obj\Debug\VIPmembers.baml
+C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\Fund.baml
+C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\NormalMembers.baml
+C:\Users\Dell\Documents\GitHub\Book-Store\WpfApp1\WpfApp1\obj\Debug\VIPmembers.baml
