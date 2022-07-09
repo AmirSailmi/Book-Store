@@ -138,6 +138,7 @@ namespace WpfApp1
 
         private void EditProfileBtn_Click(object sender, RoutedEventArgs e)
         {
+            editProfileGrid.Visibility = Visibility.Visible;
             editPanelGrid.Visibility = Visibility.Visible;
             MainGrid.Visibility = Visibility.Hidden;
         }
@@ -250,11 +251,13 @@ namespace WpfApp1
 
             for (int i = 0; i < BooksNamesAndPrice.Length; i++)
             {
-                BooksNames[i] = BooksNamesAndPrice[i].Split(' ')[0];
+                string nameandprice;
+                nameandprice = BooksNamesAndPrice[i];
+                BooksNames[i] = nameandprice.Split(' ')[0].Trim();
             }
 
             cost = DiscountCalculator(BooksNames);
-
+            
             MessageBoxResult meessage = MessageBox.Show($"Total Cost : {cost}");
 
             buyingPage.Visibility = Visibility.Visible;
@@ -548,10 +551,17 @@ namespace WpfApp1
                 int numberofpoints;
                 string pdfpath;
                 bool exist;
-
-                SQLmethodes.ReturnBookStats(0, BooksNames[i], out bookname, out authorname, out year, out bookprice, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
-                price = float.Parse(bookprice) - float.Parse(bookprice) * (discount / 100);
-                total_price += price;
+                try
+                {
+                    SQLmethodes.ReturnBookStats(0, BooksNames[i].Trim(), out bookname, out authorname, out year, out bookprice, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
+                    if (bookprice.Trim() == "") return total_price;
+                    price = float.Parse(bookprice) - ((float.Parse(bookprice)) * (discount / 100));
+                    total_price += price;
+                }catch(Exception error)
+                {
+                    MessageBoxResult boxResult = MessageBox.Show(error.Message);
+                    return 0;
+                }
             }
             return total_price;
         }
@@ -582,8 +592,16 @@ namespace WpfApp1
             {
                 for (int i = 0; i < arr.Length; i++)
                 {
-                    if (arr[i].Contains(nameofbook)) continue;
-                    else books.Add(arr[i] + ",");
+                    if (i != arr.Length - 1)
+                    {
+                        if (arr[i].Contains(nameofbook)) continue;
+                        else books.Add(arr[i] + ",");
+                    }
+                    else
+                    {
+                        if (arr[i].Contains(nameofbook)) continue;
+                        else books.Add(arr[i]);
+                    }
                 }
 
             }
@@ -709,6 +727,7 @@ namespace WpfApp1
         private void editPassBtn_Click(object sender, RoutedEventArgs e)
         {
             editPassGrid.Visibility = Visibility.Visible;
+            editPanelGrid.Visibility = Visibility.Hidden;
         }
 
         private void editPassSubmitBtn_Click(object sender, RoutedEventArgs e)
@@ -790,7 +809,7 @@ namespace WpfApp1
 
         private void SearchDependingBook(object sender, RoutedEventArgs e)
         {
-            if (!Check.NameCheck(searchBook.Text.ToString()))
+            if (searchBook.Text.ToString()==null)
             {
                 MessageBoxResult message = MessageBox.Show("Enter name"); return;
             }
@@ -816,8 +835,13 @@ namespace WpfApp1
 
             SQLmethodes.ReturnBookStats(0, Name, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
             if (!exist) return;
-
-            imageofbook.Source = new BitmapImage(new Uri(bookimagepath));
+            try
+            {
+                imageofbook.Source = new BitmapImage(new Uri(bookimagepath));
+            }catch(Exception error)
+            {
+                MessageBoxResult boxResult = MessageBox.Show(error.Message);return;
+            }
 
             YEAR.Text = year;
             authorName.Text = authorname;
@@ -928,7 +952,7 @@ namespace WpfApp1
 
         private void SearchDependingAuthor(object sender, RoutedEventArgs e)
         {
-            if (!Check.NameCheck(searchAuthor.Text.ToString()))
+            if (searchAuthor.Text.ToString()==null)
             {
                 MessageBoxResult message = MessageBox.Show("Enter name"); return;
             }
@@ -1028,11 +1052,14 @@ namespace WpfApp1
 
         private void SumbitPoint(object sender, RoutedEventArgs e)
         {
-            if (PointGiven.Text.ToString() == null || PointGiven.Text.ToString() != "0" || PointGiven.Text.ToString() != "1" || PointGiven.Text.ToString() != "2" || PointGiven.Text.ToString() != "3" || PointGiven.Text.ToString() != "4" || PointGiven.Text.ToString() != "5")
-            { MessageBoxResult message = MessageBox.Show("Enter an integer"); return; }
+            int userpoint;
 
-            string Name = BookName.Text.ToString();
-            int userpoint = int.Parse(PointGiven.Text.ToString());
+            if (PointGiven.Text.ToString() == null || !int.TryParse(PointGiven.Text.ToString() , out userpoint))
+            { MessageBoxResult message = MessageBox.Show("Enter an integer between 0 - 5"); return; }
+
+            if(userpoint>5 || userpoint < 0) { MessageBoxResult message = MessageBox.Show("Enter an integer between 0 - 5"); return; }
+
+            string Name = searchBook.Text.ToString();
 
             string name;
             string price;
@@ -1057,7 +1084,7 @@ namespace WpfApp1
             point += userpoint;
             numberofpoints++;
 
-            point = point / numberofpoints;
+            point = point / 2;
 
             bool ok;
             SQLmethodes.DeleteBookFromBookTable(Name, out ok);
