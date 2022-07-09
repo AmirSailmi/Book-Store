@@ -50,7 +50,7 @@
                         </Button.RenderTransform>
                     </Button>
                     <Button Content="VIP members" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="25,28,0,0" Height="85" Background="#FF1B1717" Foreground="#FF95AD29" BorderBrush="{x:Null}" FontSize="28" Click="ShowListOfVIPmembers" Padding="1,1,180,1"/>
-                    <Button x:Name="SearchUserBtn" Content="Search User" HorizontalAlignment="Left" VerticalAlignment="Top" Width="399" Margin="21,356,0,0" Height="103" Background="#FF1B1717" Foreground="#FF95AD29" BorderBrush="{x:Null}" FontSize="28" Click="EmailSearchedButton" Padding="200,1,2,1"/>
+                    <Button x:Name="SearchUserBtn" Content="Search User" HorizontalAlignment="Left" VerticalAlignment="Top" Width="399" Margin="21,356,0,0" Height="103" Background="#FF1B1717" Foreground="#FF95AD29" BorderBrush="{x:Null}" FontSize="28" Click="UserSearchedButton" Padding="200,1,2,1"/>
 
                     <Image Source="/images/normal.png" HorizontalAlignment="Left" Height="146" VerticalAlignment="Top" Width="152" Margin="10,99,0,0"/>
                     <Image Source="/images/VIPuser.png" HorizontalAlignment="Left" Height="135" VerticalAlignment="Top" Width="163" Margin="257,10,0,0"/>
@@ -99,6 +99,30 @@
             <Button x:Name="SumbitmonthlyFee" Content="Sumbit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Margin="141,253,0,0" Height="45" Background="{x:Null}" Foreground="#FF95AD29" BorderBrush="#FF383232" Click="SumbitmonthlyFee_Click"/>
             <Button Click="BackToAdminPannel" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,667,0,0" Background="{x:Null}" Foreground="#FF95AD29" BorderBrush="#FF363232"/>
         </Grid>
-
+        <Grid x:Name="SearchUserGrid" Visibility="Visible" Background="#FF1B1717">
+            <Grid x:Name="firstPage" Visibility="Visible">
+                <TextBlock Foreground="#FF95AD29" TextAlignment="Center" FontSize="50" FontFamily="MV Boli" HorizontalAlignment="Left" TextWrapping="Wrap" Text="User Search by:" VerticalAlignment="Top" Height="97" Width="422" Margin="0,10,0,0"/>
+                <TextBlock Foreground="#FF95AD29" TextAlignment="Center" FontSize="50" FontFamily="MV Boli" HorizontalAlignment="Left" TextWrapping="Wrap" Text="User Search by:" VerticalAlignment="Top" Height="97" Width="422" Margin="0,10,0,0"/>
+                <TextBox x:Name="UsersearchEmail" FontSize="30" HorizontalAlignment="Left" Height="53" TextWrapping="Wrap" VerticalAlignment="Top" Width="327" Margin="53,192,0,0"/>
+                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Email :" VerticalAlignment="Top" Margin="53,153,0,0" Height="34" Width="327"/>
+                <Button x:Name="UserSearchEmailBtn" Content="Search Email" Foreground="#FF95AD29" Background="{x:Null}" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Width="223" Margin="108,262,0,0" Height="68" Click="UserSearchEmailBtn_Click"/>
+                <TextBox x:Name="UsersearchName" FontSize="30" HorizontalAlignment="Left" Height="53" TextWrapping="Wrap" VerticalAlignment="Top" Width="327" Margin="53,429,0,0"/>
+                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name :" VerticalAlignment="Top" Margin="53,390,0,0" Height="34" Width="327"/>
+                <Button x:Name="UserSerachNameBtn" Content="Search Name" Foreground="#FF95AD29" Background="{x:Null}" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Width="223" Margin="108,499,0,0" Height="68" Click="UserSerachNameBtn_Click"/>
+                <Button x:Name="UserSearchBack" Content="Back" Foreground="#FF95AD29" Background="{x:Null}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="29,631,0,0" Height="43" Click="UserSearchBack_Click"/>
+            </Grid>
+            <Grid x:Name="secondPage" Visibility="Hidden">
+                <Image Source="/images/normal.png" HorizontalAlignment="Left" Height="188" Margin="109,10,0,0" VerticalAlignment="Top" Width="204"/>
+                <TextBlock x:Name="UserEmail" FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="284" Margin="139,248,0,0"/>
+                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Email :" VerticalAlignment="Top" Height="40" Width="99" Margin="40,248,0,0"/>
+                <TextBlock x:Name="UserName" FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="313" Margin="139,325,-20,0"/>
+                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="name :" VerticalAlignment="Top" Height="40" Width="99" Margin="40,325,0,0"/>
+                <TextBlock x:Name="UserWallet" FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="258" Margin="200,497,-26,0"/>
+                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="wallet :" VerticalAlignment="Top" Height="40" Width="99" Margin="96,497,0,0"/>
+                <TextBlock x:Name="USerVIPtime" FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="222" Margin="200,410,0,0"/>
+                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="VIP Time :" VerticalAlignment="Top" Height="40" Width="126" Margin="69,410,0,0"/>
+                <Button x:Name="UserPageBack" Content="Back" Foreground="#FF95AD29" Background="{x:Null}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="29,631,0,0" Height="43" Click="UserPageBack_Click" />
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
