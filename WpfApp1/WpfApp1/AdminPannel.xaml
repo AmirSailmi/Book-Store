@@ -1,0 +1,128 @@
+﻿<Window x:Class="WpfApp1.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Admin Panel" Height="694.567" Width="435.513" ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,4,-2" Background="#FF1B1717">
+        <TabControl HorizontalAlignment="Left" Width="448" Margin="-8,0" Background="#FF1B1717">
+            <TabItem Width="140" Height="30" Header="Books Setting" FontSize="16">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button Content="Add Book" Height="134" Margin="33,0,32,21" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="150,1,1,20" Click="AddBook"/>
+                    <Image Source="/images/Plus.png" Margin="0,0,228,10"/>
+
+                    <Button Grid.Row= "1" Content=" Delete Book" Height="134" Margin="33,0,32,21" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="0,1,150,20" Click="DeleteBook"/>
+                    <Image Grid.Row= "1" Source="/images/Delete.png" Margin="228,0,0,10"/>
+
+                    <Button Grid.Row= "2" Content=" Edit " Height="134" Margin="33,0,32,21" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="150,1,1,20" Click="Edit"/>
+                    <Image Grid.Row= "2" Source="/images/Edit.png" Margin="0,0,228,10"/>
+
+                    <Button Grid.Row= "3" Content=" Status" Height="119" Margin="33,0,32,41" Width="377" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="#FF1B1717" BorderBrush="{x:Null}" Foreground="#FF95AD29" FontSize="36" Padding="0,1,150,20" Click="Status"/>
+                    <Image Grid.Row= "2" Source="/images/StatusOfBooks.png" Margin="228,149,0,26" Grid.RowSpan="2"/>
+                    <Button Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Margin="10,129,0,0" Height="26" Background="#FF1B1717" Foreground="#FF95AD29" Click="Exit" Grid.Row="3" FontSize="12" Padding="1,3,1,1"/>
+                    <Button Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Margin="65,129,0,0" Height="25" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" Click="BackToLoginPage" Grid.Row="3"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Width="162" Height="30" Header="Serach" FontSize="16">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="469*"/>
+                        <RowDefinition Height="190*"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Normal members" HorizontalAlignment="Left" Padding="130,1,1,1" VerticalAlignment="Top" Width="408" Margin="20,129,0,0" Height="91" RenderTransformOrigin="0.5,0.5" Background="#FF1B1717" Foreground="#FF95AD29" BorderBrush="{x:Null}" FontSize="28" Click="ShowListOfNormalMembers">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleY="0.78"/>
+                                <RotateTransform/>
+                                <TranslateTransform Y="1.389"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Content="VIP members" HorizontalAlignment="Left" VerticalAlignment="Top" Width="382" Margin="25,28,0,0" Height="85" Background="#FF1B1717" Foreground="#FF95AD29" BorderBrush="{x:Null}" FontSize="28" Click="ShowListOfVIPmembers" Padding="1,1,180,1"/>
+                    <Button x:Name="SearchUserBtn" Content="Search User" HorizontalAlignment="Left" VerticalAlignment="Top" Width="399" Margin="21,356,0,0" Height="103" Background="#FF1B1717" Foreground="#FF95AD29" BorderBrush="{x:Null}" FontSize="28" Click="UserSearchedButton" Padding="200,1,2,1"/>
+
+                    <Image Source="/images/normal.png" HorizontalAlignment="Left" Height="146" VerticalAlignment="Top" Width="152" Margin="10,99,0,0"/>
+                    <Image Source="/images/VIPuser.png" HorizontalAlignment="Left" Height="135" VerticalAlignment="Top" Width="163" Margin="257,10,0,0"/>
+                    <Image Source="/images/books.png" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="138" Margin="269,217,0,0"/>
+                    <Image Source="/images/SearchUser.png" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="154" Margin="21,333,0,0"/>
+                    <Button Content="Books List" Padding="1,1,200,1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="386" Margin="21,245,0,0" Height="102" FontSize="28" Background="{x:Null}" Foreground="#FF95AD29" BorderBrush="{x:Null}" Click="ShowBooksList"/>
+                    <!--Second Row-->
+                    <Button Grid.Row="1" Content="Author name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Margin="21,32,0,0" Height="39" Background="{x:Null}" Foreground="#FF92991F" BorderBrush="{x:Null}" FontSize="28" Padding="1,1,0,1" Click="SearchBookByAuthorName"/>
+                    <Button x:Name="BookNameSearch" Grid.Row="1" Content="Book name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Margin="21,95,0,0" Height="36" Background="{x:Null}" Foreground="#FF92991F" BorderBrush="{x:Null}" FontSize="28" Padding="1,1,30,1" Click="SearchBookByBookName"/>
+                    <TextBox x:Name="authornamee" Grid.Row="1" HorizontalAlignment="Left" Height="39" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="220,32,0,0" Background="{x:Null}" BorderBrush="#FF92991F" Foreground="#FF92991F"/>
+                    <TextBox x:Name="nameofbook" Grid.Row="1" HorizontalAlignment="Left" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="220,95,0,0" Background="{x:Null}" Foreground="#FF92991F" BorderBrush="#FF92991F"/>
+
+                    <Button Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Margin="10,151,0,0" Height="29" Background="#FF1B1717" Foreground="#FF95AD29" Click="Exit" Grid.Row="1" BorderBrush="#FF383232" FontSize="12" Padding="1,5,1,1"/>
+                    <Button Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="65,151,0,0" Height="29" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" Click="BackToLoginPage" Grid.Row="1" BorderBrush="#FF383232"/>
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Width="140" Height="30" Header="Financial" FontSize="16">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="FundBtn" Margin="10,31,11,140.5" Content="Fund" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="1,1,200,1" Click="FundBtn_Click"/>
+                    <Image Source="/images/safebox.png" Margin="233,55,11,161" />
+
+                    <Button x:Name="GetMoneyBtn" Margin="1,223,10,282" Content="Get money" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="200,1,2,1" Grid.RowSpan="2" Click="GetMoneyBtn_Click"/>
+
+                    <Button Margin="1,83,10,93" Content="Set VIP price" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF95AD29" Padding="1,1,170,1" Grid.Row="1" Click="SetVIPprice"/>
+
+                    <Image Source="/images/Fund.png" Margin="11,222,225,282" Grid.RowSpan="2"/>
+                    <Image Source="/images/VIPprice.png" HorizontalAlignment="Left" Height="154" VerticalAlignment="Top" Width="157" Margin="254,83,0,0" Grid.Row="1"/>
+                    <Button Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Margin="10,296,0,0" Height="24" Background="#FF1B1717" Foreground="#FF95AD29" Click="Exit" Grid.Row="1" FontSize="12" BorderBrush="#FF383232" Padding="1,2,1,1"/>
+                    <Button Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="65,296,0,0" Height="23" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" Click="BackToLoginPage" Grid.Row="1" BorderBrush="#FF383232"/>
+
+                </Grid>
+
+            </TabItem>
+
+        </TabControl>
+        <Grid x:Name="VIPSET" Background="#FF1B1717" Visibility="Hidden">
+            <TextBlock FontFamily="MV Boli" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="64,54,0,0" Height="80" Width="301" Foreground="#FF95AD29" FontSize="30"><Run Text="SET VIP mothly fee"/><InlineUIContainer>
+                </InlineUIContainer></TextBlock>
+            <TextBox x:Name="MonthlyFee" TextWrapping="Wrap" Margin="105,179,118,480" FontSize="20" Foreground="#FF95AD29" BorderBrush="#FF43464F" Background="{x:Null}"/>
+            <Button x:Name="SumbitmonthlyFee" Content="Sumbit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Margin="141,253,0,0" Height="45" Background="{x:Null}" Foreground="#FF95AD29" BorderBrush="#FF383232" Click="SumbitmonthlyFee_Click"/>
+            <Button Click="BackToAdminPannel" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,667,0,0" Background="{x:Null}" Foreground="#FF95AD29" BorderBrush="#FF363232"/>
+        </Grid>
+        <Grid x:Name="SearchUserGrid" Visibility="Visible" Background="#FF1B1717">
+            <Grid x:Name="firstPage" Visibility="Visible">
+                <TextBlock Foreground="#FF95AD29" TextAlignment="Center" FontSize="50" FontFamily="MV Boli" HorizontalAlignment="Left" TextWrapping="Wrap" Text="User Search by:" VerticalAlignment="Top" Height="97" Width="422" Margin="0,10,0,0"/>
+                <TextBlock Foreground="#FF95AD29" TextAlignment="Center" FontSize="50" FontFamily="MV Boli" HorizontalAlignment="Left" TextWrapping="Wrap" Text="User Search by:" VerticalAlignment="Top" Height="97" Width="422" Margin="0,10,0,0"/>
+                <TextBox x:Name="UsersearchEmail" FontSize="30" HorizontalAlignment="Left" Height="53" TextWrapping="Wrap" VerticalAlignment="Top" Width="327" Margin="53,192,0,0"/>
+                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Email :" VerticalAlignment="Top" Margin="53,153,0,0" Height="34" Width="327"/>
+                <Button x:Name="UserSearchEmailBtn" Content="Search Email" Foreground="#FF95AD29" Background="{x:Null}" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Width="223" Margin="108,262,0,0" Height="68" Click="UserSearchEmailBtn_Click"/>
+                <TextBox x:Name="UsersearchName" FontSize="30" HorizontalAlignment="Left" Height="53" TextWrapping="Wrap" VerticalAlignment="Top" Width="327" Margin="53,429,0,0"/>
+                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name :" VerticalAlignment="Top" Margin="53,390,0,0" Height="34" Width="327"/>
+                <Button x:Name="UserSerachNameBtn" Content="Search Name" Foreground="#FF95AD29" Background="{x:Null}" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" Width="223" Margin="108,499,0,0" Height="68" Click="UserSerachNameBtn_Click"/>
+                <Button x:Name="UserSearchBack" Content="Back" Foreground="#FF95AD29" Background="{x:Null}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="29,631,0,0" Height="43" Click="UserSearchBack_Click"/>
+            </Grid>
+            <Grid x:Name="secondPage" Visibility="Hidden">
+                <Image Source="/images/normal.png" HorizontalAlignment="Left" Height="188" Margin="109,10,0,0" VerticalAlignment="Top" Width="204"/>
+                <TextBlock x:Name="UserEmail" FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="284" Margin="139,248,0,0"/>
+                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Email :" VerticalAlignment="Top" Height="40" Width="99" Margin="40,248,0,0"/>
+                <TextBlock x:Name="UserName" FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="313" Margin="139,325,-20,0"/>
+                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="name :" VerticalAlignment="Top" Height="40" Width="99" Margin="40,325,0,0"/>
+                <TextBlock x:Name="UserWallet" FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="258" Margin="200,497,-26,0"/>
+                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="wallet :" VerticalAlignment="Top" Height="40" Width="99" Margin="96,497,0,0"/>
+                <TextBlock x:Name="USerVIPtime" FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="222" Margin="200,410,0,0"/>
+                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="VIP Time :" VerticalAlignment="Top" Height="40" Width="126" Margin="69,410,0,0"/>
+                <Button x:Name="UserPageBack" Content="Back" Foreground="#FF95AD29" Background="{x:Null}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="29,631,0,0" Height="43" Click="UserPageBack_Click" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

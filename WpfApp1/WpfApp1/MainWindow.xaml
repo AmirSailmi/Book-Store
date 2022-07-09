@@ -1,0 +1,61 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="723.622" Width="396.378" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Background="#FF1B1717">
+    <Grid Margin="0,26,-6,0">
+        <TabControl Width="400" Margin="1,-23,1,0" Background="#FF1B1717">
+            <TabItem Height="20" Width="70" Header="Customer" Background="White">
+                <Grid Margin="0,0,0,-20" Width="400">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="72*"/>
+                        <RowDefinition Height="341*"/>
+                        <RowDefinition Height="287*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1" Margin="25,0,30,46">
+                        <TextBlock Text="Name" Foreground="#FFC4D334" FontSize="20" Height="45" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="Customername_SignUP"  />
+                        <TextBlock Text="Family" Foreground="#FFC4D334" FontSize="20" Height="45" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="CustomerFamily_SignUP" />
+                        <TextBlock Text="Email" Foreground="#FFC4D334" FontSize="20" Height="45" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="CustomerEmail_SignUP" />
+                        <TextBlock Text="Password" Foreground="#FFC4D334" Height="45" FontSize="20" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        <PasswordBox x:Name="CustomerPassword_SignUP" />
+                        <Button Content="Sign up" HorizontalAlignment="Center" Margin="132,10,132,0" Padding="5,2" Click="UserSignUp" Foreground="#FF9DAD2C" Background="#FF1B1717" Width="80" Height="29" FontSize="16"/>
+                    </StackPanel>
+                    <TextBlock Text="Sign up" Foreground="#FF95AD29" FontSize="36" Margin="136,11,136,13" VerticalAlignment="Center" HorizontalAlignment="Center" Height="48" Width="122"/>
+                    <TextBlock Text="Sign in" Grid.Row="2" Foreground="#FF95AD29" FontSize="36" Margin="139,0,152,245" VerticalAlignment="Center" HorizontalAlignment="Center" Height="48" Width="109"/>
+                    <StackPanel Grid.Row="2" Margin="25,63,30,56">
+                        <TextBlock Text="Email" Foreground="#FFC4D334" FontSize="20" Height="42" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="149,0,145,0" Width="51"/>
+                        <TextBox x:Name="CustomerEmail_SignIn" />
+                        <TextBlock Text="Password" Foreground="#FFC4D334" Height="45" FontSize="20" HorizontalAlignment="Center"/>
+                        <PasswordBox x:Name="Password_SignIn" />
+
+                        <Button Content="Sign in" HorizontalAlignment="Center" Margin="131,10,133,0" Padding="5,2" Click="UserSingIn" Foreground="#FF9DAD2C" Background="#FF1B1717" Width="81" Height="27" FontSize="16"/>
+                    </StackPanel>
+                    <Button Content="Exit" Grid.Row="2" Background="#FF1B1717" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="333,242,15,30" Width="57" Height="24" Foreground="#FF95AD29" BorderBrush="{x:Null}" Click="ExitUserForm"/>
+                </Grid>
+            </TabItem>
+            <TabItem Width="70" Height="20" Header="Admin" Background="White">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="246*"/>
+                        <RowDefinition Height="433*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1" Margin="25,0">
+                        <TextBlock Height="32" TextWrapping="Wrap" Text="Username" Foreground="#FF95AD29" FontSize="20" Margin="123,0,97,0"/>
+                        <TextBox x:Name="username" Height="23"/>
+                        <TextBlock Height="35" TextWrapping="Wrap" Text="Password" Foreground="#FF95AD29" FontSize="20" Margin="123,0,97,0"/>
+                        <PasswordBox x:Name="password" Height="23"/>
+                    </StackPanel>
+                    <Button Grid.Row="1" Content="Exit" HorizontalAlignment="Center" VerticalAlignment="Center" Width="57" Height="24" Margin="327,399,10,3" Background="#FF1B1717" Foreground="#FF91AC29" BorderBrush="{x:Null}" Click="ExitAdminForm"/>
+                    <TextBlock Grid.Row="0" Foreground="#FF95AD29" FontSize="36" TextAlignment="Center" LineHeight="22" VerticalAlignment="Center"><Run Text="Admin "/><Run Text="Login"/></TextBlock>
+                    <Button x:Name="adminsignin" Grid.Row="1" Content="Sign in" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20" FontSize="20" Background="#FF1B1717" Foreground="#FF819F27" Click="AdminSignIn"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
