@@ -50,7 +50,7 @@
             <Button x:Name="SearchDependingauthor" Content="Search" Foreground="White" FontSize="30"  Background="DimGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="116,421,0,0" Height="55" FontFamily="SimSun" Click="SearchDependingAuthor"/>
 
         </Grid>
-        <Grid x:Name="ShowBook" Background="#FF1B1717" Visibility="Visible" Margin="-9,0,-8,0" Grid.RowSpan="2">
+        <Grid x:Name="ShowBook" Background="#FF1B1717" Visibility="Hidden" Margin="-9,0,-8,0" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
@@ -134,7 +134,7 @@
             </ListBox>
 
         </Grid>
-        <Grid x:Name="buyingPage" Visibility="Visible" Background="#FF1B1717" Grid.RowSpan="2">
+        <Grid x:Name="buyingPage" Visibility="Hidden" Background="#FF1B1717" Grid.RowSpan="2">
             <Button Click="BuyFromWallet" Content="buy" HorizontalAlignment="Left" VerticalAlignment="Top" Width="101" Margin="271,49,0,0" Height="47" Background="{x:Null}" BorderBrush="#FF4B4545" Foreground="#FF95AD29" FontSize="20"/>
             <TextBlock  HorizontalAlignment="Left" TextWrapping="Wrap" Text="From wallet" VerticalAlignment="Top" Margin="49,51,0,0" Height="47" Width="158" FontSize="25" Foreground="#FF95AD29"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="From credit cart" VerticalAlignment="Top" Margin="43,150,0,0" Height="38" Width="181" Foreground="#FF95AD29" FontSize="25"/>

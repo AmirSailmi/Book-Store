@@ -355,7 +355,7 @@ namespace WpfApp1
                     for (int i = 0; i < BooksNamesAndPrice.Length; i++)
                     {
                         BooksNames[i] = BooksNamesAndPrice[i].Split(' ')[0];
-
+                        
                         string bookname;
                         string bookprice;
                         string year;
@@ -373,9 +373,10 @@ namespace WpfApp1
                         string pdfpath;
 
                         SQLmethodes.ReturnBookStats(0, BooksNames[i], out bookname, out authorname, out year, out bookprice, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
-                        if (!exist) return;
 
                         salenumber++;
+
+                        if (bookname.Trim() == "") continue;
 
                         bool ok;
                         SQLmethodes.DeleteBookFromBookTable(bookname, out ok);
