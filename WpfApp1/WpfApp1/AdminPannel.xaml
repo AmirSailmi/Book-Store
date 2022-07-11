@@ -54,7 +54,6 @@
 
                     <Image Source="/images/normal.png" HorizontalAlignment="Left" Height="146" VerticalAlignment="Top" Width="152" Margin="10,99,0,0"/>
                     <Image Source="/images/VIPuser.png" HorizontalAlignment="Left" Height="135" VerticalAlignment="Top" Width="163" Margin="257,10,0,0"/>
-                    <Image Source="/images/books.png" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="138" Margin="269,217,0,0"/>
                     <Image Source="/images/SearchUser.png" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="154" Margin="21,333,0,0"/>
                     <Button Content="Books List" Padding="1,1,200,1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="386" Margin="21,245,0,0" Height="102" FontSize="28" Background="{x:Null}" Foreground="#FF95AD29" BorderBrush="{x:Null}" Click="ShowBooksList"/>
                     <!--Second Row-->
@@ -65,6 +64,7 @@
 
                     <Button Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Margin="10,151,0,0" Height="29" Background="#FF1B1717" Foreground="#FF95AD29" Click="Exit" Grid.Row="1" BorderBrush="#FF383232" FontSize="12" Padding="1,5,1,1"/>
                     <Button Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="65,151,0,0" Height="29" FontSize="12" Background="#FF1B1717" Foreground="#FF95AD29" Click="BackToLoginPage" Grid.Row="1" BorderBrush="#FF383232"/>
+                    <Image Source="/images/books.png" HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="138" Margin="269,217,0,0"/>
 
 
                 </Grid>
@@ -113,14 +113,14 @@
             </Grid>
             <Grid x:Name="secondPage" Visibility="Hidden">
                 <Image Source="/images/normal.png" HorizontalAlignment="Left" Height="188" Margin="109,10,0,0" VerticalAlignment="Top" Width="204"/>
-                <TextBlock x:Name="UserEmail" FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="284" Margin="139,248,0,0"/>
+                <TextBlock x:Name="UserEmail" FontSize="20" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="251" Margin="171,248,0,0"/>
                 <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Email :" VerticalAlignment="Top" Height="40" Width="99" Margin="40,248,0,0"/>
-                <TextBlock x:Name="UserName" FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="313" Margin="139,325,-20,0"/>
+                <TextBlock x:Name="UserName" FontSize="20" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="240" Margin="171,325,0,0"/>
                 <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="name :" VerticalAlignment="Top" Height="40" Width="99" Margin="40,325,0,0"/>
-                <TextBlock x:Name="UserWallet" FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="258" Margin="200,497,-26,0"/>
-                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="wallet :" VerticalAlignment="Top" Height="40" Width="99" Margin="96,497,0,0"/>
-                <TextBlock x:Name="USerVIPtime" FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="222" Margin="200,410,0,0"/>
-                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="VIP Time :" VerticalAlignment="Top" Height="40" Width="126" Margin="69,410,0,0"/>
+                <TextBlock x:Name="UserWallet" FontSize="20" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="258" Margin="171,497,0,0"/>
+                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="wallet :" VerticalAlignment="Top" Height="40" Width="99" Margin="40,497,0,0"/>
+                <TextBlock x:Name="USerVIPtime" FontSize="20" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="kgdfk" VerticalAlignment="Top" Height="40" Width="222" Margin="171,410,0,0"/>
+                <TextBlock FontSize="25" Foreground="#FF95AD29" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="VIP Time :" VerticalAlignment="Top" Height="40" Width="126" Margin="40,410,0,0"/>
                 <Button x:Name="UserPageBack" Content="Back" Foreground="#FF95AD29" Background="{x:Null}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="29,631,0,0" Height="43" Click="UserPageBack_Click" />
             </Grid>
         </Grid>

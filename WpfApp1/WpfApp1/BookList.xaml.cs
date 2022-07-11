@@ -59,6 +59,7 @@ namespace WpfApp1
                     sda.Fill(dt);
 
                     DataGrid.AutoGenerateColumns = false;
+                    DataGrid.IsReadOnly = true;
                     DataGrid.ItemsSource = dt.DefaultView;
 
                 }

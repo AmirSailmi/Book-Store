@@ -270,7 +270,7 @@ namespace WpfApp1
             adap.Fill(data);
             for (int i = 0; i < data.Rows.Count; i++)
             {
-                if (data.Rows[i][1].ToString() == UserName.Text || data.Rows[i][2].ToString() == UserName.Text || UserName.Text == data.Rows[i][1] + " " + data.Rows[i][2])
+                if (data.Rows[i][1].ToString() == UsersearchName.Text || data.Rows[i][2].ToString() == UsersearchName.Text || UsersearchName.Text == data.Rows[i][1] + " " + data.Rows[i][2])
                 {
                     secondPage.Visibility = Visibility.Visible;
                     firstPage.Visibility = Visibility.Hidden;

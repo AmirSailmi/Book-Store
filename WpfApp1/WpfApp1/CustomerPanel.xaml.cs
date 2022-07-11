@@ -387,6 +387,7 @@ namespace WpfApp1
                         if (!isok) return;
                     }
 
+                    buyedlist = shoppinglist;
                     shoppinglist = "";
                 }
 
@@ -515,7 +516,7 @@ namespace WpfApp1
 
                 con.Close();
 
-
+                buyedlist = shoppinglist;
                 shoppinglist = "";
             }
 
@@ -1082,10 +1083,13 @@ namespace WpfApp1
             SQLmethodes.ReturnBookStats(0, Name, out name, out authorname, out year, out price, out bookdescription, out authorprofile, out isvip, out salenumber, out point, out bookimagepath, out vipfee, out timefordiscount, out discount, out numberofpoints, out pdfpath, out exist);
             if (!exist) return;
 
-            point += userpoint;
-            numberofpoints++;
-
-            point = point / 2;
+            if (point == 0) point += userpoint;
+            else
+            {
+                point += userpoint;
+                numberofpoints++;
+                point = point / 2;
+            }
 
             bool ok;
             SQLmethodes.DeleteBookFromBookTable(Name, out ok);

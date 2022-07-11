@@ -66,7 +66,7 @@
             </Image>
             <Button Click="SeePdf" Content="See pdf" HorizontalAlignment="Left" VerticalAlignment="Top" Width="136" Margin="15,638,0,0" Height="54" Foreground="#FF95AD29" Background="{x:Null}" BorderBrush="#FF383737" FontSize="17"/>
 
-            <TextBox x:Name="PointGiven" HorizontalAlignment="Left" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" Margin="219,563,0,0" Background="{x:Null}" BorderBrush="#FF444649" FontSize="20" Foreground="#FF95AD29" TextAlignment="Center" Text="6"/>
+            <TextBox x:Name="PointGiven" HorizontalAlignment="Left" Height="36" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" Margin="219,563,0,0" Background="{x:Null}" BorderBrush="#FF444649" FontSize="20" Foreground="#FF95AD29" TextAlignment="Center" Text="0"/>
             <Button Click="BookmarkBtn_Click" Content="Bookmark" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="346,-1,0,0" Height="76" Background="#FF95AD29"/>
             <TextBlock x:Name="YEAR" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="174,195,0,0" Width="69" Height="20" Foreground="#FF95AD29" TextAlignment="Center"/>
             <TextBlock x:Name="authorName" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="22,220,15,0" Width="394" VerticalAlignment="Top" TextAlignment="Center" Foreground="#FF95AD29" Height="24"/>
@@ -147,7 +147,7 @@
             <TextBox x:Name="passwordofcard" Margin="44,343,117,318"/>
             <Button x:Name="BuyingPageBack" Content="back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="101" Margin="18,645,0,0" Height="47" Background="{x:Null}" BorderBrush="#FF4B4545" Foreground="#FF95AD29" FontSize="20" Click="BuyingPageBack_Click"/>
         </Grid>
-        <Grid x:Name="walletGrid" Visibility="Hidden" OpacityMask="#FF423C3C" Background="#FF1B1717" Margin="-9,0,-8,0" Loaded="WalletGrid_Loaded" Grid.RowSpan="2">
+        <Grid x:Name="walletGrid" Visibility="Visible" OpacityMask="#FF423C3C" Background="#FF1B1717" Margin="-9,0,-8,0" Loaded="WalletGrid_Loaded" Grid.RowSpan="2">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="50" Text="Wallet:" VerticalAlignment="Top" Margin="131,10,0,0" Height="82" Width="179" FontFamily="MV Boli"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="40"  Text="ballance:" VerticalAlignment="Top" Height="54" Width="167" Margin="131,168,0,0" FontFamily="MV Boli"/>
 
